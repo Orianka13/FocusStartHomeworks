@@ -7,7 +7,7 @@
 
 import Foundation
 
-var Cars = [Car]()
+var cars = [Car]()
 var numberOfMenu: String?
 var body: Body
 
@@ -22,17 +22,18 @@ private func menuOptions() {
     numberOfMenu = readLine() ?? "0"
     switch numberOfMenu {
     case "0":
-        print("Выберите пункт меню")
+        print("Выберите пункт меню\n")
         menu()
     case "1":
-        print("Добавить автомобиль")
+        print("Добавить автомобиль\n")
         addAuto()
     case "2":
-        print("Вывести список добавленных автомобилей")
+        print("Список добавленных автомобилей\n")
+        listOfAutos()
     case "3":
-        print("Отфильтровать по типу кузова")
+        print("Отфильтровать по типу кузова\n")
     default:
-        print("Введите номер команды")
+        print("Введите номер команды\n")
         menu()
     }
 }
@@ -62,7 +63,12 @@ private func addAuto(){
     
     let newCar = Car(manufacturer: manufacturer, model: model, body: body, yearOfIssue: yearOfIssue, carNumber: carNumber)
     
-    Cars.append(newCar)
+    cars.append(newCar)
+    
+    print("Автомобиль добавлен!")
+    print()
+    
+    menu()
 }
 
 private func bodyType(numberOfType: Int) -> Body {
@@ -83,3 +89,18 @@ private func bodyType(numberOfType: Int) -> Body {
         return .another
     }
 }
+
+private func listOfAutos(){
+    
+    if !cars.isEmpty {
+        for car in cars {
+            print("Производитель : \(car.manufacturer)\nМодель: \(car.model)\nТип кузова: \(car.body.rawValue)\nГод выпуска: \(car.yearOfIssue ?? 0)\nГос.номер: \(car.carNumber ?? "-")\n")
+            menu()
+        }
+    } else {
+        print("Автомобилей не найдено\n")
+        
+        menu()
+    }
+}
+
