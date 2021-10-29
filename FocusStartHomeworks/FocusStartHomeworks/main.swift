@@ -7,14 +7,19 @@
 
 import Foundation
 
-var cars = [Car]()
-var numberOfMenu: String?
-var body: Body
+private var cars = [Car]()
+private var numberOfMenu: String?
+private var body: Body
+
+let auto1 = Car(manufacturer: "BMW", model: "X5", body: .crossover, yearOfIssue: 2006, carNumber: "VT567GT")
+let auto2 = Car(manufacturer: "Audi", model: "A3", body: .sedan, yearOfIssue: 2020, carNumber: "VT123YT")
+cars.append(auto1)
+cars.append(auto2)
 
 menu()
 
 private func menu() {
-    print("1 - Добавить автомобиль\n2 - Вывести список добавленных автомобилей\n3 - Отфильтровать по типу кузова")
+    print("\n1 - Добавить автомобиль\n2 - Вывести список добавленных автомобилей\n3 - Отфильтровать по типу кузова")
     menuOptions()
 }
 
@@ -28,7 +33,7 @@ private func menuOptions() {
         print("Добавить автомобиль\n")
         addAuto()
     case "2":
-        print("Список добавленных автомобилей\n")
+        print("Список добавленных автомобилей")
         listOfAutos(cars: cars)
     case "3":
         bodyFilter()
@@ -96,7 +101,14 @@ private func listOfAutos(cars: [Car]){
         menu()
     }
     for car in cars {
-        print("Производитель : \(car.manufacturer)\nМодель: \(car.model)\nТип кузова: \(car.body.rawValue)\nГод выпуска: \(car.yearOfIssue ?? 0)\nГос.номер: \(car.carNumber ?? "-")\n")
+        print("\nПроизводитель : ",car.manufacturer,
+              "\nМодель: ", car.model,
+              "\nТип кузова: ", car.body.rawValue,
+              "\nГод выпуска: ", car.yearOfIssue ?? "-")
+        if car.carNumber?.count != 0 {
+            print("Гос.номер: ", car.carNumber ?? "-",
+                  "\n")
+        }
     }
     menu()
 }
