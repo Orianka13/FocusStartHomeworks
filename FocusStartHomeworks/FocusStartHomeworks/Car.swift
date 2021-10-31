@@ -17,14 +17,23 @@ struct Car {
     
 }
 
-enum Body: String {
+enum Body: String, CaseIterable {
     
+    case another = "Другой"
     case sedan = "Седан"
-    case universal = "Универсальный"
+    case universal = "Универсал"
     case cabriolet = "Кабриолет"
     case piсkup = "Пикап"
     case crossover = "Кроссовер"
-    case another = "Другой"
     
+    init?(index: Int){
+        for (indexEnum, value) in Self.allCases.enumerated(){
+            if indexEnum == index {
+                self = value
+                return
+            }
+        }
+        return nil
+    }
 }
 

@@ -19,8 +19,15 @@ cars.append(auto2)
 menu()
 
 private func menu() {
-    print("\n1 - Добавить автомобиль\n2 - Вывести список добавленных автомобилей\n3 - Отфильтровать по типу кузова")
-    menuOptions()
+    while true{
+        print("""
+            
+            1 - Добавить автомобиль
+            2 - Вывести список добавленных автомобилей
+            3 - Отфильтровать по типу кузова
+            """)
+        menuOptions()
+    }
 }
 
 private func menuOptions() {
@@ -28,7 +35,6 @@ private func menuOptions() {
     switch numberOfMenu {
     case "0":
         print("Выберите пункт меню\n")
-        menu()
     case "1":
         print("Добавить автомобиль\n")
         addAuto()
@@ -39,7 +45,6 @@ private func menuOptions() {
         bodyFilter()
     default:
         print("Введите номер команды\n")
-        menu()
     }
 }
 
@@ -56,9 +61,9 @@ private func addAuto(){
     print("Укажите модель:")
     model = readLine() ?? "Неизвестен"
     
-    print("Укажите тип кузова:\n1 - Седан \n2 - Универсальный\n3 - Кабриолет\n4 - Пикап\n5 - Кроссовер\n6 - Другой")
-    let bodyNumber = Int(readLine() ?? "6") ?? 6
-    body = bodyType(numberOfType: bodyNumber)
+    bodyTypePrint()
+    let bodyNumber = Int(readLine() ?? "0") ?? 0
+    body = Body(index: bodyNumber) ?? .another
     
     print("Укажите год выпуска:")
     yearOfIssue = Int(readLine() ?? "-") ?? nil
@@ -66,39 +71,21 @@ private func addAuto(){
     print("Укажите номер автомобиля:")
     carNumber = readLine() ?? nil
     
-    let newCar = Car(manufacturer: manufacturer, model: model, body: body, yearOfIssue: yearOfIssue, carNumber: carNumber)
+    let newCar = Car(manufacturer: manufacturer,
+                     model: model,
+                     body: body,
+                     yearOfIssue: yearOfIssue,
+                     carNumber: carNumber)
     
     cars.append(newCar)
     
     print("Автомобиль добавлен!")
-    
-    menu()
-}
-
-private func bodyType(numberOfType: Int) -> Body {
-    switch numberOfType {
-    case 1:
-        return .sedan
-    case 2:
-        return .universal
-    case 3:
-        return .cabriolet
-    case 4:
-        return .piсkup
-    case 5:
-        return .crossover
-    case 6:
-        return .another
-    default:
-        return .another
-    }
 }
 
 private func listOfAutos(cars: [Car]){
     
     if cars.isEmpty {
         print("Автомобилей не найдено\n")
-        menu()
     }
     for car in cars {
         print("\nПроизводитель : ",car.manufacturer,
@@ -110,13 +97,18 @@ private func listOfAutos(cars: [Car]){
                   "\n")
         }
     }
-    menu()
 }
 
+private func bodyTypePrint(){
+    print("Укажите тип кузова:")
+    for (index, value) in Body.allCases.enumerated() {
+        print(index, " - ", value.rawValue)
+    }
+}
 private func bodyFilter() {
-    print("Укажите тип кузова:\n1 - Седан \n2 - Универсальный\n3 - Кабриолет\n4 - Пикап\n5 - Кроссовер\n6 - Другой")
-    guard let bodyNumber = Int(readLine() ?? "6") else { return }
-    let body = bodyType(numberOfType: bodyNumber)
+    bodyTypePrint()
+    guard let bodyNumber = Int(readLine() ?? "0") else { return }
+    let body = Body(index: bodyNumber) ?? .another
     let filteredBodyType = cars.filter { car in
         car.body == body }
     listOfAutos(cars: filteredBodyType)
