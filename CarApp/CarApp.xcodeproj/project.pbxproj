@@ -24,7 +24,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5950B826272BE9D800D51953 /* FocusStartHomeworks */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FocusStartHomeworks; sourceTree = BUILT_PRODUCTS_DIR; };
+		5950B826272BE9D800D51953 /* CarApp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CarApp; sourceTree = BUILT_PRODUCTS_DIR; };
 		5950B829272BE9D800D51953 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		5950B830272BE9FB00D51953 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -43,7 +43,7 @@
 		5950B81D272BE9D800D51953 = {
 			isa = PBXGroup;
 			children = (
-				5950B828272BE9D800D51953 /* FocusStartHomeworks */,
+				5950B828272BE9D800D51953 /* CarApp */,
 				5950B827272BE9D800D51953 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,26 +51,26 @@
 		5950B827272BE9D800D51953 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5950B826272BE9D800D51953 /* FocusStartHomeworks */,
+				5950B826272BE9D800D51953 /* CarApp */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5950B828272BE9D800D51953 /* FocusStartHomeworks */ = {
+		5950B828272BE9D800D51953 /* CarApp */ = {
 			isa = PBXGroup;
 			children = (
 				5950B829272BE9D800D51953 /* main.swift */,
 				5950B830272BE9FB00D51953 /* Car.swift */,
 			);
-			path = FocusStartHomeworks;
+			path = CarApp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5950B825272BE9D800D51953 /* FocusStartHomeworks */ = {
+		5950B825272BE9D800D51953 /* CarApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5950B82D272BE9D800D51953 /* Build configuration list for PBXNativeTarget "FocusStartHomeworks" */;
+			buildConfigurationList = 5950B82D272BE9D800D51953 /* Build configuration list for PBXNativeTarget "CarApp" */;
 			buildPhases = (
 				5950B822272BE9D800D51953 /* Sources */,
 				5950B823272BE9D800D51953 /* Frameworks */,
@@ -80,9 +80,9 @@
 			);
 			dependencies = (
 			);
-			name = FocusStartHomeworks;
+			name = CarApp;
 			productName = FocusStartHomeworks;
-			productReference = 5950B826272BE9D800D51953 /* FocusStartHomeworks */;
+			productReference = 5950B826272BE9D800D51953 /* CarApp */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -99,7 +99,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5950B821272BE9D800D51953 /* Build configuration list for PBXProject "FocusStartHomeworks" */;
+			buildConfigurationList = 5950B821272BE9D800D51953 /* Build configuration list for PBXProject "CarApp" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -112,7 +112,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5950B825272BE9D800D51953 /* FocusStartHomeworks */,
+				5950B825272BE9D800D51953 /* CarApp */,
 			);
 		};
 /* End PBXProject section */
@@ -270,7 +270,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5950B821272BE9D800D51953 /* Build configuration list for PBXProject "FocusStartHomeworks" */ = {
+		5950B821272BE9D800D51953 /* Build configuration list for PBXProject "CarApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5950B82B272BE9D800D51953 /* Debug */,
@@ -279,7 +279,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5950B82D272BE9D800D51953 /* Build configuration list for PBXNativeTarget "FocusStartHomeworks" */ = {
+		5950B82D272BE9D800D51953 /* Build configuration list for PBXNativeTarget "CarApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5950B82E272BE9D800D51953 /* Debug */,
