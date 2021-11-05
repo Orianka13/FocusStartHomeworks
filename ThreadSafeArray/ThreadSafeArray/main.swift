@@ -12,11 +12,11 @@ class ThreadSafeArray<Element> {
     private var threadSafeArray = [Element]()
     
     var isEmpty: Bool {
-        return threadSafeArray.isEmpty
+        return self.threadSafeArray.isEmpty
     }
     
     var count: Int {
-        return threadSafeArray.count
+        return self.threadSafeArray.count
     }
     
     private let queue = DispatchQueue(label: "concurrentQueue", attributes: .concurrent)
@@ -36,8 +36,8 @@ class ThreadSafeArray<Element> {
     subscript(index: Int) -> Element? {
         queue.sync {
             var element: Element?
-            if threadSafeArray.indices.contains(index){
-                element = threadSafeArray[index]
+            if self.threadSafeArray.indices.contains(index){
+                element = self.threadSafeArray[index]
                 return element
             } else {
                 print("Нет элемента с указанным индексом")
@@ -50,7 +50,7 @@ class ThreadSafeArray<Element> {
 extension ThreadSafeArray where Element: Equatable {
     func contains(_ element: Element) -> Bool {
         queue.sync {
-            return threadSafeArray.contains(element)
+            return self.threadSafeArray.contains(element)
         }
     }
 }
