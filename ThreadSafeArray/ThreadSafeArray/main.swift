@@ -11,7 +11,7 @@ class ThreadSafeArray<Element> {
     
     private var threadSafeArray = [Element]()
     
-    private var isEmpty: Bool {
+    var isEmpty: Bool {
         return threadSafeArray.isEmpty
     }
     
