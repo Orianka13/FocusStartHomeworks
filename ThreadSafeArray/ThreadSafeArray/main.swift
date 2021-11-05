@@ -28,7 +28,7 @@ class ThreadSafeArray<Element> {
     }
     
     func remove(at index: Int) {
-        queue.async {
+        queue.async(flags: .barrier) {
             self.threadSafeArray.remove(at: index)
         }
     }
