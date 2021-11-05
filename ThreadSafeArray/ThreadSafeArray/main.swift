@@ -15,14 +15,14 @@ class ThreadSafeArray<Element> {
         return threadSafeArray.isEmpty
     }
     
-    private var count: Int {
+    var count: Int {
         return threadSafeArray.count
     }
     
     private let queue = DispatchQueue(label: "concurrentQueue", attributes: .concurrent)
     
     func append(_ item: Element) {
-        queue.async {
+        queue.async(flags: .barrier) {
             self.threadSafeArray.append(item)
         }
     }
@@ -53,4 +53,33 @@ extension ThreadSafeArray where Element: Equatable {
             return threadSafeArray.contains(element)
         }
     }
+}
+
+//MARK: - Демонстрация результата
+let testQueue = DispatchQueue(label: "testQueue", attributes: .concurrent)
+var testArray = ThreadSafeArray<Int>()
+let group = DispatchGroup()
+
+group.enter()
+testQueue.async {
+    for number in 0...1000 {
+        testArray.append(number)
+        //print("\(testArray.count)")
+    }
+    group.leave()
+}
+
+group.enter()
+testQueue.async {
+    for number in 0...1000 {
+        testArray.append(number)
+        // print("\(testArray.count)")
+    }
+    group.leave()
+}
+
+group.wait()
+
+group.notify(queue: testQueue){
+    print("Количество элементов в массиве: \(testArray.count)")
 }
