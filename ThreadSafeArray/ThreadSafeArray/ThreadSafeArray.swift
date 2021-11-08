@@ -12,11 +12,15 @@ class ThreadSafeArray<Element> {
     private var array = [Element]()
     
     var isEmpty: Bool {
-        return self.array.isEmpty
+        queue.sync {
+            return self.array.isEmpty
+        }
     }
     
     var count: Int {
-        return self.array.count
+        queue.sync {
+            return self.array.count
+        }
     }
     
     private let queue = DispatchQueue(label: "concurrentQueue", attributes: .concurrent)
