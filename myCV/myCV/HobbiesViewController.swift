@@ -9,6 +9,7 @@ import UIKit
 
 class HobbiesViewController: UIViewController {
     var hobbies = Hobbies()
+    var photoCollectionView = PhotoCollectionView()
     
     lazy var photoView: UIImageView = {
         let image = UIImage(named: hobbies.imageGallery.first ?? "knit")
@@ -36,16 +37,18 @@ class HobbiesViewController: UIViewController {
     private func addSubviews(){
         view.addSubview(photoView)
         view.addSubview(textView)
+        view.addSubview(photoCollectionView)
     }
     private func setConstraints(){
         setPhotoView()
         setTextView()
+        setCollectionView()
     }
     
     private func setPhotoView(){
         self.photoView.translatesAutoresizingMaskIntoConstraints = false
         self.photoView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.photoView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -150).isActive = true
+        self.photoView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -200).isActive = true
         self.photoView.heightAnchor.constraint(equalToConstant: 300).isActive = true
     }
     
@@ -55,5 +58,12 @@ class HobbiesViewController: UIViewController {
         self.textView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
         self.textView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
         self.textView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    }
+    
+    private func setCollectionView(){
+            photoCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+            photoCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+            photoCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+            photoCollectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
 }

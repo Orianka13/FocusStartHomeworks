@@ -11,6 +11,9 @@
 		59839CDA273E941E00CC3709 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59839CD9273E941E00CC3709 /* TabBarController.swift */; };
 		59839CDC273E965400CC3709 /* ExperienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59839CDB273E965400CC3709 /* ExperienceViewController.swift */; };
 		59839CDE273E967000CC3709 /* HobbiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59839CDD273E967000CC3709 /* HobbiesViewController.swift */; };
+		59839CE0273EB49500CC3709 /* PhotoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59839CDF273EB49500CC3709 /* PhotoCollectionView.swift */; };
+		59839CE2273EB89D00CC3709 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59839CE1273EB89D00CC3709 /* CollectionViewCell.swift */; };
+		59839CE6273EE26300CC3709 /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59839CE5273EE26300CC3709 /* CollectionViewCell.xib */; };
 		599C245D273BE4FA00C2F66B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599C245C273BE4FA00C2F66B /* AppDelegate.swift */; };
 		599C245F273BE4FA00C2F66B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599C245E273BE4FA00C2F66B /* SceneDelegate.swift */; };
 		599C2461273BE4FA00C2F66B /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599C2460273BE4FA00C2F66B /* InfoViewController.swift */; };
@@ -25,6 +28,9 @@
 		59839CD9273E941E00CC3709 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		59839CDB273E965400CC3709 /* ExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewController.swift; sourceTree = "<group>"; };
 		59839CDD273E967000CC3709 /* HobbiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbiesViewController.swift; sourceTree = "<group>"; };
+		59839CDF273EB49500CC3709 /* PhotoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionView.swift; sourceTree = "<group>"; };
+		59839CE1273EB89D00CC3709 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		59839CE5273EE26300CC3709 /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		599C2459273BE4FA00C2F66B /* myCV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myCV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		599C245C273BE4FA00C2F66B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		599C245E273BE4FA00C2F66B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +77,9 @@
 				599C2460273BE4FA00C2F66B /* InfoViewController.swift */,
 				59839CDB273E965400CC3709 /* ExperienceViewController.swift */,
 				59839CDD273E967000CC3709 /* HobbiesViewController.swift */,
+				59839CDF273EB49500CC3709 /* PhotoCollectionView.swift */,
+				59839CE5273EE26300CC3709 /* CollectionViewCell.xib */,
+				59839CE1273EB89D00CC3709 /* CollectionViewCell.swift */,
 				59839CD9273E941E00CC3709 /* TabBarController.swift */,
 				59839CD7273E85D100CC3709 /* PickerViewManager.swift */,
 				599C2471273E667300C2F66B /* Models.swift */,
@@ -142,6 +151,7 @@
 			files = (
 				599C2469273BE4FD00C2F66B /* LaunchScreen.storyboard in Resources */,
 				599C2466273BE4FD00C2F66B /* Assets.xcassets in Resources */,
+				59839CE6273EE26300CC3709 /* CollectionViewCell.xib in Resources */,
 				599C2464273BE4FA00C2F66B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,11 +163,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59839CE2273EB89D00CC3709 /* CollectionViewCell.swift in Sources */,
 				59839CDC273E965400CC3709 /* ExperienceViewController.swift in Sources */,
 				59839CDE273E967000CC3709 /* HobbiesViewController.swift in Sources */,
 				599C2461273BE4FA00C2F66B /* InfoViewController.swift in Sources */,
 				59839CDA273E941E00CC3709 /* TabBarController.swift in Sources */,
 				599C245D273BE4FA00C2F66B /* AppDelegate.swift in Sources */,
+				59839CE0273EB49500CC3709 /* PhotoCollectionView.swift in Sources */,
 				599C245F273BE4FA00C2F66B /* SceneDelegate.swift in Sources */,
 				599C2472273E667300C2F66B /* Models.swift in Sources */,
 				59839CD8273E85D100CC3709 /* PickerViewManager.swift in Sources */,
