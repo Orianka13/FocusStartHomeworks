@@ -23,8 +23,9 @@ class InfoViewController: UIViewController {
         let text = info.text.first
         let textLabel = UILabel(frame: .zero)
         textLabel.text = text
-        textLabel.font = .systemFont(ofSize: 15, weight: .regular)
+        textLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
         textLabel.textColor = .black
+        textLabel.numberOfLines = 0
         return textLabel
     }()
     
@@ -74,7 +75,7 @@ class InfoViewController: UIViewController {
         self.textView.translatesAutoresizingMaskIntoConstraints = false
         self.textView.topAnchor.constraint(equalTo: self.photoView.bottomAnchor, constant: 30).isActive = true
         self.textView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
-        self.textView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 30).isActive = true
+        self.textView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
         self.textView.heightAnchor.constraint(equalToConstant: 150).isActive = true
     }
     
