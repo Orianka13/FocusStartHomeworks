@@ -11,6 +11,16 @@ class ExperienceViewController: UIViewController {
     
     let experience = Experience()
     
+   private lazy var titleLabel: UILabel = {
+        let text = experience.label
+        let textLabel = UILabel(frame: .zero)
+        textLabel.text = text
+        textLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 30)
+        textLabel.textColor = .black
+        textLabel.numberOfLines = 0
+        return textLabel
+    }()
+    
     private lazy var textView: UILabel = {
         let text = experience.text
         let textLabel = UILabel(frame: .zero)
@@ -46,11 +56,13 @@ class ExperienceViewController: UIViewController {
     }
     
     private func addSubviews(){
+        view.addSubview(titleLabel)
         view.addSubview(textView)
         view.addSubview(switcher)
         view.addSubview(psTextView)
     }
     private func setConstraints(){
+        setTitle()
         setTextView()
         setSwitcher()
         setPSTextView()
@@ -60,9 +72,15 @@ class ExperienceViewController: UIViewController {
         psTextView.isHidden = !psTextView.isHidden
     }
     
+    private func setTitle(){
+        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.frame.size.height / 15).isActive = true
+    }
+    
     private func setTextView(){
         self.textView.translatesAutoresizingMaskIntoConstraints = false
-        self.textView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
+        self.textView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 20).isActive = true
         self.textView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
         self.textView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
     }

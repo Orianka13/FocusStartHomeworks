@@ -9,7 +9,7 @@ import UIKit
 
 let reuseIdentifier = "cell"
 
-class PhotoCollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
+class PhotoCollectionView: UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate {
     var hobbies = Hobbies()
     
     init() {
@@ -17,14 +17,16 @@ class PhotoCollectionView: UICollectionView, UICollectionViewDelegate, UICollect
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
         
-        delegate = self
+        
         dataSource = self
+        delegate = self
+        
         backgroundColor = .white
         let nib = UINib(nibName: "CollectionViewCell", bundle: nil)
         register(nib, forCellWithReuseIdentifier: reuseIdentifier)
         reloadData()
         translatesAutoresizingMaskIntoConstraints = false
-        
+       
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -34,14 +36,18 @@ class PhotoCollectionView: UICollectionView, UICollectionViewDelegate, UICollect
         return hobbies.imageGallery.count
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
         let name = hobbies.imageGallery[indexPath.row]
         cell.addImages(name: name)
-        //collectionView.reloadData()
+        
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("lkjhgvfcx")
+    }
+ 
 }
  //MARK: - UICollectionViewDelegateFlowLayout
 
@@ -55,4 +61,3 @@ extension PhotoCollectionView: UICollectionViewDelegateFlowLayout {
         return 2
     }
 }
-
