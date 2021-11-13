@@ -11,6 +11,8 @@ final class CollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var photoCellView: UIImageView!
     
+    @IBOutlet weak var textLabel: UILabel!
+    
     override class func awakeFromNib() {
         super.awakeFromNib()
     }

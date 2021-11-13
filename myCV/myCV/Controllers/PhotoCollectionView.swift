@@ -44,32 +44,22 @@ final class PhotoCollectionView: UICollectionView, UICollectionViewDataSource, U
         cell.contentView.isUserInteractionEnabled = true
         cell.isUserInteractionEnabled = true
         cell.photoCellView.isUserInteractionEnabled = true
-        let name = hobbies.imageGallery[indexPath.row]
-        cell.addImages(name: name)
-        
+        DispatchQueue.main.async { [weak self] in
+            let name = self?.hobbies.imageGallery[indexPath.row]
+            cell.addImages(name: name ?? "knit")
+            cell.textLabel.text = self?.hobbies.text[indexPath.row]
+        }
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let hobbiesVC = HobbiesViewController()
-       
-       
-        DispatchQueue.main.async {
-            hobbiesVC.updateViews(indexPath: indexPath)
-        }
-        self.window?.rootViewController = hobbiesVC
-      
-        
-    
-    }
 }
+
+
  //MARK: - UICollectionViewDelegateFlowLayout
 
 extension PhotoCollectionView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
+        return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
