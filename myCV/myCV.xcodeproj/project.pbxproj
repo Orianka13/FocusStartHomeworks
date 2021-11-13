@@ -57,7 +57,6 @@
 				599C2460273BE4FA00C2F66B /* InfoViewController.swift */,
 				59839CDB273E965400CC3709 /* ExperienceViewController.swift */,
 				59839CDD273E967000CC3709 /* HobbiesViewController.swift */,
-				59839CDF273EB49500CC3709 /* PhotoCollectionView.swift */,
 				59839CE1273EB89D00CC3709 /* CollectionViewCell.swift */,
 				59839CD9273E941E00CC3709 /* TabBarController.swift */,
 			);
@@ -94,14 +93,23 @@
 				599C245C273BE4FA00C2F66B /* AppDelegate.swift */,
 				599C245E273BE4FA00C2F66B /* SceneDelegate.swift */,
 				59839CE7273F0AE400CC3709 /* Controllers */,
-				59839CE5273EE26300CC3709 /* CollectionViewCell.xib */,
-				59839CD7273E85D100CC3709 /* PickerViewManager.swift */,
+				59E1234A273FD3DE00A7A4A5 /* Views */,
 				59839CE8273F0B2F00CC3709 /* Models */,
 				599C2465273BE4FD00C2F66B /* Assets.xcassets */,
 				599C2467273BE4FD00C2F66B /* LaunchScreen.storyboard */,
 				599C246A273BE4FD00C2F66B /* Info.plist */,
 			);
 			path = myCV;
+			sourceTree = "<group>";
+		};
+		59E1234A273FD3DE00A7A4A5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				59839CDF273EB49500CC3709 /* PhotoCollectionView.swift */,
+				59839CD7273E85D100CC3709 /* PickerViewManager.swift */,
+				59839CE5273EE26300CC3709 /* CollectionViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

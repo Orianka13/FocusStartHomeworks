@@ -11,12 +11,12 @@ final class ExperienceViewController: UIViewController {
     
     let experience = Experience()
     
-   private lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let text = experience.label
         let textLabel = UILabel(frame: .zero)
         textLabel.text = text
         textLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 30)
-        textLabel.textColor = .black
+        textLabel.textColor = .white
         textLabel.numberOfLines = 0
         return textLabel
     }()
@@ -26,14 +26,14 @@ final class ExperienceViewController: UIViewController {
         let textLabel = UILabel(frame: .zero)
         textLabel.text = text
         textLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
-        textLabel.textColor = .black
+        textLabel.textColor = .white
         textLabel.numberOfLines = 0
         return textLabel
     }()
     
     private lazy var switcher: UISwitch = {
         let switcher = UISwitch(frame: .zero)
-        switcher.tintColor = .brown
+        switcher.onTintColor = .white
         switcher.addTarget(self, action: #selector(hidePSText), for: .touchUpInside)
         return switcher
     }()
@@ -43,16 +43,17 @@ final class ExperienceViewController: UIViewController {
         let textLabel = UILabel(frame: .zero)
         textLabel.text = text
         textLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
-        textLabel.textColor = .black
+        textLabel.textColor = .white
         textLabel.numberOfLines = 0
         textLabel.isHidden = true
         return textLabel
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
         setConstraints()
+        view.backgroundColor = mainBackgroundColor
     }
     
     private func addSubviews(){
@@ -97,5 +98,5 @@ final class ExperienceViewController: UIViewController {
         self.psTextView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30).isActive = true
         self.psTextView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30).isActive = true
     }
-
+    
 }

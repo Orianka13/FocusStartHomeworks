@@ -12,19 +12,20 @@ final class HobbiesViewController: UIViewController{
     var photoCollectionView = PhotoCollectionView()
     
     private lazy var titleLabel: UILabel = {
-         let text = hobbies.label
-         let textLabel = UILabel(frame: .zero)
-         textLabel.text = text
-         textLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 30)
-         textLabel.textColor = .black
-         textLabel.numberOfLines = 0
-         return textLabel
-     }()
+        let text = hobbies.label
+        let textLabel = UILabel(frame: .zero)
+        textLabel.text = text
+        textLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 30)
+        textLabel.textColor = .white
+        textLabel.numberOfLines = 0
+        return textLabel
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
         setConstraints()
+        view.backgroundColor = mainBackgroundColor
     }
     private func addSubviews(){
         view.addSubview(titleLabel)

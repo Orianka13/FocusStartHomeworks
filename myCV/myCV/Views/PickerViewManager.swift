@@ -35,4 +35,9 @@ extension InfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         elementPicker.delegate = self
         self.showMoreTF.inputView = elementPicker
     }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let attributedString = NSAttributedString(string: info.button[row], attributes: [NSAttributedString.Key.foregroundColor: mainBackgroundColor])
+        return attributedString
+    }
 }

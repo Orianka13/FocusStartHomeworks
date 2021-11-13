@@ -22,14 +22,13 @@ final class PhotoCollectionView: UICollectionView, UICollectionViewDataSource, U
         allowsSelection = true
         isUserInteractionEnabled = true
         
-        backgroundColor = .white
+        backgroundColor = mainBackgroundColor
         
         let nib = UINib(nibName: "CollectionViewCell", bundle: nil)
         register(nib, forCellWithReuseIdentifier: reuseIdentifier)
         
-        reloadData()
         translatesAutoresizingMaskIntoConstraints = false
-       
+        
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -54,7 +53,7 @@ final class PhotoCollectionView: UICollectionView, UICollectionViewDataSource, U
 }
 
 
- //MARK: - UICollectionViewDelegateFlowLayout
+//MARK: - UICollectionViewDelegateFlowLayout
 
 extension PhotoCollectionView: UICollectionViewDelegateFlowLayout {
     

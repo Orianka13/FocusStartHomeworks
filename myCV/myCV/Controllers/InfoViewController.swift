@@ -11,12 +11,12 @@ final class InfoViewController: UIViewController {
     
     let info = Info()
     
-   private lazy var titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let text = info.label
         let textLabel = UILabel(frame: .zero)
         textLabel.text = text
         textLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 30)
-        textLabel.textColor = .black
+        textLabel.textColor = .white
         textLabel.numberOfLines = 0
         return textLabel
     }()
@@ -33,8 +33,9 @@ final class InfoViewController: UIViewController {
         let text = info.text.first
         let textLabel = UILabel(frame: .zero)
         textLabel.text = text
-        textLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
-        textLabel.textColor = .black
+        textLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 20)
+        textLabel.textColor = .white
+        textLabel.textAlignment = .center
         textLabel.numberOfLines = 0
         return textLabel
     }()
@@ -44,28 +45,29 @@ final class InfoViewController: UIViewController {
         let showMoreTF = UITextField(frame: .zero)
         showMoreTF.text = text
         showMoreTF.font = .systemFont(ofSize: 15, weight: .regular)
-        showMoreTF.textColor = .black
-        showMoreTF.backgroundColor = .brown
+        showMoreTF.textColor = mainBackgroundColor
+        showMoreTF.textAlignment = .center
+        showMoreTF.backgroundColor = .systemGray3
+        showMoreTF.alpha = 0.8
+        showMoreTF.layer.cornerRadius = 10
         return showMoreTF
     }()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
         setConstraints()
         choicePoint()
-    }
-    
-    func setupTopBar() {
-        self.navigationItem.title = "Обо мне"
+        
+        view.backgroundColor = mainBackgroundColor
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         self.view.endEditing(true)
     }
-  
+    
     private func addSubviews(){
         view.addSubview(titleLabel)
         view.addSubview(photoView)
@@ -108,6 +110,6 @@ final class InfoViewController: UIViewController {
         self.showMoreTF.widthAnchor.constraint(equalToConstant: 100).isActive = true
         self.showMoreTF.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
-
+    
 }
 
