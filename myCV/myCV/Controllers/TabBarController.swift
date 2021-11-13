@@ -7,24 +7,23 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewControllers()
     }
     
-    private func setupViewControllers() {
+    func setupViewControllers() {
         
         view.backgroundColor = .white
         
-        let firstViewController = InfoViewController()
-        firstViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person"), tag: 0)
-        let secondViewController = ExperienceViewController()
-        secondViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "bag"), tag: 1)
-        let thirdViewController = HobbiesViewController()
-        thirdViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "sun.max"), tag: 2)
-        viewControllers = [firstViewController, secondViewController, thirdViewController]
+        let infoVC = InfoViewController()
+        infoVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person"), tag: 0)
+        let experienceVC = ExperienceViewController()
+        experienceVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "bag"), tag: 1)
+        let hobbiesVC = HobbiesViewController()
+        hobbiesVC.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "sun.max"), tag: 2)
+        viewControllers = [infoVC, experienceVC, hobbiesVC]
     }
-
 }

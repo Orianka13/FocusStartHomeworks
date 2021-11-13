@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ExperienceViewController: UIViewController {
+final class ExperienceViewController: UIViewController {
     
     let experience = Experience()
     

@@ -9,7 +9,7 @@ import UIKit
 
 let reuseIdentifier = "cell"
 
-class PhotoCollectionView: UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate {
+final class PhotoCollectionView: UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate {
     var hobbies = Hobbies()
     
     init() {
@@ -17,13 +17,16 @@ class PhotoCollectionView: UICollectionView, UICollectionViewDataSource, UIColle
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
         
-        
         dataSource = self
         delegate = self
+        allowsSelection = true
+        isUserInteractionEnabled = true
         
         backgroundColor = .white
+        
         let nib = UINib(nibName: "CollectionViewCell", bundle: nil)
         register(nib, forCellWithReuseIdentifier: reuseIdentifier)
+        
         reloadData()
         translatesAutoresizingMaskIntoConstraints = false
        
@@ -38,6 +41,9 @@ class PhotoCollectionView: UICollectionView, UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
+        cell.contentView.isUserInteractionEnabled = true
+        cell.isUserInteractionEnabled = true
+        cell.photoCellView.isUserInteractionEnabled = true
         let name = hobbies.imageGallery[indexPath.row]
         cell.addImages(name: name)
         
@@ -45,9 +51,18 @@ class PhotoCollectionView: UICollectionView, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("lkjhgvfcx")
+        
+        let hobbiesVC = HobbiesViewController()
+       
+       
+        DispatchQueue.main.async {
+            hobbiesVC.updateViews(indexPath: indexPath)
+        }
+        self.window?.rootViewController = hobbiesVC
+      
+        
+    
     }
- 
 }
  //MARK: - UICollectionViewDelegateFlowLayout
 

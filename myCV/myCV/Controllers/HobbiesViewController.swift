@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HobbiesViewController: UIViewController{
+final class HobbiesViewController: UIViewController{
     var hobbies = Hobbies()
     var photoCollectionView = PhotoCollectionView()
     
@@ -86,10 +86,13 @@ class HobbiesViewController: UIViewController{
         self.photoCollectionView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
-    func updateViews(indexPath: IndexPath){
+    func updateViews(indexPath: IndexPath) {
         let item = indexPath.row
-        print("Выбрали картинку под индексом: \(item)")
-        self.photoView.image = UIImage(named: hobbies.imageGallery[item])
-        self.textView.text = hobbies.text[item]
+        let text = hobbies.text[item]
+        let photo = UIImage(named: hobbies.imageGallery[item])
+        self.photoView.image = photo
+        self.textView.text = text
+        self.view.backgroundColor = .white
+        self.view.reloadInputViews()
     }
 }
