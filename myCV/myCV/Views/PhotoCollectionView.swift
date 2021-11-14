@@ -19,8 +19,6 @@ final class PhotoCollectionView: UICollectionView, UICollectionViewDataSource, U
         
         dataSource = self
         delegate = self
-        allowsSelection = true
-        isUserInteractionEnabled = true
         
         backgroundColor = mainBackgroundColor
         
@@ -40,9 +38,6 @@ final class PhotoCollectionView: UICollectionView, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
-        cell.contentView.isUserInteractionEnabled = true
-        cell.isUserInteractionEnabled = true
-        cell.photoCellView.isUserInteractionEnabled = true
         DispatchQueue.main.async { [weak self] in
             let name = self?.hobbies.imageGallery[indexPath.row]
             cell.addImages(name: name ?? "knit")
