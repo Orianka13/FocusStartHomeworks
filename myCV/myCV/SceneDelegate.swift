@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
@@ -17,6 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         let tabBarVC = TabBarController(nibName: "TabBarController", bundle: nil)
         tabBarVC.tabBar.tintColor = .white
+        tabBarVC.tabBar.barTintColor = .white
         window?.rootViewController = tabBarVC
         window?.makeKeyAndVisible()
     }

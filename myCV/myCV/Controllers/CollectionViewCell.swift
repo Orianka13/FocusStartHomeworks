@@ -18,8 +18,6 @@ final class CollectionViewCell: UICollectionViewCell {
     }
     
     func addImages(name: String){
-        DispatchQueue.main.async {
-            self.photoCellView.image = UIImage(named: name)
-        }
+        self.photoCellView.image = UIImage(named: name)
     }
 }

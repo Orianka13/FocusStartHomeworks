@@ -7,17 +7,36 @@
 
 import UIKit
 
-final class HobbiesViewController: UIViewController{
-    var hobbies = Hobbies()
-    var photoCollectionView = PhotoCollectionView()
+final class HobbiesViewController: UIViewController {
+    
+    private let hobbies = Hobbies()
+    private let photoCollectionView = PhotoCollectionView()
+    
+    private enum TextSettings {
+        static let mainTextColor = UIColor(ciColor: .white)
+        static let numberOfLines = 0
+    }
+    private enum Fonts {
+        static let titleFont = UIFont(name: "ChalkboardSE-Regular", size: 30)
+        static let mainTextFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 20)
+    }
+    private enum MainColor {
+        static let mainBackgroundColor: UIColor = UIColor(red: 87/255, green: 64/255, blue: 67/255, alpha: 1)
+    }
+    private enum Metrics {
+        static let titleHight = CGFloat(15)
+        static let defaultSpacing = CGFloat(20)
+        static let zeroSpacing = CGFloat(0)
+        static let photoCollectionBottom = CGFloat(-100)
+    }
     
     private lazy var titleLabel: UILabel = {
         let text = hobbies.label
         let textLabel = UILabel(frame: .zero)
         textLabel.text = text
-        textLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 30)
-        textLabel.textColor = .white
-        textLabel.numberOfLines = 0
+        textLabel.font = Fonts.titleFont
+        textLabel.textColor = TextSettings.mainTextColor
+        textLabel.numberOfLines = TextSettings.numberOfLines
         return textLabel
     }()
     
@@ -25,7 +44,7 @@ final class HobbiesViewController: UIViewController{
         super.viewDidLoad()
         addSubviews()
         setConstraints()
-        view.backgroundColor = mainBackgroundColor
+        view.backgroundColor = MainColor.mainBackgroundColor
     }
     private func addSubviews(){
         view.addSubview(titleLabel)
@@ -39,14 +58,14 @@ final class HobbiesViewController: UIViewController{
     private func setTitle(){
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.frame.size.height / 15).isActive = true
+        self.titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.frame.size.height / Metrics.titleHight).isActive = true
     }
     
     private func setCollectionView(){
-        self.photoCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        self.photoCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        self.photoCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100).isActive = true
+        self.photoCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Metrics.zeroSpacing).isActive = true
+        self.photoCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Metrics.zeroSpacing).isActive = true
+        self.photoCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: Metrics.photoCollectionBottom).isActive = true
         self.photoCollectionView.heightAnchor.constraint(equalToConstant: 100).isActive = false
-        self.photoCollectionView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 20).isActive = true
+        self.photoCollectionView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: Metrics.defaultSpacing).isActive = true
     }
 }

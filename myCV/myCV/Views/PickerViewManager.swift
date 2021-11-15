@@ -9,14 +9,10 @@ import Foundation
 
 import UIKit
 
-extension InfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension InfoViewController: UIPickerViewDelegate {
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return info.button.count
+    private enum MainColor {
+        static let mainBackgroundColor: UIColor = UIColor(red: 87/255, green: 64/255, blue: 67/255, alpha: 1)
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -30,14 +26,28 @@ extension InfoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         self.textView.text = info.text[row]
     }
     
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let attributedString = NSAttributedString(string: info.button[row], attributes: [NSAttributedString.Key.foregroundColor: MainColor.mainBackgroundColor])
+        return attributedString
+    }
+    
     func choicePoint() {
         let elementPicker = UIPickerView()
         elementPicker.delegate = self
         self.showMoreTF.inputView = elementPicker
     }
+}
+
+//MARK: - UIPickerViewDataSource
+
+extension InfoViewController: UIPickerViewDataSource {
     
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let attributedString = NSAttributedString(string: info.button[row], attributes: [NSAttributedString.Key.foregroundColor: mainBackgroundColor])
-        return attributedString
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return info.button.count
+    }
+    
 }

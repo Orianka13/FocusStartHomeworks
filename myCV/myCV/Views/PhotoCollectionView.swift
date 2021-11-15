@@ -7,10 +7,15 @@
 
 import UIKit
 
-let reuseIdentifier = "cell"
-
-final class PhotoCollectionView: UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate {
-    var hobbies = Hobbies()
+final class PhotoCollectionView: UICollectionView {
+    let hobbies = Hobbies()
+    
+    private enum CellIdentifier {
+        static let reuseIdentifier = "cell"
+    }
+    private enum MainColor {
+        static let mainBackgroundColor: UIColor = UIColor(red: 87/255, green: 64/255, blue: 67/255, alpha: 1)
+    }
     
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -20,10 +25,10 @@ final class PhotoCollectionView: UICollectionView, UICollectionViewDataSource, U
         dataSource = self
         delegate = self
         
-        backgroundColor = mainBackgroundColor
+        backgroundColor = MainColor.mainBackgroundColor
         
         let nib = UINib(nibName: "CollectionViewCell", bundle: nil)
-        register(nib, forCellWithReuseIdentifier: reuseIdentifier)
+        register(nib, forCellWithReuseIdentifier: CellIdentifier.reuseIdentifier)
         
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -31,22 +36,23 @@ final class PhotoCollectionView: UICollectionView, UICollectionViewDataSource, U
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+//MARK: - UICollectionViewDataSource
+
+extension PhotoCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return hobbies.imageGallery.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
-        DispatchQueue.main.async { [weak self] in
-            let name = self?.hobbies.imageGallery[indexPath.row]
-            cell.addImages(name: name ?? "knit")
-            cell.textLabel.text = self?.hobbies.text[indexPath.row]
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.reuseIdentifier, for: indexPath) as! CollectionViewCell
+        let name = hobbies.imageGallery[indexPath.row]
+        cell.addImages(name: name)
+        cell.textLabel.text = hobbies.text[indexPath.row]
         return cell
     }
 }
-
 
 //MARK: - UICollectionViewDelegateFlowLayout
 

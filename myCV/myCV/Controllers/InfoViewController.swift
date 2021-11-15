@@ -11,13 +11,41 @@ final class InfoViewController: UIViewController {
     
     let info = Info()
     
+    private enum ButtonSettings {
+        static let buttonCornerRadius = CGFloat(10)
+        static let buttonTopSpacing = CGFloat(10)
+        static let buttonWidth = CGFloat(100)
+        static let buttonHeight = CGFloat(40)
+        static let buttonAlpha = CGFloat(0.8)
+    }
+    private enum TextSettings {
+        static let mainTextColor = UIColor(ciColor: .white)
+        static let numberOfLines = 0
+    }
+    private enum Fonts {
+        static let titleFont = UIFont(name: "ChalkboardSE-Regular", size: 30)
+        static let mainTextFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 20)
+        static let buttonFont = UIFont.systemFont(ofSize: 15, weight: .regular)
+    }
+    private enum MainColor {
+        static let mainBackgroundColor: UIColor = UIColor(red: 87/255, green: 64/255, blue: 67/255, alpha: 1)
+    }
+    private enum Metrics {
+        static let titleHight = CGFloat(15)
+        static let photoCenterY = CGFloat(-150)
+        static let photoHeight = CGFloat(2.5)
+        static let defaultSpacing = CGFloat(20)
+        static let trailingSpacing = CGFloat(-20)
+        static let textHeight = CGFloat(6)
+    }
+    
     private lazy var titleLabel: UILabel = {
         let text = info.label
         let textLabel = UILabel(frame: .zero)
         textLabel.text = text
-        textLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 30)
-        textLabel.textColor = .white
-        textLabel.numberOfLines = 0
+        textLabel.font = Fonts.titleFont
+        textLabel.textColor = TextSettings.mainTextColor
+        textLabel.numberOfLines = TextSettings.numberOfLines
         return textLabel
     }()
     
@@ -33,10 +61,10 @@ final class InfoViewController: UIViewController {
         let text = info.text.first
         let textLabel = UILabel(frame: .zero)
         textLabel.text = text
-        textLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 20)
-        textLabel.textColor = .white
+        textLabel.font = Fonts.mainTextFont
+        textLabel.textColor = TextSettings.mainTextColor
         textLabel.textAlignment = .center
-        textLabel.numberOfLines = 0
+        textLabel.numberOfLines = TextSettings.numberOfLines
         return textLabel
     }()
     
@@ -44,12 +72,12 @@ final class InfoViewController: UIViewController {
         let text = info.button.first
         let showMoreTF = UITextField(frame: .zero)
         showMoreTF.text = text
-        showMoreTF.font = .systemFont(ofSize: 15, weight: .regular)
-        showMoreTF.textColor = mainBackgroundColor
+        showMoreTF.font = Fonts.buttonFont
+        showMoreTF.textColor = MainColor.mainBackgroundColor
         showMoreTF.textAlignment = .center
         showMoreTF.backgroundColor = .systemGray3
-        showMoreTF.alpha = 0.8
-        showMoreTF.layer.cornerRadius = 10
+        showMoreTF.alpha = ButtonSettings.buttonAlpha
+        showMoreTF.layer.cornerRadius = ButtonSettings.buttonCornerRadius
         return showMoreTF
     }()
     
@@ -60,7 +88,7 @@ final class InfoViewController: UIViewController {
         setConstraints()
         choicePoint()
         
-        view.backgroundColor = mainBackgroundColor
+        view.backgroundColor = MainColor.mainBackgroundColor
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -84,31 +112,31 @@ final class InfoViewController: UIViewController {
     private func setTitle(){
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.frame.size.height / 15).isActive = true
+        self.titleLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.frame.size.height / Metrics.titleHight).isActive = true
     }
     
     private func setPhotoView(){
         self.photoView.translatesAutoresizingMaskIntoConstraints = false
         self.photoView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.photoView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -150).isActive = false
-        self.photoView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 20).isActive = true
-        self.photoView.heightAnchor.constraint(equalToConstant: self.view.frame.size.height / 2.5).isActive = true
+        self.photoView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: Metrics.photoCenterY).isActive = false
+        self.photoView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: Metrics.defaultSpacing).isActive = true
+        self.photoView.heightAnchor.constraint(equalToConstant: self.view.frame.size.height / Metrics.photoHeight).isActive = true
     }
     
     private func setTextView(){
         self.textView.translatesAutoresizingMaskIntoConstraints = false
-        self.textView.topAnchor.constraint(equalTo: self.photoView.bottomAnchor, constant: 20).isActive = true
-        self.textView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
-        self.textView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
-        self.textView.heightAnchor.constraint(equalToConstant: self.view.frame.size.height / 6).isActive = true
+        self.textView.topAnchor.constraint(equalTo: self.photoView.bottomAnchor, constant: Metrics.defaultSpacing).isActive = true
+        self.textView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: Metrics.defaultSpacing).isActive = true
+        self.textView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: Metrics.trailingSpacing).isActive = true
+        self.textView.heightAnchor.constraint(equalToConstant: self.view.frame.size.height / Metrics.textHeight).isActive = true
     }
     
     private func setShowMoreButton(){
         self.showMoreTF.translatesAutoresizingMaskIntoConstraints = false
-        self.showMoreTF.topAnchor.constraint(equalTo: self.textView.bottomAnchor, constant: 10).isActive = true
+        self.showMoreTF.topAnchor.constraint(equalTo: self.textView.bottomAnchor, constant: ButtonSettings.buttonTopSpacing).isActive = true
         self.showMoreTF.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.showMoreTF.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        self.showMoreTF.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        self.showMoreTF.widthAnchor.constraint(equalToConstant: ButtonSettings.buttonWidth).isActive = true
+        self.showMoreTF.heightAnchor.constraint(equalToConstant: ButtonSettings.buttonHeight).isActive = true
     }
     
 }
