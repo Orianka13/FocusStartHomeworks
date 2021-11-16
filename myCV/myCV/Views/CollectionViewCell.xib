@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="cell" id="JxL-sE-lqh" customClass="CollectionViewCell" customModule="myCV" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="485" height="672"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ktt-Gz-aFV">
+                <rect key="frame" x="0.0" y="0.0" width="485" height="672"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clearsContextBeforeDrawing="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YCY-32-dGf">
+                        <rect key="frame" x="0.0" y="0.0" width="485" height="502"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9e-ox-DW7">
+                        <rect key="frame" x="30" y="522" width="425" height="150"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="150" id="mzp-6y-IHi"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="YCY-32-dGf" firstAttribute="top" secondItem="ktt-Gz-aFV" secondAttribute="top" id="2Qc-VK-Coi"/>
+                    <constraint firstItem="G9e-ox-DW7" firstAttribute="top" secondItem="YCY-32-dGf" secondAttribute="bottom" constant="20" id="MZ0-O9-9VV"/>
+                    <constraint firstItem="YCY-32-dGf" firstAttribute="leading" secondItem="ktt-Gz-aFV" secondAttribute="leading" id="c93-US-6e5"/>
+                    <constraint firstAttribute="bottom" secondItem="G9e-ox-DW7" secondAttribute="bottom" id="eRw-CM-Hjw"/>
+                    <constraint firstItem="G9e-ox-DW7" firstAttribute="leading" secondItem="ktt-Gz-aFV" secondAttribute="leading" constant="30" id="ruZ-7l-3jS"/>
+                    <constraint firstAttribute="trailing" secondItem="G9e-ox-DW7" secondAttribute="trailing" constant="30" id="sXA-e1-wEX"/>
+                    <constraint firstAttribute="trailing" secondItem="YCY-32-dGf" secondAttribute="trailing" id="yu1-Tb-CW6"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="485" height="672"/>
+            <connections>
+                <outlet property="photoCellView" destination="YCY-32-dGf" id="HK8-xb-6Sb"/>
+                <outlet property="textLabel" destination="G9e-ox-DW7" id="TSR-qe-ycx"/>
+            </connections>
+            <point key="canvasLocation" x="-18.115942028985508" y="-50.892857142857139"/>
+        </collectionViewCell>
+    </objects>
+</document>
