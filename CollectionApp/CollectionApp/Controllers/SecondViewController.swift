@@ -21,6 +21,8 @@ class SecondViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Show description..", for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .purple
+        button.addTarget(self, action: #selector(showDescription), for: .touchUpInside)
         return button
     }()
 
@@ -31,6 +33,17 @@ class SecondViewController: UIViewController {
         
         addSubviews()
         setConstraints()
+    }
+    
+    @objc private func showDescription() {
+        let thirdVC = ThirdViewController()
+        for (key, value) in filmDescription {
+            if key == self.navigationItem.title {
+                thirdVC.textView.text = value
+            }
+        }
+        self.navigationController?.present(thirdVC, animated: true, completion: nil)
+  
     }
     
     private func addSubviews(){

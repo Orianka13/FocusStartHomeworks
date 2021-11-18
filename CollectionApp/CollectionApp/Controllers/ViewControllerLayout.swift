@@ -44,7 +44,6 @@ extension OrthogonalScrollBehaviorViewController {
 
         let layout = UICollectionViewCompositionalLayout(sectionProvider: {
             (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-//            guard let sectionKind = SetCellContent(rawValue: sectionIndex) else { fatalError("unknown section kind") }
 
             let leadingItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0)))
