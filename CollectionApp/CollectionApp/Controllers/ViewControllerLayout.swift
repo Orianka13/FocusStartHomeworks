@@ -129,7 +129,14 @@ extension OrthogonalScrollBehaviorViewController {
 
 extension OrthogonalScrollBehaviorViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
+        let secondVC = SecondViewController()
+        guard let sectionKind = SetCellContent(rawValue: indexPath.section) else {
+            return print("unknown section kind")
+        }
+        let myCell = sectionKind.manageCell()
+        secondVC.imageView.image = UIImage(named: myCell.poster[indexPath.row])
+        secondVC.navigationItem.title = myCell.name[indexPath.row]
+        navigationController?.pushViewController(secondVC, animated: true)
     }
 }
 
