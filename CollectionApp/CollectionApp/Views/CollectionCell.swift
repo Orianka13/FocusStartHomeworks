@@ -9,17 +9,28 @@ import UIKit
 
 final class CollectionCell: UICollectionViewCell {
     
-    let label: UILabel = {
-       let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
+    private enum constants {
+        static let labelFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
+        static let numberOfLines = 0
+        static let textColor: UIColor = .white
+        
+        static let errorMessage = "not implemnted"
+        
+        static let zeroSpacing = CGFloat(0)
+        static let inset = CGFloat(10)
+        static let bottomSpacing = CGFloat(-40)
+    }
+    
+    lazy var label: UILabel = {
+        let label = UILabel()
+        label.font = constants.labelFont
         label.textAlignment = .center
-        label.numberOfLines = 0
-        label.textColor = .white
-        label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = constants.numberOfLines
+        label.textColor = constants.textColor
         return label
     }()
     
-    let posterView: UIImageView = {
+    lazy var posterView: UIImageView = {
         let image = UIImage()
         let imageView = UIImageView(frame: .zero)
         imageView.image = image
@@ -30,10 +41,23 @@ final class CollectionCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        
+        addSubviews()
+        setConstraints()
     }
     required init?(coder: NSCoder) {
-        fatalError("not implemnted")
+        fatalError(constants.errorMessage)
+    }
+    
+    private func addSubviews(){
+        
+        self.contentView.addSubview(label)
+        self.contentView.addSubview(posterView)
+    }
+    
+    private func setConstraints(){
+        setLabel()
+        setPosterView()
     }
     
 }
@@ -42,25 +66,23 @@ final class CollectionCell: UICollectionViewCell {
 
 extension CollectionCell {
     
-    private func configure() {
+    private func setLabel() {
         self.label.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: constants.inset).isActive = true
+        self.label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -constants.inset).isActive = true
+        self.label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: constants.inset).isActive = false
+        self.label.topAnchor.constraint(equalTo: self.posterView.bottomAnchor, constant: constants.zeroSpacing).isActive = true
+        self.label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: constants.zeroSpacing).isActive = true
+    }
+    
+    private func setPosterView(){
         self.posterView.translatesAutoresizingMaskIntoConstraints = false
-     
-        self.contentView.addSubview(label)
-        self.contentView.addSubview(posterView)
         
-        let inset = CGFloat(10)
-        
-        self.label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
-        self.label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset).isActive = true
-        self.label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = false
-        self.label.topAnchor.constraint(equalTo: self.posterView.bottomAnchor, constant: 0).isActive = true
-        self.label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
-        
-        self.posterView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
-        self.posterView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset).isActive = true
-        self.posterView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
-        self.posterView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40).isActive = true
+        self.posterView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: constants.inset).isActive = true
+        self.posterView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -constants.inset).isActive = true
+        self.posterView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: constants.inset).isActive = true
+        self.posterView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: constants.bottomSpacing).isActive = true
     }
 }
 

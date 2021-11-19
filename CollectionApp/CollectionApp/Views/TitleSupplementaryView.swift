@@ -8,11 +8,28 @@
 import UIKit
 
 final class TitleSupplementaryView: UICollectionReusableView {
-    let label = UILabel()
-
+    
+    private enum constants {
+        static let textColor: UIColor = .white
+        static let textFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 20)
+        
+        static let inset = CGFloat(10)
+        static let leadingSpacing = CGFloat(20)
+        static let bottomSpacing = CGFloat(0)
+    }
+    
+    lazy var label: UILabel = {
+        let label = UILabel()
+        label.textColor = constants.textColor
+        label.font = constants.textFont
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        
+        addSubview(label)
+        setLabel()
     }
     required init?(coder: NSCoder) {
         fatalError()
@@ -23,19 +40,13 @@ final class TitleSupplementaryView: UICollectionReusableView {
 
 extension TitleSupplementaryView {
     
-    private func configure() {
-        addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.adjustsFontForContentSizeCategory = true
-        label.textColor = .white
-        let inset = CGFloat(10)
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
-            label.topAnchor.constraint(equalTo: topAnchor, constant: inset),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset)
-        ])
-        label.font = UIFont.preferredFont(forTextStyle: .title3)
+    private func setLabel() {
+        self.label.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: constants.leadingSpacing).isActive = true
+        self.label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -constants.inset).isActive = true
+        self.label.topAnchor.constraint(equalTo: topAnchor, constant: constants.inset).isActive = true
+        self.label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: constants.bottomSpacing).isActive = true
     }
 }
 
