@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ThirdViewController: UIViewController {
+final class ThirdViewController: UIViewController {
     
     lazy var textView: UILabel = {
         let textLabel = UILabel(frame: .zero)
@@ -30,7 +30,6 @@ class ThirdViewController: UIViewController {
         view.backgroundColor = .yellow
         addSubviews()
         setConstraints()
-
     }
     
     @objc private func goBackButton() {
@@ -41,6 +40,7 @@ class ThirdViewController: UIViewController {
         view.addSubview(textView)
         view.addSubview(closeButton)
     }
+    
     private func setConstraints(){
         setTextView()
         setCloseButton()
@@ -60,6 +60,4 @@ class ThirdViewController: UIViewController {
         self.closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         self.closeButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
     }
-
-
 }

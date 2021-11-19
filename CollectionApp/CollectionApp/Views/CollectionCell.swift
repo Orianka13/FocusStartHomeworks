@@ -7,7 +7,8 @@
 
 import UIKit
 
-class CollectionCell: UICollectionViewCell {
+final class CollectionCell: UICollectionViewCell {
+    
     let label: UILabel = {
        let label = UILabel()
         label.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
@@ -35,8 +36,11 @@ class CollectionCell: UICollectionViewCell {
     
 }
 
+//MARK: - CollectionViewCellLayout
+
 extension CollectionCell {
-    func configure() {
+    
+    private func configure() {
         self.label.translatesAutoresizingMaskIntoConstraints = false
         self.posterView.translatesAutoresizingMaskIntoConstraints = false
      
@@ -55,7 +59,6 @@ extension CollectionCell {
         self.posterView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset).isActive = true
         self.posterView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = true
         self.posterView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40).isActive = true
-        
     }
 }
 
