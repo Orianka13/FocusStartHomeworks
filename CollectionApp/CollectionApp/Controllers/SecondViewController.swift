@@ -20,8 +20,10 @@ final class SecondViewController: UIViewController {
     private let showMore: UIButton = {
         let button = UIButton()
         button.setTitle("Show description..", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .purple
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .darkGray
+        button.alpha = 1
+        button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(showDescription), for: .touchUpInside)
         return button
     }()
@@ -29,10 +31,16 @@ final class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .green
+        view.backgroundColor = .black
         
         addSubviews()
         setConstraints()
+        
+        if let topItem = navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+            topItem.backBarButtonItem?.tintColor = .white
+        }
+    
     }
     
     @objc private func showDescription() {
@@ -65,8 +73,8 @@ final class SecondViewController: UIViewController {
         self.showMore.translatesAutoresizingMaskIntoConstraints = false
         self.showMore.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 20).isActive = true
         self.showMore.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.showMore.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        self.showMore.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        self.showMore.widthAnchor.constraint(equalToConstant: 180).isActive = true
+        self.showMore.heightAnchor.constraint(equalToConstant: 40).isActive = true
         self.showMore.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
     }
 }

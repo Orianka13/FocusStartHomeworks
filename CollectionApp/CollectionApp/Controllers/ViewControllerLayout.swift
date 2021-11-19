@@ -31,7 +31,9 @@ final class OrthogonalScrollBehaviorViewController: UIViewController {
         super.viewDidLoad()
         configureHierarchy()
         configureDataSource()
-        navigationItem.title = "Best films"
+        navigationItem.title = "BEST FILMS"
+       
+        
     }
 }
 
@@ -55,7 +57,7 @@ extension OrthogonalScrollBehaviorViewController {
             let containerGroupFractionalWidth = orthogonallyScrolls ? CGFloat(0.85) : CGFloat(1.0)
             let containerGroup = NSCollectionLayoutGroup.horizontal(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(containerGroupFractionalWidth),
-                                                   heightDimension: .absolute(280)),
+                                                   heightDimension: .absolute(300)),
                 subitems: [leadingItem])
             let section = NSCollectionLayoutSection(group: containerGroup)
             section.orthogonalScrollingBehavior = UICollectionLayoutSectionOrthogonalScrollingBehavior.continuous
@@ -79,7 +81,7 @@ extension OrthogonalScrollBehaviorViewController {
     func configureHierarchy() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .red
+        collectionView.backgroundColor = .black
         view.addSubview(collectionView)
         collectionView.delegate = self
     }
@@ -91,7 +93,7 @@ extension OrthogonalScrollBehaviorViewController {
             let myCell = sectionKind.manageCell()
             cell.label.text = myCell.name[indexPath.row]
             cell.posterView.image = UIImage(named: myCell.poster[indexPath.row])
-            cell.contentView.backgroundColor = .blue
+            cell.contentView.backgroundColor = .black
             cell.contentView.layer.borderColor = UIColor.black.cgColor
             cell.contentView.layer.borderWidth = 1
             cell.contentView.layer.cornerRadius = 4

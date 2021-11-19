@@ -17,6 +17,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         let layoutVC = OrthogonalScrollBehaviorViewController()
         let navVC = UINavigationController(rootViewController: layoutVC)
+        navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.orange]
         window?.rootViewController = navVC
         window?.makeKeyAndVisible()
     }

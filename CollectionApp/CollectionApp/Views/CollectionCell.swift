@@ -13,6 +13,8 @@ final class CollectionCell: UICollectionViewCell {
        let label = UILabel()
         label.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
         label.textAlignment = .center
+        label.numberOfLines = 0
+        label.textColor = .white
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
@@ -44,16 +46,16 @@ extension CollectionCell {
         self.label.translatesAutoresizingMaskIntoConstraints = false
         self.posterView.translatesAutoresizingMaskIntoConstraints = false
      
-        contentView.addSubview(label)
-        contentView.addSubview(posterView)
+        self.contentView.addSubview(label)
+        self.contentView.addSubview(posterView)
         
         let inset = CGFloat(10)
         
         self.label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
         self.label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset).isActive = true
         self.label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: inset).isActive = false
-        self.label.topAnchor.constraint(equalTo: self.posterView.bottomAnchor, constant: inset).isActive = true
-        self.label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -inset).isActive = true
+        self.label.topAnchor.constraint(equalTo: self.posterView.bottomAnchor, constant: 0).isActive = true
+        self.label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
         
         self.posterView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: inset).isActive = true
         self.posterView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset).isActive = true

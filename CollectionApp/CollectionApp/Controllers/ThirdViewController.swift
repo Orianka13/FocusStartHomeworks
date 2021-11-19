@@ -12,7 +12,7 @@ final class ThirdViewController: UIViewController {
     lazy var textView: UILabel = {
         let textLabel = UILabel(frame: .zero)
         textLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 25)
-        textLabel.textColor = .black
+        textLabel.textColor = .white
         textLabel.textAlignment = .center
         textLabel.numberOfLines = 0
         return textLabel
@@ -22,12 +22,13 @@ final class ThirdViewController: UIViewController {
         let closeButton = UIButton()
         closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
         closeButton.addTarget(self, action: #selector(goBackButton), for: .touchUpInside)
+        closeButton.tintColor = .white
         return closeButton
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .darkGray
         addSubviews()
         setConstraints()
     }
