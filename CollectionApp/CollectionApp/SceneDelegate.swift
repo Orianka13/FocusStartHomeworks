@@ -22,6 +22,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navVC = UINavigationController(rootViewController: layoutVC)
         
         navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.orange]
+        navVC.navigationBar.barTintColor = .black
         
         window?.rootViewController = navVC
         window?.makeKeyAndVisible()
