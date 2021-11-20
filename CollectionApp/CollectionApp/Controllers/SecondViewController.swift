@@ -9,7 +9,7 @@ import UIKit
 
 final class SecondViewController: UIViewController {
     
-    private enum constants {
+    private enum Constants {
         static let buttonTitle = "Show description.."
         static let buttonColor: UIColor = .darkGray
         static let buttonCornerRadius = CGFloat(8)
@@ -34,10 +34,10 @@ final class SecondViewController: UIViewController {
     
     private lazy var showMore: UIButton = {
         let button = UIButton()
-        button.setTitle(constants.buttonTitle, for: .normal)
+        button.setTitle(Constants.buttonTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = constants.buttonColor
-        button.layer.cornerRadius = constants.buttonCornerRadius
+        button.backgroundColor = Constants.buttonColor
+        button.layer.cornerRadius = Constants.buttonCornerRadius
         button.addTarget(self, action: #selector(showDescription), for: .touchUpInside)
         return button
     }()
@@ -45,20 +45,20 @@ final class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = constants.mainBackgroundColor
+        view.backgroundColor = Constants.mainBackgroundColor
         
         addSubviews()
         setConstraints()
         
         if let topItem = navigationController?.navigationBar.topItem {
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-            topItem.backBarButtonItem?.tintColor = constants.textColor
+            topItem.backBarButtonItem?.tintColor = Constants.textColor
         }
     }
     
     @objc private func showDescription() {
         let thirdVC = ThirdViewController()
-        for (key, value) in descriptionData.filmDescription {
+        for (key, value) in DescriptionData.filmDescription {
             if key == self.navigationItem.title {
                 thirdVC.textView.text = value
             }
@@ -78,17 +78,17 @@ final class SecondViewController: UIViewController {
     private func setImage(){
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.imageView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: constants.topSpacing).isActive = true
+        self.imageView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: Constants.topSpacing).isActive = true
         self.imageView.heightAnchor.constraint(equalToConstant: self.view.frame.size.height / 1.5).isActive = false
     }
     
     private func setShowMoreButton(){
         self.showMore.translatesAutoresizingMaskIntoConstraints = false
-        self.showMore.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: constants.topSpacing).isActive = true
+        self.showMore.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: Constants.topSpacing).isActive = true
         self.showMore.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.showMore.widthAnchor.constraint(equalToConstant: constants.buttonWidth).isActive = true
-        self.showMore.heightAnchor.constraint(equalToConstant: constants.buttonHeight).isActive = true
-        self.showMore.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: constants.bottomSpacing).isActive = true
+        self.showMore.widthAnchor.constraint(equalToConstant: Constants.buttonWidth).isActive = true
+        self.showMore.heightAnchor.constraint(equalToConstant: Constants.buttonHeight).isActive = true
+        self.showMore.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: Constants.bottomSpacing).isActive = true
     }
 }
 

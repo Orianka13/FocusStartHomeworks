@@ -7,17 +7,17 @@
 
 import Foundation
 
-struct MyCell {
+struct Film {
     let poster: [String]
     let name: [String]
 }
 
-enum moviesDataCell {
+enum MoviesDataCell {
     static let posterMovies = ["f1","f2","f3","f4"]
     static let nameMovies = ["Deadpool","Scott Pilgrim vs. The World","Guardians of The Galaxy","Spider-Man: Into the Spider-Verse"]
 }
 
-enum cartoonsDataCell {
+enum CartoonsDataCell {
     static let posterCartoons = ["c1","c2","c3","c4"]
     static let nameCartoons = ["Rick and Morty","Disenchantment","South Park","Close enough"]
 }
@@ -27,7 +27,7 @@ enum TVShowsDataCell {
     static let nameShows = ["Brooklyn nine-nine","Superstore","The Big Bang Theory","Russian Doll"]
 }
 
-enum descriptionData {
+enum DescriptionData {
     static let filmDescription = ["Deadpool": "Deadpool is a 2016 American superhero film based on the Marvel Comics character of the same name. Distributed by 20th Century Fox, it is a spin-off in the X-Men film series and the eighth installment overall .",
                                   "Scott Pilgrim vs. The World": "Scott Pilgrim vs. the World is a 2010 romantic action comedy film co-written, produced, and directed by Edgar Wright, based on the graphic novel series Scott Pilgrim by Bryan Lee O'Malley.",
                                   "Guardians of The Galaxy": "Guardians of the Galaxy is a 2014 American superhero film based on the Marvel Comics superhero team of the same name.",

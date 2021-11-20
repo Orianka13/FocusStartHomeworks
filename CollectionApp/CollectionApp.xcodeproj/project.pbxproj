@@ -14,7 +14,7 @@
 		59B2C67527454169003FB4B6 /* ViewControllerLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C67427454169003FB4B6 /* ViewControllerLayout.swift */; };
 		59B2C677274541D2003FB4B6 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C676274541D2003FB4B6 /* CollectionCell.swift */; };
 		59B2C679274544D8003FB4B6 /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C678274544D8003FB4B6 /* TitleSupplementaryView.swift */; };
-		59B2C67C2746693B003FB4B6 /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C67B2746693B003FB4B6 /* CellModel.swift */; };
+		59B2C67C2746693B003FB4B6 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C67B2746693B003FB4B6 /* DataModel.swift */; };
 		59B2C6802746A5D3003FB4B6 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C67F2746A5D3003FB4B6 /* SecondViewController.swift */; };
 		59B2C6832746AFB2003FB4B6 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C6822746AFB2003FB4B6 /* ThirdViewController.swift */; };
 /* End PBXBuildFile section */
@@ -29,7 +29,7 @@
 		59B2C67427454169003FB4B6 /* ViewControllerLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerLayout.swift; sourceTree = "<group>"; };
 		59B2C676274541D2003FB4B6 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		59B2C678274544D8003FB4B6 /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
-		59B2C67B2746693B003FB4B6 /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
+		59B2C67B2746693B003FB4B6 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		59B2C67F2746A5D3003FB4B6 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		59B2C6822746AFB2003FB4B6 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -48,7 +48,7 @@
 		59264A7D2747B3F100868B2A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				59B2C67B2746693B003FB4B6 /* CellModel.swift */,
+				59B2C67B2746693B003FB4B6 /* DataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -176,7 +176,7 @@
 				59B2C67527454169003FB4B6 /* ViewControllerLayout.swift in Sources */,
 				59B2C677274541D2003FB4B6 /* CollectionCell.swift in Sources */,
 				5943CFBE274512A700C7B70E /* AppDelegate.swift in Sources */,
-				59B2C67C2746693B003FB4B6 /* CellModel.swift in Sources */,
+				59B2C67C2746693B003FB4B6 /* DataModel.swift in Sources */,
 				59B2C6802746A5D3003FB4B6 /* SecondViewController.swift in Sources */,
 				59B2C679274544D8003FB4B6 /* TitleSupplementaryView.swift in Sources */,
 				59B2C6832746AFB2003FB4B6 /* ThirdViewController.swift in Sources */,

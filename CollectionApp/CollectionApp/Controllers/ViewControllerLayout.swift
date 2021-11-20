@@ -9,7 +9,7 @@ import UIKit
 
 final class FirstViewController: UIViewController {
     
-    private enum constants {
+    private enum Constants {
         static let headerElementKind = "header-element-kind"
         static let navItem = "BEST FILMS"
         
@@ -27,26 +27,25 @@ final class FirstViewController: UIViewController {
         
         static var identifierOffset = 0
         static let itemsPerSection = 4
-        
-        static let errorMessage = "unknown section kind"
+    
     }
     
-    private enum SetCellContent: Int, CaseIterable {
+    private enum SectionContent: Int, CaseIterable {
         case movies, cartoons, TVShows
-        func manageCell() -> MyCell {
+        func setFilmDataCell() -> Film {
             switch self {
             case .movies:
-                return MyCell(poster: moviesDataCell.posterMovies, name: moviesDataCell.nameMovies)
+                return Film(poster: MoviesDataCell.posterMovies, name: MoviesDataCell.nameMovies)
             case .cartoons:
-                return MyCell(poster: cartoonsDataCell.posterCartoons, name: cartoonsDataCell.nameCartoons)
+                return Film(poster: CartoonsDataCell.posterCartoons, name: CartoonsDataCell.nameCartoons)
             case .TVShows:
-                return MyCell(poster: TVShowsDataCell.posterShows, name: TVShowsDataCell.nameShows)
+                return Film(poster: TVShowsDataCell.posterShows, name: TVShowsDataCell.nameShows)
             }
         }
     }
     
-    private var dataSource: UICollectionViewDiffableDataSource<Int, Int>! = nil
-    private var collectionView: UICollectionView! = nil
+    private var dataSource: UICollectionViewDiffableDataSource<Int, Int>!
+    private var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +53,7 @@ final class FirstViewController: UIViewController {
         configureHierarchy()
         configureDataSource()
         
-        self.navigationItem.title = constants.navItem
+        self.navigationItem.title = Constants.navItem
     }
 }
 
@@ -65,27 +64,29 @@ extension FirstViewController {
     private func createLayout() -> UICollectionViewLayout {
         
         let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.interSectionSpacing = constants.spacing
+        config.interSectionSpacing = Constants.spacing
         
         let layout = UICollectionViewCompositionalLayout(sectionProvider: {
             (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             
             let leadingItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(constants.fractionalWidthItem), heightDimension: .fractionalHeight(constants.fractionalHeightItem)))
-            leadingItem.contentInsets = NSDirectionalEdgeInsets(top: constants.spacing, leading: constants.spacing, bottom: constants.spacing, trailing: constants.spacing)
+                widthDimension: .fractionalWidth(Constants.fractionalWidthItem), heightDimension: .fractionalHeight(Constants.fractionalHeightItem)))
+            leadingItem.contentInsets = NSDirectionalEdgeInsets(top: Constants.spacing, leading: Constants.spacing, bottom: Constants.spacing, trailing: Constants.spacing)
             
             let containerGroup = NSCollectionLayoutGroup.horizontal(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(constants.fractionalWidthGroup),
-                                                   heightDimension: .absolute(constants.heightGroup)),
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(Constants.fractionalWidthGroup),
+                                                   heightDimension: .absolute(Constants.heightGroup)),
                 subitems: [leadingItem])
+            
             let section = NSCollectionLayoutSection(group: containerGroup)
             section.orthogonalScrollingBehavior = UICollectionLayoutSectionOrthogonalScrollingBehavior.continuous
             
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(constants.fractionalWidthHeader),
-                                                   heightDimension: .estimated(constants.heightHeader)),
-                elementKind: FirstViewController.constants.headerElementKind,
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(Constants.fractionalWidthHeader),
+                                                   heightDimension: .estimated(Constants.heightHeader)),
+                elementKind: FirstViewController.Constants.headerElementKind,
                 alignment: .top)
+            
             section.boundarySupplementaryItems = [sectionHeader]
             return section
             
@@ -101,7 +102,7 @@ extension FirstViewController {
     private func configureHierarchy() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = constants.mainBackgroundColor
+        collectionView.backgroundColor = Constants.mainBackgroundColor
         view.addSubview(collectionView)
         collectionView.delegate = self
     }
@@ -109,14 +110,12 @@ extension FirstViewController {
     private func configureDataSource() {
         
         let cellRegistration = UICollectionView.CellRegistration<CollectionCell, Int> { (cell, indexPath, identifier) in
-            guard let sectionKind = SetCellContent(rawValue: indexPath.section) else {
-                return print(constants.errorMessage)
-            }
+            guard let sectionKind = SectionContent(rawValue: indexPath.section) else { return }
             
-            let myCell = sectionKind.manageCell()
+            let myCell = sectionKind.setFilmDataCell()
             cell.label.text = myCell.name[indexPath.row]
             cell.posterView.image = UIImage(named: myCell.poster[indexPath.row])
-            cell.contentView.backgroundColor = constants.mainBackgroundColor
+            cell.contentView.backgroundColor = Constants.mainBackgroundColor
         }
         
         dataSource = UICollectionViewDiffableDataSource<Int, Int>(collectionView: collectionView) {
@@ -125,9 +124,9 @@ extension FirstViewController {
         }
         
         let supplementaryRegistration = UICollectionView.SupplementaryRegistration
-        <TitleSupplementaryView>(elementKind: FirstViewController.constants.headerElementKind) {
+        <TitleSupplementaryView>(elementKind: FirstViewController.Constants.headerElementKind) {
             (supplementaryView, string, indexPath) in
-            let sectionKind = SetCellContent(rawValue: indexPath.section)!
+            let sectionKind = SectionContent(rawValue: indexPath.section)!
             supplementaryView.label.text = String(describing: sectionKind)
         }
         
@@ -138,11 +137,11 @@ extension FirstViewController {
         
         var snapshot = NSDiffableDataSourceSnapshot<Int, Int>()
         
-        SetCellContent.allCases.forEach {
+        SectionContent.allCases.forEach {
             snapshot.appendSections([$0.rawValue])
-            let maxIdentifier = constants.identifierOffset + constants.itemsPerSection
-            snapshot.appendItems(Array(constants.identifierOffset..<maxIdentifier))
-            constants.identifierOffset += constants.itemsPerSection
+            let maxIdentifier = Constants.identifierOffset + Constants.itemsPerSection
+            snapshot.appendItems(Array(Constants.identifierOffset..<maxIdentifier))
+            Constants.identifierOffset += Constants.itemsPerSection
         }
         dataSource.apply(snapshot, animatingDifferences: false)
     }
@@ -154,11 +153,9 @@ extension FirstViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let secondVC = SecondViewController()
-        guard let sectionKind = SetCellContent(rawValue: indexPath.section) else {
-            return print(constants.errorMessage)
-        }
+        guard let sectionKind = SectionContent(rawValue: indexPath.section) else { return }
         
-        let myCell = sectionKind.manageCell()
+        let myCell = sectionKind.setFilmDataCell()
         secondVC.imageView.image = UIImage(named: myCell.poster[indexPath.row])
         secondVC.navigationItem.title = myCell.name[indexPath.row]
         navigationController?.pushViewController(secondVC, animated: true)

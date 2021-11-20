@@ -9,7 +9,7 @@ import UIKit
 
 final class TitleSupplementaryView: UICollectionReusableView {
     
-    private enum constants {
+    private enum Constants {
         static let textColor: UIColor = .white
         static let textFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 20)
         
@@ -20,8 +20,8 @@ final class TitleSupplementaryView: UICollectionReusableView {
     
     lazy var label: UILabel = {
         let label = UILabel()
-        label.textColor = constants.textColor
-        label.font = constants.textFont
+        label.textColor = Constants.textColor
+        label.font = Constants.textFont
         return label
     }()
     
@@ -43,10 +43,10 @@ extension TitleSupplementaryView {
     private func setLabel() {
         self.label.translatesAutoresizingMaskIntoConstraints = false
         
-        self.label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: constants.leadingSpacing).isActive = true
-        self.label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -constants.inset).isActive = true
-        self.label.topAnchor.constraint(equalTo: topAnchor, constant: constants.inset).isActive = true
-        self.label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: constants.bottomSpacing).isActive = true
+        self.label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.leadingSpacing).isActive = true
+        self.label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.inset).isActive = true
+        self.label.topAnchor.constraint(equalTo: topAnchor, constant: Constants.inset).isActive = true
+        self.label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Constants.bottomSpacing).isActive = true
     }
 }
 
