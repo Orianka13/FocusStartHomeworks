@@ -9,6 +9,10 @@ import UIKit
 
 final class FirstViewController: UIViewController {
     
+    private enum CellIdentifier {
+        static let reuseIdentifier = "cell"
+    }
+    
     private enum Constants {
         static let headerElementKind = "header-element-kind"
         static let navItem = "BEST FILMS"
@@ -27,33 +31,28 @@ final class FirstViewController: UIViewController {
         
         static var identifierOffset = 0
         static let itemsPerSection = 4
-    
+        
     }
     
-    private enum SectionContent: Int, CaseIterable {
-        case movies, cartoons, TVShows
-        func setFilmDataCell() -> Film {
-            switch self {
-            case .movies:
-                return Film(poster: MoviesDataCell.posterMovies, name: MoviesDataCell.nameMovies)
-            case .cartoons:
-                return Film(poster: CartoonsDataCell.posterCartoons, name: CartoonsDataCell.nameCartoons)
-            case .TVShows:
-                return Film(poster: TVShowsDataCell.posterShows, name: TVShowsDataCell.nameShows)
-            }
-        }
-    }
+    private var sections = Section.allSections
     
-    private var dataSource: UICollectionViewDiffableDataSource<Int, Int>!
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Film>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, Film>
+    
+    private lazy var dataSource = makeDataSource()
+    
     private var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureHierarchy()
-        configureDataSource()
         
+        applySnapshot(animatingDifferences: false)
         self.navigationItem.title = Constants.navItem
+        
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: CellIdentifier.reuseIdentifier)
+        
     }
 }
 
@@ -107,43 +106,47 @@ extension FirstViewController {
         collectionView.delegate = self
     }
     
-    private func configureDataSource() {
+    func makeDataSource() -> DataSource {
         
-        let cellRegistration = UICollectionView.CellRegistration<CollectionCell, Int> { (cell, indexPath, identifier) in
-            guard let sectionKind = SectionContent(rawValue: indexPath.section) else { return }
+        let cellRegistration = UICollectionView.CellRegistration<CollectionCell, Int> { (cell, indexPath, film) in
             
-            let myCell = sectionKind.setFilmDataCell()
-            cell.label.text = myCell.name[indexPath.row]
-            cell.posterView.image = UIImage(named: myCell.poster[indexPath.row])
+            let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
+            let film = section.films[indexPath.row]
+            
+            cell.label.text = film.name
+            cell.posterView.image = UIImage(named: film.poster)
             cell.contentView.backgroundColor = Constants.mainBackgroundColor
+            
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Int, Int>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, identifier: Int) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, Film>(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, film: Film) -> UICollectionViewCell? in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: indexPath.row)
         }
         
         let supplementaryRegistration = UICollectionView.SupplementaryRegistration
         <TitleSupplementaryView>(elementKind: FirstViewController.Constants.headerElementKind) {
             (supplementaryView, string, indexPath) in
-            let sectionKind = SectionContent(rawValue: indexPath.section)!
-            supplementaryView.label.text = String(describing: sectionKind)
+            let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
+            supplementaryView.label.text = section.title
         }
         
         dataSource.supplementaryViewProvider = { (view, kind, index) in
             return self.collectionView.dequeueConfiguredReusableSupplementary(
                 using: supplementaryRegistration, for: index)
         }
+        return dataSource
+    }
+    
+    func applySnapshot(animatingDifferences: Bool = true) {
+        var snapshot = Snapshot()
+        snapshot.appendSections(sections)
         
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Int>()
-        
-        SectionContent.allCases.forEach {
-            snapshot.appendSections([$0.rawValue])
-            let maxIdentifier = Constants.identifierOffset + Constants.itemsPerSection
-            snapshot.appendItems(Array(Constants.identifierOffset..<maxIdentifier))
-            Constants.identifierOffset += Constants.itemsPerSection
+        sections.forEach { section in
+            snapshot.appendItems(section.films, toSection: section)
         }
-        dataSource.apply(snapshot, animatingDifferences: false)
+        
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
 
@@ -153,11 +156,12 @@ extension FirstViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let secondVC = SecondViewController()
-        guard let sectionKind = SectionContent(rawValue: indexPath.section) else { return }
+        let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
+        let film = section.films[indexPath.row]
         
-        let myCell = sectionKind.setFilmDataCell()
-        secondVC.imageView.image = UIImage(named: myCell.poster[indexPath.row])
-        secondVC.navigationItem.title = myCell.name[indexPath.row]
+        
+        secondVC.imageView.image = UIImage(named: film.poster)
+        secondVC.navigationItem.title = film.name
         navigationController?.pushViewController(secondVC, animated: true)
     }
 }

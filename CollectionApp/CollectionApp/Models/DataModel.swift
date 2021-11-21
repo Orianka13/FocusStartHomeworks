@@ -5,27 +5,62 @@
 //  Created by Олеся Егорова on 18.11.2021.
 //
 
-import Foundation
+import UIKit
 
-struct Film {
-    let poster: [String]
-    let name: [String]
+class Film: Hashable {
+    
+    var id = UUID()
+    
+    let poster: String
+    let name: String
+    
+    init(poster: String, name: String) {
+      self.poster = poster
+      self.name = name
+    }
+    
+    func hash(into hasher: inout Hasher) {
+      hasher.combine(id)
+    }
+    static func == (lhs: Film, rhs: Film) -> Bool {
+      lhs.id == rhs.id
+    }
 }
 
-enum MoviesDataCell {
-    static let posterMovies = ["f1","f2","f3","f4"]
+extension Film {
+    
+    static var allMovies: [Film] = {
+        var filmArray = [Film]()
+        FilmsDataCell.nameMovies.forEach { film in
+            filmArray.append(Film(poster: film, name: film))
+        }
+        return filmArray
+    }()
+    
+    static var allCartoons: [Film] = {
+        var filmArray = [Film]()
+        FilmsDataCell.nameCartoons.forEach { film in
+            filmArray.append(Film(poster: film, name: film))
+        }
+        return filmArray
+    }()
+    
+    static var allShows: [Film] = {
+        var filmArray = [Film]()
+        FilmsDataCell.nameShows.forEach { film in
+            filmArray.append(Film(poster: film, name: film))
+        }
+        return filmArray
+    }()
+    
+}
+
+enum FilmsDataCell {
     static let nameMovies = ["Deadpool","Scott Pilgrim vs. The World","Guardians of The Galaxy","Spider-Man: Into the Spider-Verse"]
-}
-
-enum CartoonsDataCell {
-    static let posterCartoons = ["c1","c2","c3","c4"]
     static let nameCartoons = ["Rick and Morty","Disenchantment","South Park","Close enough"]
-}
-
-enum TVShowsDataCell {
-    static let posterShows = ["s1","s2","s3","s4"]
     static let nameShows = ["Brooklyn nine-nine","Superstore","The Big Bang Theory","Russian Doll"]
 }
+
 
 enum DescriptionData {
     static let filmDescription = ["Deadpool": "Deadpool is a 2016 American superhero film based on the Marvel Comics character of the same name. Distributed by 20th Century Fox, it is a spin-off in the X-Men film series and the eighth installment overall .",

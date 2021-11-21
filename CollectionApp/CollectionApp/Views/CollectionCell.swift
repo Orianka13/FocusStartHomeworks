@@ -8,7 +8,7 @@
 import UIKit
 
 final class CollectionCell: UICollectionViewCell {
-    
+  
     private enum Constants {
         static let labelFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
         static let numberOfLines = 0
