@@ -27,11 +27,10 @@ final class FirstViewController: UIViewController {
         static let fractionalWidthHeader = CGFloat(1.0)
         static let heightHeader = CGFloat(44)
         
-        static let mainBackgroundColor: UIColor = .black
-        
         static var identifierOffset = 0
         static let itemsPerSection = 4
         
+        static let mainBackgroundColor: UIColor = .black
     }
     
     private var sections = Section.allSections
@@ -109,14 +108,9 @@ extension FirstViewController {
     func makeDataSource() -> DataSource {
         
         let cellRegistration = UICollectionView.CellRegistration<CollectionCell, Int> { (cell, indexPath, film) in
-            
             let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
             let film = section.films[indexPath.row]
-            
-            cell.label.text = film.name
-            cell.posterView.image = UIImage(named: film.poster)
-            cell.contentView.backgroundColor = Constants.mainBackgroundColor
-            
+            cell.setCellData(film: film)
         }
         
         dataSource = UICollectionViewDiffableDataSource<Section, Film>(collectionView: collectionView) {
@@ -159,9 +153,8 @@ extension FirstViewController: UICollectionViewDelegate {
         let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
         let film = section.films[indexPath.row]
         
-        
-        secondVC.imageView.image = UIImage(named: film.poster)
-        secondVC.navigationItem.title = film.name
+        secondVC.setImageData(film: film)
+    
         navigationController?.pushViewController(secondVC, animated: true)
     }
 }

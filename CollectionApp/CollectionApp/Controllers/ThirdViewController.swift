@@ -22,7 +22,7 @@ final class ThirdViewController: UIViewController {
         static let trailingSpacing = CGFloat(-20)
     }
     
-    lazy var textView: UILabel = {
+    private lazy var textView: UILabel = {
         let textLabel = UILabel(frame: .zero)
         textLabel.font = Constants.textFont
         textLabel.textColor = Constants.textColor
@@ -50,6 +50,10 @@ final class ThirdViewController: UIViewController {
     
     @objc private func goBackButton() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func setTextData(value: String) {
+        self.textView.text = value
     }
     
     private func addSubviews(){

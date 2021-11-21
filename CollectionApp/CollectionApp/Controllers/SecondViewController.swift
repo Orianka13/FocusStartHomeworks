@@ -24,7 +24,7 @@ final class SecondViewController: UIViewController {
         static let buttonHeight = CGFloat(40)
     }
     
-    lazy var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let image = UIImage()
         let imageView = UIImageView(frame: .zero)
         imageView.image = image
@@ -60,10 +60,15 @@ final class SecondViewController: UIViewController {
         let thirdVC = ThirdViewController()
         for (key, value) in DescriptionData.filmDescription {
             if key == self.navigationItem.title {
-                thirdVC.textView.text = value
+                thirdVC.setTextData(value: value)
             }
         }
         self.navigationController?.present(thirdVC, animated: true, completion: nil)
+    }
+    
+    func setImageData(film: Film){
+        self.imageView.image = UIImage(named: film.poster)
+        self.navigationItem.title = film.name
     }
     
     private func addSubviews(){

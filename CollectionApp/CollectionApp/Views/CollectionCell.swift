@@ -19,9 +19,11 @@ final class CollectionCell: UICollectionViewCell {
         static let zeroSpacing = CGFloat(0)
         static let inset = CGFloat(10)
         static let bottomSpacing = CGFloat(-40)
+        
+        static let mainBackgroundColor: UIColor = .black
     }
     
-    lazy var label: UILabel = {
+    private lazy var label: UILabel = {
         let label = UILabel()
         label.font = Constants.labelFont
         label.textAlignment = .center
@@ -30,7 +32,7 @@ final class CollectionCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var posterView: UIImageView = {
+    private lazy var posterView: UIImageView = {
         let image = UIImage()
         let imageView = UIImageView(frame: .zero)
         imageView.image = image
@@ -47,6 +49,12 @@ final class CollectionCell: UICollectionViewCell {
     }
     required init?(coder: NSCoder) {
         fatalError(Constants.errorMessage)
+    }
+    
+    func setCellData(film: Film){
+        self.label.text = film.name
+        self.posterView.image = UIImage(named: film.poster)
+        self.contentView.backgroundColor = Constants.mainBackgroundColor
     }
     
     private func addSubviews(){
