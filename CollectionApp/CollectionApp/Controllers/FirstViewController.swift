@@ -9,10 +9,6 @@ import UIKit
 
 final class FirstViewController: UIViewController {
     
-    private enum CellIdentifier {
-        static let reuseIdentifier = "cell"
-    }
-    
     private enum Constants {
         static let headerElementKind = "header-element-kind"
         static let navItem = "BEST FILMS"
@@ -27,19 +23,16 @@ final class FirstViewController: UIViewController {
         static let fractionalWidthHeader = CGFloat(1.0)
         static let heightHeader = CGFloat(44)
         
-        static var identifierOffset = 0
-        static let itemsPerSection = 4
-        
         static let mainBackgroundColor: UIColor = .black
     }
     
-    private var sections = Section.allSections
+    
     
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Film>
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Film>
     
     private lazy var dataSource = makeDataSource()
-    
+    private var sections = Section.allSections
     private var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -49,8 +42,6 @@ final class FirstViewController: UIViewController {
         
         applySnapshot(animatingDifferences: false)
         self.navigationItem.title = Constants.navItem
-        
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: CellIdentifier.reuseIdentifier)
         
     }
 }
