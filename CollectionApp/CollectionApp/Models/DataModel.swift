@@ -7,17 +7,12 @@
 
 import UIKit
 
-class Film: Hashable {
+struct Film: Hashable {
     
     var id = UUID()
     
     let poster: String
     let name: String
-    
-    init(poster: String, name: String) {
-      self.poster = poster
-      self.name = name
-    }
     
     func hash(into hasher: inout Hasher) {
       hasher.combine(id)
