@@ -50,7 +50,7 @@ extension Film {
     
 }
 
-enum FilmsDataCell {
+private enum FilmsDataCell {
     static let nameMovies = ["Deadpool","Scott Pilgrim vs. The World","Guardians of The Galaxy","Spider-Man: Into the Spider-Verse"]
     static let nameCartoons = ["Rick and Morty","Disenchantment","South Park","Close enough"]
     static let nameShows = ["Brooklyn nine-nine","Superstore","The Big Bang Theory","Russian Doll"]

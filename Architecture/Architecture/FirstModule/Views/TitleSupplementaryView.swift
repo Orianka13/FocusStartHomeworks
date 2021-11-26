@@ -18,7 +18,7 @@ final class TitleSupplementaryView: UICollectionReusableView {
         static let bottomSpacing = CGFloat(0)
     }
     
-    lazy var label: UILabel = {
+    private lazy var label: UILabel = {
         let label = UILabel()
         label.textColor = Constants.textColor
         label.font = Constants.textFont
@@ -33,6 +33,10 @@ final class TitleSupplementaryView: UICollectionReusableView {
     }
     required init?(coder: NSCoder) {
         fatalError()
+    }
+    
+    func updateLabel(section: Section) {
+        self.label.text = section.title
     }
 }
 
