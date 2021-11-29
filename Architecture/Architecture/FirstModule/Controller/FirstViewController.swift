@@ -52,8 +52,8 @@ extension FirstViewController {
         let cellRegistration = UICollectionView.CellRegistration<CollectionCell, Int> { [weak self] (cell, indexPath, film) in
             let section = self?.dataSource.snapshot().sectionIdentifiers[indexPath.section]
             let film = section?.films[indexPath.row]
-            
-            cell.updateCellData(film: film ?? Film(poster: Constants.filmName, name: Constants.filmName))
+            let viewModel = ViewFilm(poster: film?.poster ?? Constants.filmName, name: film?.name ?? Constants.filmName)
+            cell.updateCellData(film: viewModel)
         }
         
         dataSource = UICollectionViewDiffableDataSource<Section, Film>(collectionView: collectionView) {
@@ -65,8 +65,8 @@ extension FirstViewController {
         <TitleSupplementaryView>(elementKind: FirstViewController.Constants.headerElementKind) { [weak self]
             (supplementaryView, string, indexPath) in
             let section = self?.dataSource.snapshot().sectionIdentifiers[indexPath.section]
-            
-            supplementaryView.updateLabel(section: section ?? Section(title: Constants.defaultSectionTitle, films: [Film(poster: Constants.filmName, name: Constants.filmName)]))
+            let viewModel = ViewSection(title: section?.title ?? Constants.defaultSectionTitle, films: [ViewFilm(poster: Constants.filmName, name: Constants.filmName)])
+            supplementaryView.updateLabel(section: viewModel)
         }
         
         dataSource.supplementaryViewProvider = { [weak self] (view, kind, index) in
@@ -92,14 +92,14 @@ extension FirstViewController {
 
 extension FirstViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let secondVC = SecondViewController()
+       
         let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
         let film = section.films[indexPath.row]
         
-        secondVC.setImageData(film: film)
-    
-        navigationController?.pushViewController(secondVC, animated: true)
+        let controller = Assembly.build(film: film)
+       
+        navigationController?.pushViewController(controller, animated: true)
+        
     }
 }
 

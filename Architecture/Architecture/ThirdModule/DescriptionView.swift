@@ -1,13 +1,15 @@
 //
-//  ThirdViewController.swift
-//  CollectionApp
+//  DescriptionView.swift
+//  Architecture
 //
-//  Created by Олеся Егорова on 18.11.2021.
+//  Created by Олеся Егорова on 28.11.2021.
 //
 
 import UIKit
 
-final class ThirdViewController: UIViewController {
+class DescriptionView: UIView {
+    
+    var onTouchedHandler: (() -> Void)?
     
     private enum Constants {
         static let textFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 25)
@@ -39,17 +41,15 @@ final class ThirdViewController: UIViewController {
         return closeButton
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = Constants.mainBackgroundColor
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         addSubviews()
         setConstraints()
     }
-    
-    @objc private func goBackButton() {
-        dismiss(animated: true, completion: nil)
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setTextData(value: String) {
@@ -57,8 +57,8 @@ final class ThirdViewController: UIViewController {
     }
     
     private func addSubviews(){
-        view.addSubview(textView)
-        view.addSubview(closeButton)
+        self.addSubview(textView)
+        self.addSubview(closeButton)
     }
     
     private func setConstraints(){
@@ -66,20 +66,24 @@ final class ThirdViewController: UIViewController {
         setCloseButton()
     }
     
+    @objc private func goBackButton() {
+        self.onTouchedHandler?()
+    }
+    
     private func setTextView(){
         self.textView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.textView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: Constants.mainSpacing).isActive = false
-        self.textView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor).isActive = true
-        self.textView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        self.textView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.mainSpacing).isActive = true
-        self.textView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: Constants.trailingSpacing).isActive = true
+        self.textView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: Constants.mainSpacing).isActive = false
+        self.textView.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        self.textView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        self.textView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: Constants.mainSpacing).isActive = true
+        self.textView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: Constants.trailingSpacing).isActive = true
     }
     
     private func setCloseButton(){
         self.closeButton.translatesAutoresizingMaskIntoConstraints = false
         
-        self.closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: Constants.mainSpacing).isActive = true
-        self.closeButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.mainSpacing).isActive = true
+        self.closeButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: Constants.mainSpacing).isActive = true
+        self.closeButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: Constants.mainSpacing).isActive = true
     }
 }
