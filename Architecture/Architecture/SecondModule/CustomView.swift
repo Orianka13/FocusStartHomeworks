@@ -1,8 +1,8 @@
 //
-//  MyCustomView.swift
-//  Test MVC
+//  CustomView.swift
+//  Architecture
 //
-//  Created by Ляшенко Тимофей on 23.11.2021.
+//  Created by Олеся Егорова on 26.11.2021.
 //
 
 import UIKit

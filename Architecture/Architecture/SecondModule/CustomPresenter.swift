@@ -8,14 +8,14 @@
 import Foundation
 
 final class CustomPresenter {
-
+    
     private weak var controller: SecondViewController?
     private weak var view: CustomView?
     var film: FilmModel
     
     init(film: FilmModel) {
-           self.film = film
-       }
+        self.film = film
+    }
     
     func loadView(controller: SecondViewController, view: CustomView) {
         self.controller = controller
@@ -26,7 +26,15 @@ final class CustomPresenter {
     
     func setHandlers() {
         self.view?.onTouchedHandler = { [weak self] in
-            self?.controller?.showDescriptionViewController(controller: ThirdViewController())
+            
+            let thirdVC = ThirdViewController()
+            let thirdVM = ThirdViewModel()
+            for (key, value) in DescriptionData.filmDescription {
+                if key == self?.controller?.navigationItem.title {
+                    thirdVM.updateData(text: value)
+                }
+            }
+            self?.controller?.showDescriptionViewController(controller: thirdVC)
         }
     }
     

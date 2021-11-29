@@ -13,6 +13,7 @@
 		5943CFC7274512AB00C7B70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5943CFC6274512AB00C7B70E /* Assets.xcassets */; };
 		5943CFCA274512AB00C7B70E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5943CFC8274512AB00C7B70E /* LaunchScreen.storyboard */; };
 		599561BB27553E7F0047FE92 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599561BA27553E7F0047FE92 /* Assembly.swift */; };
+		599561BF27554EEB0047FE92 /* ThirdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599561BE27554EEB0047FE92 /* ThirdViewModel.swift */; };
 		59B2C67527454169003FB4B6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C67427454169003FB4B6 /* FirstViewController.swift */; };
 		59B2C677274541D2003FB4B6 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C676274541D2003FB4B6 /* CollectionCell.swift */; };
 		59B2C679274544D8003FB4B6 /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C678274544D8003FB4B6 /* TitleSupplementaryView.swift */; };
@@ -37,6 +38,7 @@
 		5943CFC9274512AB00C7B70E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5943CFCB274512AB00C7B70E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		599561BA27553E7F0047FE92 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		599561BE27554EEB0047FE92 /* ThirdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewModel.swift; sourceTree = "<group>"; };
 		59B2C67427454169003FB4B6 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		59B2C676274541D2003FB4B6 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		59B2C678274544D8003FB4B6 /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				59B2C6822746AFB2003FB4B6 /* ThirdViewController.swift */,
+				599561BE27554EEB0047FE92 /* ThirdViewModel.swift */,
 				59ED80B62753CDD60026A05D /* DescriptionView.swift */,
 				59ED80B82753D0450026A05D /* DescriptionModel.swift */,
 			);
@@ -236,6 +239,7 @@
 				59B2C67C2746693B003FB4B6 /* Film.swift in Sources */,
 				59ED80B72753CDD60026A05D /* DescriptionView.swift in Sources */,
 				59B2C6802746A5D3003FB4B6 /* SecondViewController.swift in Sources */,
+				599561BF27554EEB0047FE92 /* ThirdViewModel.swift in Sources */,
 				59ED807E2750EF3D0026A05D /* CollectionViewLayout.swift in Sources */,
 				599561BB27553E7F0047FE92 /* Assembly.swift in Sources */,
 				59B2C679274544D8003FB4B6 /* TitleSupplementaryView.swift in Sources */,

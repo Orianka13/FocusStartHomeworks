@@ -1,5 +1,5 @@
 //
-//  Model.swift
+//  FilmModel.swift
 //  Architecture
 //
 //  Created by Олеся Егорова on 26.11.2021.

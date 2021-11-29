@@ -11,6 +11,8 @@ class DescriptionView: UIView {
     
     var onTouchedHandler: (() -> Void)?
     
+    private let viewModel = ThirdViewModel()
+    
     private enum Constants {
         static let textFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 25)
         static let textColor: UIColor = .white
@@ -46,14 +48,14 @@ class DescriptionView: UIView {
         
         addSubviews()
         setConstraints()
+        
+        self.viewModel.data.setNotify { [weak self] text in
+                    self?.textView.text = text
+        }
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setTextData(value: String) {
-        self.textView.text = value
     }
     
     private func addSubviews(){
