@@ -23,11 +23,10 @@ final class CustomPresenter {
         
         self.setHandlers()
     }
-
     
     func setHandlers() {
         self.view?.onTouchedHandler = { [weak self] in
-            
+            self?.controller?.showDescriptionViewController(controller: ThirdViewController())
         }
     }
     

@@ -50,4 +50,8 @@ final class SecondViewController: UIViewController {
     func setTitle(title: String) {
         self.navigationItem.title = title
     }
+    
+    func showDescriptionViewController(controller: UIViewController){
+        self.navigationController?.present(controller, animated: true, completion: nil)
+    }
 }
