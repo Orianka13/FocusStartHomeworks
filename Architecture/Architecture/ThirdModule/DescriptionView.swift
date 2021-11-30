@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DescriptionView: UIView {
+final class DescriptionView: UIView {
     
     private enum Constants {
         static let textFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 25)

@@ -111,6 +111,7 @@
 			children = (
 				59B2C676274541D2003FB4B6 /* CollectionCell.swift */,
 				59B2C678274544D8003FB4B6 /* TitleSupplementaryView.swift */,
+				59ED807D2750EF3D0026A05D /* CollectionViewLayout.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -129,7 +130,6 @@
 		59ED807C2750EE1F0026A05D /* FirstModule */ = {
 			isa = PBXGroup;
 			children = (
-				59ED807D2750EF3D0026A05D /* CollectionViewLayout.swift */,
 				59264A7D2747B3F100868B2A /* Models */,
 				59B2C67A27466888003FB4B6 /* Views */,
 				59ED807F27510C0C0026A05D /* Controller */,
