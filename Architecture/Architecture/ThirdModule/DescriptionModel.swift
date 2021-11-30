@@ -9,18 +9,18 @@ import Foundation
 
 final class Description {
     
-    private var text: String?
+    var data: String?
     
-    func getText() -> String {
-        self.text ?? "Deadpool"
+    func getData() -> String {
+        self.data ?? "Update text"
     }
     
-    func setText(text: String) {
-        self.text = text
+    func setData(data: String) {
+        self.data = data
     }
 }
 
-enum DescriptionData {
+enum descriptionData {
     static let filmDescription = ["Deadpool": "Deadpool is a 2016 American superhero film based on the Marvel Comics character of the same name. Distributed by 20th Century Fox, it is a spin-off in the X-Men film series and the eighth installment overall .",
                                   "Scott Pilgrim vs. The World": "Scott Pilgrim vs. the World is a 2010 romantic action comedy film co-written, produced, and directed by Edgar Wright, based on the graphic novel series Scott Pilgrim by Bryan Lee O'Malley.",
                                   "Guardians of The Galaxy": "Guardians of the Galaxy is a 2014 American superhero film based on the Marvel Comics superhero team of the same name.",
@@ -34,5 +34,3 @@ enum DescriptionData {
                                   "The Big Bang Theory": "The Big Bang Theory is an American television sitcom created by Chuck Lorre and Bill Prady, both of whom served as executive producers on the series, along with Steven Molaro. ",
                                   "Russian Doll": "Russian Doll is an American comedy-drama streaming television series, created by Natasha Lyonne, Leslye Headland, and Amy Poehler, that premiered on February 1, 2019, on Netflix. "]
 }
-
-

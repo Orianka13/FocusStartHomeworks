@@ -14,16 +14,16 @@
 		5943CFCA274512AB00C7B70E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5943CFC8274512AB00C7B70E /* LaunchScreen.storyboard */; };
 		599561BB27553E7F0047FE92 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599561BA27553E7F0047FE92 /* Assembly.swift */; };
 		599561BF27554EEB0047FE92 /* ThirdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599561BE27554EEB0047FE92 /* ThirdViewModel.swift */; };
-		59B2C67527454169003FB4B6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C67427454169003FB4B6 /* FirstViewController.swift */; };
+		59B2C67527454169003FB4B6 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C67427454169003FB4B6 /* CollectionViewController.swift */; };
 		59B2C677274541D2003FB4B6 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C676274541D2003FB4B6 /* CollectionCell.swift */; };
 		59B2C679274544D8003FB4B6 /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C678274544D8003FB4B6 /* TitleSupplementaryView.swift */; };
 		59B2C67C2746693B003FB4B6 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C67B2746693B003FB4B6 /* Film.swift */; };
-		59B2C6802746A5D3003FB4B6 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C67F2746A5D3003FB4B6 /* SecondViewController.swift */; };
+		59B2C6802746A5D3003FB4B6 /* PosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C67F2746A5D3003FB4B6 /* PosterViewController.swift */; };
 		59B2C6832746AFB2003FB4B6 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B2C6822746AFB2003FB4B6 /* ThirdViewController.swift */; };
 		59ED807E2750EF3D0026A05D /* CollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED807D2750EF3D0026A05D /* CollectionViewLayout.swift */; };
-		59ED8085275119A60026A05D /* CustomPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED8084275119A60026A05D /* CustomPresenter.swift */; };
-		59ED808727511A030026A05D /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED808627511A030026A05D /* CustomView.swift */; };
-		59ED808927511C070026A05D /* CustomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED808827511C070026A05D /* CustomModel.swift */; };
+		59ED8085275119A60026A05D /* PosterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED8084275119A60026A05D /* PosterPresenter.swift */; };
+		59ED808727511A030026A05D /* PosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED808627511A030026A05D /* PosterView.swift */; };
+		59ED808927511C070026A05D /* PosterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED808827511C070026A05D /* PosterModel.swift */; };
 		59ED80B52753A2A80026A05D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED80B42753A2A80026A05D /* ViewModel.swift */; };
 		59ED80B72753CDD60026A05D /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED80B62753CDD60026A05D /* DescriptionView.swift */; };
 		59ED80B92753D0450026A05D /* DescriptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED80B82753D0450026A05D /* DescriptionModel.swift */; };
@@ -39,16 +39,16 @@
 		5943CFCB274512AB00C7B70E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		599561BA27553E7F0047FE92 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		599561BE27554EEB0047FE92 /* ThirdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewModel.swift; sourceTree = "<group>"; };
-		59B2C67427454169003FB4B6 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		59B2C67427454169003FB4B6 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		59B2C676274541D2003FB4B6 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		59B2C678274544D8003FB4B6 /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
 		59B2C67B2746693B003FB4B6 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
-		59B2C67F2746A5D3003FB4B6 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		59B2C67F2746A5D3003FB4B6 /* PosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterViewController.swift; sourceTree = "<group>"; };
 		59B2C6822746AFB2003FB4B6 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		59ED807D2750EF3D0026A05D /* CollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLayout.swift; sourceTree = "<group>"; };
-		59ED8084275119A60026A05D /* CustomPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresenter.swift; sourceTree = "<group>"; };
-		59ED808627511A030026A05D /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
-		59ED808827511C070026A05D /* CustomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModel.swift; sourceTree = "<group>"; };
+		59ED8084275119A60026A05D /* PosterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterPresenter.swift; sourceTree = "<group>"; };
+		59ED808627511A030026A05D /* PosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterView.swift; sourceTree = "<group>"; };
+		59ED808827511C070026A05D /* PosterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterModel.swift; sourceTree = "<group>"; };
 		59ED80B42753A2A80026A05D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		59ED80B62753CDD60026A05D /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		59ED80B82753D0450026A05D /* DescriptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionModel.swift; sourceTree = "<group>"; };
@@ -96,9 +96,9 @@
 			children = (
 				59ED807C2750EE1F0026A05D /* FirstModule */,
 				59ED8080275118380026A05D /* SecondModule */,
+				59B2C6812746A5FB003FB4B6 /* ThirdModule */,
 				5943CFBD274512A700C7B70E /* AppDelegate.swift */,
 				5943CFBF274512A700C7B70E /* SceneDelegate.swift */,
-				59B2C6812746A5FB003FB4B6 /* ThirdModule */,
 				5943CFC6274512AB00C7B70E /* Assets.xcassets */,
 				5943CFC8274512AB00C7B70E /* LaunchScreen.storyboard */,
 				5943CFCB274512AB00C7B70E /* Info.plist */,
@@ -140,7 +140,7 @@
 		59ED807F27510C0C0026A05D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				59B2C67427454169003FB4B6 /* FirstViewController.swift */,
+				59B2C67427454169003FB4B6 /* CollectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -148,10 +148,10 @@
 		59ED8080275118380026A05D /* SecondModule */ = {
 			isa = PBXGroup;
 			children = (
-				59ED808827511C070026A05D /* CustomModel.swift */,
-				59ED808627511A030026A05D /* CustomView.swift */,
-				59ED8084275119A60026A05D /* CustomPresenter.swift */,
-				59B2C67F2746A5D3003FB4B6 /* SecondViewController.swift */,
+				59ED808827511C070026A05D /* PosterModel.swift */,
+				59ED808627511A030026A05D /* PosterView.swift */,
+				59ED8084275119A60026A05D /* PosterPresenter.swift */,
+				59B2C67F2746A5D3003FB4B6 /* PosterViewController.swift */,
 				599561BA27553E7F0047FE92 /* Assembly.swift */,
 			);
 			path = SecondModule;
@@ -228,17 +228,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				591CA5E2274A8B700012C63E /* Section.swift in Sources */,
-				59ED808727511A030026A05D /* CustomView.swift in Sources */,
-				59ED8085275119A60026A05D /* CustomPresenter.swift in Sources */,
-				59B2C67527454169003FB4B6 /* FirstViewController.swift in Sources */,
+				59ED808727511A030026A05D /* PosterView.swift in Sources */,
+				59ED8085275119A60026A05D /* PosterPresenter.swift in Sources */,
+				59B2C67527454169003FB4B6 /* CollectionViewController.swift in Sources */,
 				59ED80B52753A2A80026A05D /* ViewModel.swift in Sources */,
 				59B2C677274541D2003FB4B6 /* CollectionCell.swift in Sources */,
 				59ED80B92753D0450026A05D /* DescriptionModel.swift in Sources */,
 				5943CFBE274512A700C7B70E /* AppDelegate.swift in Sources */,
-				59ED808927511C070026A05D /* CustomModel.swift in Sources */,
+				59ED808927511C070026A05D /* PosterModel.swift in Sources */,
 				59B2C67C2746693B003FB4B6 /* Film.swift in Sources */,
 				59ED80B72753CDD60026A05D /* DescriptionView.swift in Sources */,
-				59B2C6802746A5D3003FB4B6 /* SecondViewController.swift in Sources */,
+				59B2C6802746A5D3003FB4B6 /* PosterViewController.swift in Sources */,
 				599561BF27554EEB0047FE92 /* ThirdViewModel.swift in Sources */,
 				59ED807E2750EF3D0026A05D /* CollectionViewLayout.swift in Sources */,
 				599561BB27553E7F0047FE92 /* Assembly.swift in Sources */,

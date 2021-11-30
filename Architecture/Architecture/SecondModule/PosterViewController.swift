@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  PosterViewController.swift
 //  CollectionApp
 //
 //  Created by Олеся Егорова on 18.11.2021.
@@ -7,19 +7,27 @@
 
 import UIKit
 
-final class SecondViewController: UIViewController {
+protocol IPosterViewController: AnyObject {
+    
+    func setTitle(title: String)
+    
+    func showDescriptionViewController(controller: UIViewController)
+}
+
+
+final class PosterViewController: UIViewController {
     
     private enum Constants {
         static let mainBackgroundColor: UIColor = .black
         static let textColor: UIColor = .white
     }
     
-    private var customView: CustomView
-    private var customPresenter: CustomPresenter?
+    private var customView: IPosterView
+    private var customPresenter: IPosterPresenter?
     
     
-    init(presenter: CustomPresenter) {
-        self.customView = CustomView(frame: UIScreen.main.bounds)
+    init(presenter: IPosterPresenter) {
+        self.customView = PosterView(frame: UIScreen.main.bounds)
         self.customPresenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -41,11 +49,26 @@ final class SecondViewController: UIViewController {
         
         view.backgroundColor = Constants.mainBackgroundColor
         
+        setNavigationBar()
+    }
+}
+
+//MARK: Private extension
+
+private extension PosterViewController {
+    
+    func setNavigationBar(){
         if let topItem = navigationController?.navigationBar.topItem {
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             topItem.backBarButtonItem?.tintColor = Constants.textColor
         }
     }
+}
+
+
+//MARK: IPosterViewController
+
+extension PosterViewController: IPosterViewController {
     
     func setTitle(title: String) {
         self.navigationItem.title = title
@@ -54,4 +77,5 @@ final class SecondViewController: UIViewController {
     func showDescriptionViewController(controller: UIViewController){
         self.navigationController?.present(controller, animated: true, completion: nil)
     }
+    
 }

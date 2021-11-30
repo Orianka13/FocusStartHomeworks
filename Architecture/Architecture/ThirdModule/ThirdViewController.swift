@@ -11,14 +11,12 @@ final class ThirdViewController: UIViewController {
     
     private var descriptionView: DescriptionView
 
-    
     private enum Constants {
         static let mainBackgroundColor: UIColor = .darkGray
     }
     
     init() {
         self.descriptionView = DescriptionView(frame: UIScreen.main.bounds)
-    
         super.init(nibName: nil, bundle: nil)
     }
     

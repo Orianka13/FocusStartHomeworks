@@ -11,7 +11,7 @@ class DescriptionView: UIView {
     
     var onTouchedHandler: (() -> Void)?
     
-    private let viewModel = ThirdViewModel()
+   private let viewModel = ThirdViewModel()
     
     private enum Constants {
         static let textFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 25)

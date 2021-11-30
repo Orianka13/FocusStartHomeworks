@@ -8,10 +8,12 @@
 import UIKit
 
 final class Assembly {
+    
     static func build(film: Film) -> UIViewController {
-        let filmModel = FilmModel(film: film)
-        let presenter = CustomPresenter(film: filmModel)
-        let controller = SecondViewController(presenter: presenter)
+        
+        let filmModel = PosterModel(film: film)
+        let presenter = PosterPresenter(film: filmModel)
+        let controller = PosterViewController(presenter: presenter)
         
         return controller
     }

@@ -15,6 +15,8 @@ struct ViewFilm {
 }
 
 struct ViewSection {
+    
     var title: String
     var films: [ViewFilm]
+    
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class FirstViewController: UIViewController {
+final class CollectionViewController: UIViewController {
     
     private enum Constants {
         static let headerElementKind = "header-element-kind"
@@ -29,7 +29,6 @@ final class FirstViewController: UIViewController {
         super.viewDidLoad()
         
         configureHierarchy()
-        
         applySnapshot(animatingDifferences: false)
         self.navigationItem.title = Constants.navItem
     }
@@ -37,7 +36,7 @@ final class FirstViewController: UIViewController {
 
 //MARK: - UICollectionViewDataSource
 
-extension FirstViewController {
+extension CollectionViewController {
     
     private func configureHierarchy() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
@@ -62,7 +61,7 @@ extension FirstViewController {
         }
         
         let supplementaryRegistration = UICollectionView.SupplementaryRegistration
-        <TitleSupplementaryView>(elementKind: FirstViewController.Constants.headerElementKind) { [weak self]
+        <TitleSupplementaryView>(elementKind: CollectionViewController.Constants.headerElementKind) { [weak self]
             (supplementaryView, string, indexPath) in
             let section = self?.dataSource.snapshot().sectionIdentifiers[indexPath.section]
             let viewModel = ViewSection(title: section?.title ?? Constants.defaultSectionTitle, films: [ViewFilm(poster: Constants.filmName, name: Constants.filmName)])
@@ -90,7 +89,7 @@ extension FirstViewController {
 
 //MARK: - UICollectionViewDelegate
 
-extension FirstViewController: UICollectionViewDelegate {
+extension CollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
         let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]

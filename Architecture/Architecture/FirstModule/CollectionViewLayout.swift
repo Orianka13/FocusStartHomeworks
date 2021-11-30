@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension FirstViewController {
+extension CollectionViewController {
     
     private enum Metrics {
         static let headerElementKind = "header-element-kind"
@@ -21,7 +21,7 @@ extension FirstViewController {
         
         static let fractionalWidthHeader = CGFloat(1.0)
         static let heightHeader = CGFloat(44)
-
+        
     }
     
     func createLayout() -> UICollectionViewLayout {
@@ -47,7 +47,7 @@ extension FirstViewController {
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(Metrics.fractionalWidthHeader),
                                                    heightDimension: .estimated(Metrics.heightHeader)),
-                elementKind: FirstViewController.Metrics.headerElementKind,
+                elementKind: CollectionViewController.Metrics.headerElementKind,
                 alignment: .top)
             
             section.boundarySupplementaryItems = [sectionHeader]

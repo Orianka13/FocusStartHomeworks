@@ -18,7 +18,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         
-        let layoutVC = FirstViewController()
+        let layoutVC = CollectionViewController()
         let navVC = UINavigationController(rootViewController: layoutVC)
         
         navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.orange]
