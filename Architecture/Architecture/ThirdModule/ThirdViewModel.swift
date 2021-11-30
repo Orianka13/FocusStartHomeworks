@@ -29,24 +29,20 @@ final class Observable<T> {
 final class ThirdViewModel {
     
     private let description = Description()
-    var onTouchedHandler: ((String) -> Void)?
-    var data: Observable<String> = Observable<String>("Default text")
+    
+    var data: Observable<String> = Observable<String>(descriptionData.filmDescription)
     
     init() {
         self.updateModel()
     }
     
     func updateModel() {
-        self.onTouchedHandler = { data in
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) { [weak self] in
-            
-            self?.description.setData(data: data)
-            
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) { [weak self] in
+            self?.description.setData(data: "New text")
             DispatchQueue.main.async {
                 let viewData = self?.description.getData()
                 self?.data.data = viewData ?? ""
             }
-        }
         }
     }
 }

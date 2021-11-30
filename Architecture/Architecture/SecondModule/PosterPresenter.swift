@@ -32,12 +32,6 @@ private extension PosterPresenter {
     func setHandlers() {
         self.view?.onTouchedHandler = { [weak self] in
             let thirdVC = ThirdViewController()
-            let thirdVM = ThirdViewModel()
-//            for (key, value) in descriptionData.filmDescription {
-//                if key == self?.controller?.navigationItem.title {
-//                    thirdVM.onTouchedHandler?(value)
-//                }
-//            }
             self?.controller?.showDescriptionViewController(controller: thirdVC)
         }
     }
