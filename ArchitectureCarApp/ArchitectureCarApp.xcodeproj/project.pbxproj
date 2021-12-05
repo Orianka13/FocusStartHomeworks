@@ -9,19 +9,21 @@
 /* Begin PBXBuildFile section */
 		593437062759338F004A4F7A /* ListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593437052759338F004A4F7A /* ListCollectionView.swift */; };
 		593437082759339A004A4F7A /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593437072759339A004A4F7A /* ListPresenter.swift */; };
-		5934370A275933A5004A4F7A /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59343709275933A5004A4F7A /* CellModel.swift */; };
+		5934370A275933A5004A4F7A /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59343709275933A5004A4F7A /* ListModel.swift */; };
 		5934370C275933FF004A4F7A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5934370B275933FF004A4F7A /* DetailViewController.swift */; };
 		5934370E2759340C004A4F7A /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5934370D2759340C004A4F7A /* DetailModel.swift */; };
 		5934371027593419004A4F7A /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5934370F27593419004A4F7A /* DetailView.swift */; };
 		5934371227593430004A4F7A /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5934371127593430004A4F7A /* DetailPresenter.swift */; };
 		5934371427593444004A4F7A /* ListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5934371327593444004A4F7A /* ListAssembly.swift */; };
 		593437162759344F004A4F7A /* DetailAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593437152759344F004A4F7A /* DetailAssembly.swift */; };
-		5934371A27593709004A4F7A /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5934371927593709004A4F7A /* NetworkManager.swift */; };
 		5934371C27593718004A4F7A /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5934371B27593718004A4F7A /* Data.swift */; };
 		5934371E275A1E86004A4F7A /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5934371D275A1E86004A4F7A /* ListCollectionViewCell.swift */; };
 		59343720275A2039004A4F7A /* CollectionViewFloyLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5934371F275A2039004A4F7A /* CollectionViewFloyLayout.swift */; };
 		59343722275A2619004A4F7A /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59343721275A2619004A4F7A /* ListView.swift */; };
 		59343725275CC2FE004A4F7A /* ListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59343724275CC2FE004A4F7A /* ListRouter.swift */; };
+		59343727275D1141004A4F7A /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59343726275D1140004A4F7A /* DetailRouter.swift */; };
+		59343729275D3A90004A4F7A /* DetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59343728275D3A90004A4F7A /* DetailTableView.swift */; };
+		5934372B275D3D29004A4F7A /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5934372A275D3D29004A4F7A /* DetailTableViewCell.swift */; };
 		599561D127592D220047FE92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599561D027592D220047FE92 /* AppDelegate.swift */; };
 		599561D327592D220047FE92 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599561D227592D220047FE92 /* SceneDelegate.swift */; };
 		599561D527592D220047FE92 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599561D427592D220047FE92 /* ListViewController.swift */; };
@@ -32,19 +34,21 @@
 /* Begin PBXFileReference section */
 		593437052759338F004A4F7A /* ListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionView.swift; sourceTree = "<group>"; };
 		593437072759339A004A4F7A /* ListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
-		59343709275933A5004A4F7A /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
+		59343709275933A5004A4F7A /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
 		5934370B275933FF004A4F7A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5934370D2759340C004A4F7A /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		5934370F27593419004A4F7A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		5934371127593430004A4F7A /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		5934371327593444004A4F7A /* ListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAssembly.swift; sourceTree = "<group>"; };
 		593437152759344F004A4F7A /* DetailAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAssembly.swift; sourceTree = "<group>"; };
-		5934371927593709004A4F7A /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5934371B27593718004A4F7A /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		5934371D275A1E86004A4F7A /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
 		5934371F275A2039004A4F7A /* CollectionViewFloyLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewFloyLayout.swift; sourceTree = "<group>"; };
 		59343721275A2619004A4F7A /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		59343724275CC2FE004A4F7A /* ListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRouter.swift; sourceTree = "<group>"; };
+		59343726275D1140004A4F7A /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
+		59343728275D3A90004A4F7A /* DetailTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableView.swift; sourceTree = "<group>"; };
+		5934372A275D3D29004A4F7A /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		599561CD27592D220047FE92 /* ArchitectureCarApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArchitectureCarApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		599561D027592D220047FE92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		599561D227592D220047FE92 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +72,7 @@
 		5934370327593351004A4F7A /* FirstModule */ = {
 			isa = PBXGroup;
 			children = (
-				59343709275933A5004A4F7A /* CellModel.swift */,
+				59343709275933A5004A4F7A /* ListModel.swift */,
 				59343723275A39DB004A4F7A /* View */,
 				593437072759339A004A4F7A /* ListPresenter.swift */,
 				5934371327593444004A4F7A /* ListAssembly.swift */,
@@ -81,8 +85,11 @@
 			isa = PBXGroup;
 			children = (
 				5934370D2759340C004A4F7A /* DetailModel.swift */,
+				59343726275D1140004A4F7A /* DetailRouter.swift */,
 				5934370F27593419004A4F7A /* DetailView.swift */,
 				5934370B275933FF004A4F7A /* DetailViewController.swift */,
+				59343728275D3A90004A4F7A /* DetailTableView.swift */,
+				5934372A275D3D29004A4F7A /* DetailTableViewCell.swift */,
 				5934371127593430004A4F7A /* DetailPresenter.swift */,
 				593437152759344F004A4F7A /* DetailAssembly.swift */,
 			);
@@ -92,7 +99,6 @@
 		59343718275936EB004A4F7A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				5934371927593709004A4F7A /* NetworkManager.swift */,
 				5934371B27593718004A4F7A /* Data.swift */,
 			);
 			path = Networking;
@@ -214,20 +220,22 @@
 				59343725275CC2FE004A4F7A /* ListRouter.swift in Sources */,
 				5934370E2759340C004A4F7A /* DetailModel.swift in Sources */,
 				5934371027593419004A4F7A /* DetailView.swift in Sources */,
+				59343727275D1141004A4F7A /* DetailRouter.swift in Sources */,
 				593437062759338F004A4F7A /* ListCollectionView.swift in Sources */,
-				5934371A27593709004A4F7A /* NetworkManager.swift in Sources */,
 				5934371227593430004A4F7A /* DetailPresenter.swift in Sources */,
 				599561D527592D220047FE92 /* ListViewController.swift in Sources */,
 				5934371E275A1E86004A4F7A /* ListCollectionViewCell.swift in Sources */,
 				599561D127592D220047FE92 /* AppDelegate.swift in Sources */,
+				59343729275D3A90004A4F7A /* DetailTableView.swift in Sources */,
 				59343720275A2039004A4F7A /* CollectionViewFloyLayout.swift in Sources */,
 				5934371C27593718004A4F7A /* Data.swift in Sources */,
-				5934370A275933A5004A4F7A /* CellModel.swift in Sources */,
+				5934370A275933A5004A4F7A /* ListModel.swift in Sources */,
 				599561D327592D220047FE92 /* SceneDelegate.swift in Sources */,
 				59343722275A2619004A4F7A /* ListView.swift in Sources */,
 				593437082759339A004A4F7A /* ListPresenter.swift in Sources */,
 				5934371427593444004A4F7A /* ListAssembly.swift in Sources */,
 				593437162759344F004A4F7A /* DetailAssembly.swift in Sources */,
+				5934372B275D3D29004A4F7A /* DetailTableViewCell.swift in Sources */,
 				5934370C275933FF004A4F7A /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

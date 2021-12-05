@@ -7,7 +7,11 @@
 
 import Foundation
 
-final class CellModel {
+final class ListModel {
     
+    static var mark: String?
+    static var car: [Car]?
     
 }
+
+

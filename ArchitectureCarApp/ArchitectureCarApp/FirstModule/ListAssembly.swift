@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class Assembly {
+final class ListAssembly {
     
     static func build() -> UIViewController {
         
-        let model = CellModel()
+        let model = ListModel()
         let router = ListRouter()
         
         let presenter = ListPresenter(dependencies: .init(model: model, router: router))

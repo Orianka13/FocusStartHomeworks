@@ -18,9 +18,9 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         
-        let vc = Assembly.build()
-        
-        window?.rootViewController = vc
+        let vc = ListAssembly.build()
+        let navVC = UINavigationController(rootViewController: vc)
+        window?.rootViewController = navVC
         window?.makeKeyAndVisible()
     }
 }

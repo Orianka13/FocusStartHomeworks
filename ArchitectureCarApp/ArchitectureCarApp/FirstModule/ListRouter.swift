@@ -6,24 +6,23 @@
 //
 
 import Foundation
+import UIKit
 
 final class ListRouter {
     
     private var controller: ListViewController?
-    private var targertController: DetailViewController?
+//    private var targertController: DetailViewController?
 
-    func setRootVC(controller: ListViewController) {
-        self.controller = controller
-    }
+//    func setRootVC(controller: ListViewController) {
+//        self.controller = controller
+//    }
+//
+//    func setTargetVC(controller: DetailViewController) {
+//        self.targertController = controller
+//    }
 
-    func setTargetVC(controller: DetailViewController) {
-        self.targertController = controller
-    }
-
-    func next() {
-        guard let targertController = self.targertController else {
-            return
-        }
-        self.controller?.navigationController?.pushViewController(targertController, animated: true)
+    func next(currentVC: UIViewController, nextVC: UIViewController) {
+        currentVC.navigationController?.pushViewController(nextVC, animated: true)
+        //self.controller?.navigationController?.pushViewController(nextVC, animated: true)
     }
 }

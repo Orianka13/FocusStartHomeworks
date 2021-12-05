@@ -9,13 +9,13 @@ import Foundation
 
 final class ListPresenter {
     
-    private var model = CellModel()
+    private var model = ListModel()
     private var router: ListRouter
     private weak var controller: ListViewController?
     private weak var view: ListView?
     
     struct Dependencies {
-        let model: CellModel
+        let model: ListModel
         let router: ListRouter
     }
 
@@ -32,7 +32,10 @@ final class ListPresenter {
     }
     
     func setHandlers() {
-        
+        self.view?.collectionView.onTouchedHandler = { [weak self] in
+            let nextVC = DetailAssembly.build()
+            guard let currentVC = self?.controller else { return }
+            self?.router.next(currentVC: currentVC, nextVC: nextVC)
+                }
     }
-    
 }

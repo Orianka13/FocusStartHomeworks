@@ -10,6 +10,8 @@ import UIKit
  
 class ListCollectionView: UICollectionView {
     
+    var onTouchedHandler: (() -> Void)?
+    
     init() {
         let layout = CollectionViewFlowLayout()
         super.init(frame: .zero, collectionViewLayout: layout)
@@ -29,7 +31,7 @@ class ListCollectionView: UICollectionView {
 
 extension ListCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return Mark.allMarks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -42,6 +44,7 @@ extension ListCollectionView: UICollectionViewDataSource {
 
 extension ListCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.onTouchedHandler?()
     }
 }
 
