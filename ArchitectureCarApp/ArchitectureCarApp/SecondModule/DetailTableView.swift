@@ -49,7 +49,7 @@ required init?(coder: NSCoder) {
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: DetailTableViewCell.reuseIdentifier, for: indexPath) as! DetailTableViewCell
             cell.textLabel?.text = "Тип кузова какой то"
-            
+            cell.selectionStyle = .none
             return cell
         }
 
@@ -58,7 +58,23 @@ required init?(coder: NSCoder) {
 extension DetailTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
+        tableView.indexPathForSelectedRow?.forEach {_ in
+               if let cell = tableView.cellForRow(at: indexPath) as? DetailTableViewCell {
+                
+                   cell.radioButtonImage.image = UIImage(systemName: "circle.fill")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
+               }
+           }
+        
         self.onTouchedHandler?()
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+        if let cell = tableView.cellForRow(at: indexPath) as? DetailTableViewCell {
+         
+            cell.radioButtonImage.image = UIImage(systemName: "circle")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
+            
+        }
     }
 }

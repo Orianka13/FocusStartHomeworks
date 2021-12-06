@@ -35,7 +35,7 @@ final class ListCollectionViewCell: UICollectionViewCell {
     
     private lazy var dividerView: UIView = {
         let divider = UIView()
-        divider.backgroundColor = .gray
+        divider.backgroundColor = .opaqueSeparator
         divider.contentMode = .scaleToFill
         return divider
     }()
@@ -59,10 +59,10 @@ final class ListCollectionViewCell: UICollectionViewCell {
     }
     
     private func setConstraint(){
-        setIcon()
-        setMarkLabel()
-        setSelectLabel()
-        setDividerView()
+        self.setIcon()
+        self.setMarkLabel()
+        self.setSelectLabel()
+        self.setDividerView()
     }
     
     private func setIcon(){
@@ -90,7 +90,7 @@ final class ListCollectionViewCell: UICollectionViewCell {
         self.dividerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         self.dividerView.topAnchor.constraint(equalTo: self.markLabel.bottomAnchor, constant: 16).isActive = false
         self.dividerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
-        self.dividerView.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        self.dividerView.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
     
 }

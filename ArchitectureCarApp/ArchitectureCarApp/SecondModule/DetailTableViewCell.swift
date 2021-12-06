@@ -11,15 +11,36 @@ class DetailTableViewCell: UITableViewCell {
     
     static let reuseIdentifier = "cell"
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    lazy var radioButtonImage: UIImageView = {
+        let image = UIImage(systemName: "circle")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
+        let imageView = UIImageView()
+        imageView.image = image
+        return imageView
+    }()
+ 
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.addView()
+        self.setConstraint()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
-
+    
+    private func addView() {
+        self.addSubview(radioButtonImage)
+    }
+    private func setConstraint() {
+        setRadioButtonImage()
+    }
+    
+    private func setRadioButtonImage(){
+        self.radioButtonImage.translatesAutoresizingMaskIntoConstraints = false
+        self.radioButtonImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.radioButtonImage.widthAnchor.constraint(equalToConstant: 16).isActive = true
+        self.radioButtonImage.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        self.radioButtonImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+    }
 }
