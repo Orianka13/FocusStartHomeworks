@@ -28,8 +28,8 @@ final class TitleSupplementaryView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(label)
-        setLabel()
+        self.addSubview(label)
+        self.setLabel()
     }
     required init?(coder: NSCoder) {
         fatalError()

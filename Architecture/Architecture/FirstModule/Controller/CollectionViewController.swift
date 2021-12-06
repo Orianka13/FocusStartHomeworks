@@ -22,14 +22,14 @@ final class CollectionViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Film>
     
     private lazy var dataSource = makeDataSource()
-    private var sections = Section.allSections
+    private let sections = Section.allSections
     private var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureHierarchy()
-        applySnapshot(animatingDifferences: false)
+        self.configureHierarchy()
+        self.applySnapshot(animatingDifferences: false)
         self.navigationItem.title = Constants.navItem
     }
 }
@@ -39,14 +39,14 @@ final class CollectionViewController: UIViewController {
 extension CollectionViewController {
     
     private func configureHierarchy() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = Constants.mainBackgroundColor
-        view.addSubview(collectionView)
-        collectionView.delegate = self
+        self.collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.collectionView.backgroundColor = Constants.mainBackgroundColor
+        view.addSubview(self.collectionView)
+        self.collectionView.delegate = self
     }
     
-    func makeDataSource() -> DataSource {
+    private func makeDataSource() -> DataSource {
         
         let cellRegistration = UICollectionView.CellRegistration<CollectionCell, Int> { [weak self] (cell, indexPath, film) in
             let section = self?.dataSource.snapshot().sectionIdentifiers[indexPath.section]
@@ -55,7 +55,7 @@ extension CollectionViewController {
             cell.updateCellData(film: viewModel)
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, Film>(collectionView: collectionView) {
+        self.dataSource = UICollectionViewDiffableDataSource<Section, Film>(collectionView: collectionView) {
             (collectionView: UICollectionView, indexPath: IndexPath, film: Film) -> UICollectionViewCell? in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: indexPath.row)
         }
@@ -68,22 +68,22 @@ extension CollectionViewController {
             supplementaryView.updateLabel(section: viewModel)
         }
         
-        dataSource.supplementaryViewProvider = { [weak self] (view, kind, index) in
+        self.dataSource.supplementaryViewProvider = { [weak self] (view, kind, index) in
             return self?.collectionView.dequeueConfiguredReusableSupplementary(
                 using: supplementaryRegistration, for: index)
         }
-        return dataSource
+        return self.dataSource
     }
     
-    func applySnapshot(animatingDifferences: Bool = true) {
+    private func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = Snapshot()
-        snapshot.appendSections(sections)
+        snapshot.appendSections(self.sections)
         
-        sections.forEach { section in
+        self.sections.forEach { section in
             snapshot.appendItems(section.films, toSection: section)
         }
         
-        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+        self.dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
 
@@ -97,7 +97,7 @@ extension CollectionViewController: UICollectionViewDelegate {
         
         let controller = Assembly.build(film: film)
        
-        navigationController?.pushViewController(controller, animated: true)
+        self.navigationController?.pushViewController(controller, animated: true)
         
     }
 }

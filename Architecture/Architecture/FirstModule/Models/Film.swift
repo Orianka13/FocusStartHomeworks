@@ -15,7 +15,7 @@ struct Film: Hashable {
     let name: String
     
     func hash(into hasher: inout Hasher) {
-      hasher.combine(id)
+        hasher.combine(self.id)
     }
     static func == (lhs: Film, rhs: Film) -> Bool {
       lhs.id == rhs.id

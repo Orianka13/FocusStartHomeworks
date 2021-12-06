@@ -64,8 +64,8 @@ final class CollectionCell: UICollectionViewCell {
     }
     
     private func setConstraints(){
-        setLabel()
-        setPosterView()
+        self.setLabel()
+        self.setPosterView()
     }
     
 }

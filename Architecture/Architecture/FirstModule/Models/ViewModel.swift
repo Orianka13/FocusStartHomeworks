@@ -16,7 +16,7 @@ struct ViewFilm {
 
 struct ViewSection {
     
-    var title: String
-    var films: [ViewFilm]
+    let title: String
+    let films: [ViewFilm]
     
 }

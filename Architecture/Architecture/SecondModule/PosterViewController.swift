@@ -18,12 +18,14 @@ protocol IPosterViewController: AnyObject {
 final class PosterViewController: UIViewController {
     
     private enum Constants {
+        
         static let mainBackgroundColor: UIColor = .black
         static let textColor: UIColor = .white
+        
     }
     
-    private var customView: IPosterView
-    private var customPresenter: IPosterPresenter?
+    private let customView: IPosterView
+    private let customPresenter: IPosterPresenter?
     
     
     init(presenter: IPosterPresenter) {
@@ -39,7 +41,6 @@ final class PosterViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.customPresenter?.loadView(controller: self, view: self.customView)
-        self.customPresenter?.getData()
     }
     
     override func viewDidLoad() {
@@ -47,9 +48,9 @@ final class PosterViewController: UIViewController {
         
         self.view.addSubview(customView)
         
-        view.backgroundColor = Constants.mainBackgroundColor
+        self.view.backgroundColor = Constants.mainBackgroundColor
         
-        setNavigationBar()
+        self.setNavigationBar()
     }
 }
 
@@ -58,7 +59,7 @@ final class PosterViewController: UIViewController {
 private extension PosterViewController {
     
     func setNavigationBar(){
-        if let topItem = navigationController?.navigationBar.topItem {
+        if let topItem = self.navigationController?.navigationBar.topItem {
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
             topItem.backBarButtonItem?.tintColor = Constants.textColor
         }
@@ -77,5 +78,4 @@ extension PosterViewController: IPosterViewController {
     func showDescriptionViewController(controller: UIViewController){
         self.navigationController?.present(controller, animated: true, completion: nil)
     }
-    
 }

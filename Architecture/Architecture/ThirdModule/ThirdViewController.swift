@@ -9,7 +9,7 @@ import UIKit
 
 final class ThirdViewController: UIViewController {
     
-    private var descriptionView: DescriptionView
+    private let descriptionView: DescriptionView
 
     private enum Constants {
         static let mainBackgroundColor: UIColor = .darkGray
@@ -29,9 +29,9 @@ final class ThirdViewController: UIViewController {
         
         self.view.addSubview(descriptionView)
         
-        setHandlers()
+        self.setHandlers()
         
-        view.backgroundColor = Constants.mainBackgroundColor
+        self.view.backgroundColor = Constants.mainBackgroundColor
     }
     
     private func setHandlers(){

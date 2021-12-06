@@ -15,8 +15,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
+        self.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        self.window?.windowScene = windowScene
         
         let layoutVC = CollectionViewController()
         let navVC = UINavigationController(rootViewController: layoutVC)
@@ -24,8 +24,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navVC.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.orange]
         navVC.navigationBar.barTintColor = .black
         
-        window?.rootViewController = navVC
-        window?.makeKeyAndVisible()
+        self.window?.rootViewController = navVC
+        self.window?.makeKeyAndVisible()
     }
 }
 

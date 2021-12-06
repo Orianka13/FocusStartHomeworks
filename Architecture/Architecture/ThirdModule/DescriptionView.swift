@@ -46,8 +46,8 @@ final class DescriptionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubviews()
-        setConstraints()
+        self.addSubviews()
+        self.setConstraints()
         
         self.viewModel.data.setNotify { [weak self] text in
             self?.textView.text = text
@@ -69,8 +69,8 @@ private extension DescriptionView {
     }
     
     func setConstraints(){
-        setTextView()
-        setCloseButton()
+        self.setTextView()
+        self.setCloseButton()
     }
     
     @objc func goBackButton() {

@@ -11,14 +11,13 @@ protocol IPosterPresenter {
     
     func loadView(controller: IPosterViewController, view: IPosterView)
     
-    func getData()
 }
 
 final class PosterPresenter {
     
     private weak var controller: IPosterViewController?
     private weak var view: IPosterView?
-    private var film: IPosterModel
+    private let film: IPosterModel
     
     init(film: IPosterModel) {
         self.film = film
@@ -35,6 +34,14 @@ private extension PosterPresenter {
             self?.controller?.showDescriptionViewController(controller: thirdVC)
         }
     }
+    
+    func getData() {
+        let title = film.getTitle()
+        let image = film.getImage()
+        
+        self.controller?.setTitle(title: title)
+        self.view?.setImage(image: image)
+    }
 }
 
 //MARK: IPosterPresenter
@@ -45,14 +52,7 @@ extension PosterPresenter: IPosterPresenter {
         self.controller = controller
         self.view = view
         self.setHandlers()
-    }
-    
-    func getData() {
-        let title = film.getTitle()
-        let image = film.getImage()
-        
-        self.controller?.setTitle(title: title)
-        self.view?.setImage(image: image)
+        self.getData()
     }
 }
 

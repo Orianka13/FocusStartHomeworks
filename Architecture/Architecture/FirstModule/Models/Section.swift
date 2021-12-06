@@ -20,7 +20,7 @@ struct Section: Hashable {
     var films: [Film]
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+        hasher.combine(self.id)
     }
     
     static func == (lhs: Section, rhs: Section) -> Bool {

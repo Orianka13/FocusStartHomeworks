@@ -29,14 +29,19 @@ final class Observable<T> {
 final class ThirdViewModel {
     
     private let description = Description()
-    
-    var data: Observable<String> = Observable<String>(descriptionData.filmDescription)
+  
+    var data: Observable<String> = Observable<String>("Some data")
     
     init() {
+        self.getDefaultData()
         self.updateModel()
     }
     
-    func updateModel() {
+    private func getDefaultData() {
+        self.data.data = self.description.getData()
+    }
+    
+    private func updateModel() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) { [weak self] in
             self?.description.setData(data: "New text")
             DispatchQueue.main.async {
