@@ -16,6 +16,8 @@ final class ListView: UIView {
         static let titleFont = UIFont.systemFont(ofSize: 30, weight: .bold)
     }
     
+    let collectionView = ListCollectionView()
+    
     private lazy var labelTitle: UILabel = {
         let label = UILabel()
         label.text = Constants.labelTitle
@@ -29,8 +31,6 @@ final class ListView: UIView {
         label.font = Constants.labelFont
         return label
     }()
-    
-    let collectionView = ListCollectionView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,7 +54,8 @@ final class ListView: UIView {
         self.setCollectionView()
     }
 }
-//MARK: - TitleViewLayout
+
+//MARK: - ListViewLayout
 
 extension ListView {
     private func setLabelTitle() {

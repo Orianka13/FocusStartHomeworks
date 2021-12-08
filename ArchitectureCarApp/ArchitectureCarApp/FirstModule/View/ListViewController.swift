@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 final class ListViewController: UIViewController {
     
     private let listView: ListView
@@ -41,8 +42,12 @@ final class ListViewController: UIViewController {
         
         self.view.backgroundColor = .white
     }
+}
+
+//MARK: Private extension
+private extension ListViewController {
     
-    private func setListView() {
+    func setListView() {
         self.listView.translatesAutoresizingMaskIntoConstraints = false
         self.listView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
         self.listView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 60).isActive = true

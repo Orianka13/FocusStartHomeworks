@@ -10,8 +10,8 @@ import UIKit
  
 final class ListCollectionView: UICollectionView {
     
-    var onTouchedHandler: ((_ indexPath: IndexPath) -> Void)?
-    var loadHandler: ((_ cell: ListCollectionViewCell?, _ indexPath: IndexPath) -> Void)?
+    var onTouchedHandler: ((IndexPath) -> Void)?
+    var loadHandler: ((ListCollectionViewCell?, IndexPath) -> Void)?
     
     init() {
         let layout = CollectionViewFlowLayout()
@@ -32,12 +32,16 @@ final class ListCollectionView: UICollectionView {
 
 extension ListCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return Mark.allMarks.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewCell.reuseIdentifier, for: indexPath) as! ListCollectionViewCell
+        
         self.loadHandler?(cell, indexPath)
+        
         return cell
     }
 }
@@ -46,7 +50,9 @@ extension ListCollectionView: UICollectionViewDataSource {
 
 extension ListCollectionView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         self.onTouchedHandler?(indexPath)
+        
     }
 }
 

@@ -31,13 +31,16 @@ final class DetailTableView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+//MARK: Private extension
+private extension DetailTableView {
     
-    
-    private func addView() {
+    func addView() {
         self.addSubview(self.tableView)
     }
     
-    private func setConstraint() {
+    func setConstraint() {
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
         self.tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
@@ -46,6 +49,7 @@ final class DetailTableView: UIView {
     }
 }
 
+//MARK: UITableViewDataSource
 extension DetailTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -58,9 +62,9 @@ extension DetailTableView: UITableViewDataSource {
         
         return cell
     }
-    
 }
 
+//MARK: UITableViewDelegate
 extension DetailTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

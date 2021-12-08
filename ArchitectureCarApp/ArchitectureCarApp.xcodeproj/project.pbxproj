@@ -28,7 +28,7 @@
 		599561D527592D220047FE92 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599561D427592D220047FE92 /* ListViewController.swift */; };
 		599561DA27592D270047FE92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 599561D927592D270047FE92 /* Assets.xcassets */; };
 		599561DD27592D270047FE92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 599561DB27592D270047FE92 /* LaunchScreen.storyboard */; };
-		59DC249D2760E2FA003CFE74 /* ListModell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DC249C2760E2FA003CFE74 /* ListModell.swift */; };
+		59DC249D2760E2FA003CFE74 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DC249C2760E2FA003CFE74 /* ListModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +55,7 @@
 		599561D927592D270047FE92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		599561DC27592D270047FE92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		599561DE27592D270047FE92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		59DC249C2760E2FA003CFE74 /* ListModell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModell.swift; sourceTree = "<group>"; };
+		59DC249C2760E2FA003CFE74 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +72,7 @@
 		5934370327593351004A4F7A /* FirstModule */ = {
 			isa = PBXGroup;
 			children = (
-				59DC249C2760E2FA003CFE74 /* ListModell.swift */,
+				59DC249C2760E2FA003CFE74 /* ListModel.swift */,
 				59343723275A39DB004A4F7A /* View */,
 				593437072759339A004A4F7A /* ListPresenter.swift */,
 				5934371327593444004A4F7A /* ListAssembly.swift */,
@@ -85,13 +85,10 @@
 			isa = PBXGroup;
 			children = (
 				5934370D2759340C004A4F7A /* DetailModel.swift */,
-				59343726275D1140004A4F7A /* DetailRouter.swift */,
-				5934370F27593419004A4F7A /* DetailView.swift */,
-				5934370B275933FF004A4F7A /* DetailViewController.swift */,
-				59343728275D3A90004A4F7A /* DetailTableView.swift */,
-				5934372A275D3D29004A4F7A /* DetailTableViewCell.swift */,
+				59EC16E727610B1700A14919 /* View */,
 				5934371127593430004A4F7A /* DetailPresenter.swift */,
 				593437152759344F004A4F7A /* DetailAssembly.swift */,
+				59343726275D1140004A4F7A /* DetailRouter.swift */,
 			);
 			path = SecondModule;
 			sourceTree = "<group>";
@@ -127,8 +124,7 @@
 		599561CF27592D220047FE92 /* ArchitectureCarApp */ = {
 			isa = PBXGroup;
 			children = (
-				599561D027592D220047FE92 /* AppDelegate.swift */,
-				599561D227592D220047FE92 /* SceneDelegate.swift */,
+				59EC16E827610B5A00A14919 /* Support */,
 				59343709275933A5004A4F7A /* Data.swift */,
 				5934370327593351004A4F7A /* FirstModule */,
 				5934370427593366004A4F7A /* SecondModule */,
@@ -137,6 +133,26 @@
 				599561DE27592D270047FE92 /* Info.plist */,
 			);
 			path = ArchitectureCarApp;
+			sourceTree = "<group>";
+		};
+		59EC16E727610B1700A14919 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5934370F27593419004A4F7A /* DetailView.swift */,
+				5934370B275933FF004A4F7A /* DetailViewController.swift */,
+				59343728275D3A90004A4F7A /* DetailTableView.swift */,
+				5934372A275D3D29004A4F7A /* DetailTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		59EC16E827610B5A00A14919 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				599561D027592D220047FE92 /* AppDelegate.swift */,
+				599561D227592D220047FE92 /* SceneDelegate.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,7 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59DC249D2760E2FA003CFE74 /* ListModell.swift in Sources */,
+				59DC249D2760E2FA003CFE74 /* ListModel.swift in Sources */,
 				59343725275CC2FE004A4F7A /* ListRouter.swift in Sources */,
 				5934370E2759340C004A4F7A /* DetailModel.swift in Sources */,
 				5934371027593419004A4F7A /* DetailView.swift in Sources */,

@@ -11,6 +11,8 @@ final class DetailView: UIView {
     
     var onTouchedButtonHandler: (() -> Void)?
     
+    let tableView = DetailTableView()
+    
     private lazy var image: UIImageView = {
         let image = UIImage(named: "audiSedan")
         let imageView = UIImageView()
@@ -56,8 +58,6 @@ final class DetailView: UIView {
         activityInadicator.isHidden = true
         return activityInadicator
     }()
-    
-    let tableView = DetailTableView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

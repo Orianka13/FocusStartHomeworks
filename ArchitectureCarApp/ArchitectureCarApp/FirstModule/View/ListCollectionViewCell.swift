@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol IListCollectionViewCell {
+    func setMarkLabelText(text: String)
+}
+
 
 final class ListCollectionViewCell: UICollectionViewCell {
     
     static let reuseIdentifier = "cell"
-    var labelHandler: ((_ text: String?) -> String)?
+    
+    var labelHandler: ((String?) -> String)?
     
     private lazy var icon: UIImageView = {
         let imageView = UIImageView()
@@ -52,26 +57,27 @@ final class ListCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
     
-    func setMarkLabelText(text: String){
-        self.markLabel.text = text
-    }
+//MARK: Private extension
+
+private extension ListCollectionViewCell {
     
-    private func addView(){
+    func addView(){
         self.addSubview(icon)
         self.addSubview(markLabel)
         self.addSubview(selectLabel)
         self.addSubview(dividerView)
     }
     
-    private func setConstraint(){
+    func setConstraint(){
         self.setIcon()
         self.setMarkLabel()
         self.setSelectLabel()
         self.setDividerView()
     }
     
-    private func setIcon(){
+    func setIcon(){
         self.icon.translatesAutoresizingMaskIntoConstraints = false
         self.icon.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = false
         self.icon.widthAnchor.constraint(equalToConstant: 16).isActive = true
@@ -79,17 +85,17 @@ final class ListCollectionViewCell: UICollectionViewCell {
         self.icon.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
     }
     
-    private func setMarkLabel(){
+    func setMarkLabel(){
         self.markLabel.translatesAutoresizingMaskIntoConstraints = false
         self.markLabel.leadingAnchor.constraint(equalTo: self.icon.trailingAnchor, constant: 16).isActive = true
     }
     
-    private func setSelectLabel(){
+    func setSelectLabel(){
         self.selectLabel.translatesAutoresizingMaskIntoConstraints = false
         self.selectLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
     }
     
-    private func setDividerView(){
+    func setDividerView(){
         self.dividerView.translatesAutoresizingMaskIntoConstraints = false
         self.dividerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.dividerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
@@ -98,5 +104,12 @@ final class ListCollectionViewCell: UICollectionViewCell {
         self.dividerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
         self.dividerView.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
+}
+
+//MARK: IListCollectionViewCell
+extension ListCollectionViewCell: IListCollectionViewCell {
     
+    func setMarkLabelText(text: String){
+        self.markLabel.text = text
+    }
 }

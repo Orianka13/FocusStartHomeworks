@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol IDetailPresenter {
+    func loadView(controller: DetailViewController, view: DetailView)
+}
+
 final class DetailPresenter {
     
     private var model: DetailModel
@@ -23,18 +27,12 @@ final class DetailPresenter {
         self.model = dependencies.model
         self.router = dependencies.router
     }
+}
+
+//MARK: Private extension
+private extension DetailPresenter {
     
-    func loadView(controller: DetailViewController, view: DetailView) {
-        self.controller = controller
-        self.view = view
-        
-        self.setHandlers()
-        
-        self.view?.setContent(image: self.model.getImage().first ?? "audiSedan",
-                              price: self.model.getPrice().first ?? "1 234 560 $")
-    }
-    
-    private func setHandlers() {
+    func setHandlers() {
         self.view?.tableView.fillCellHandler = { [weak self] (cell, indexPath) in
             let bodyType = self?.model.getBodyType()
             let text = bodyType?[indexPath.row]
@@ -52,5 +50,19 @@ final class DetailPresenter {
             let price = prices?[self?.view?.tableView.index ?? 0]
             self?.view?.updatePrice(price: price ?? "1 234 560 $")
         }
+    }
+}
+
+//MARK: IDetailPresenter
+extension DetailPresenter: IDetailPresenter {
+    
+    func loadView(controller: DetailViewController, view: DetailView) {
+        self.controller = controller
+        self.view = view
+        
+        self.setHandlers()
+        
+        self.view?.setContent(image: self.model.getImage().first ?? "audiSedan",
+                              price: self.model.getPrice().first ?? "1 234 560 $")
     }
 }

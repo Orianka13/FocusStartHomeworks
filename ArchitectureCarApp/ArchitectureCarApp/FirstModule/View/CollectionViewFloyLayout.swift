@@ -8,6 +8,7 @@
 import UIKit
 
 final class CollectionViewFlowLayout: UICollectionViewFlowLayout {
+    
     override func prepare() {
         super.prepare()
 
