@@ -9,10 +9,8 @@ import UIKit
 
 final class DetailView: UIView {
     
-    var onTouchedButtonHandler: (() -> Void)?
-    
     private lazy var image: UIImageView = {
-        let image = UIImage(named: "audiSedan")
+        let image = UIImage(named: "audi")
         let imageView = UIImageView()
         imageView.image = image
         imageView.contentMode = .scaleAspectFit
@@ -47,17 +45,10 @@ final class DetailView: UIView {
         button.layer.cornerRadius = 25
         button.titleLabel?.textColor = .white
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
-        button.addTarget(self, action: #selector(touchedButton), for: .touchUpInside)
         return button
     }()
     
-    private lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityInadicator = UIActivityIndicatorView()
-        activityInadicator.isHidden = true
-        return activityInadicator
-    }()
-    
-    let tableView = DetailTableView()
+    private let tableView = DetailTableView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,8 +67,6 @@ final class DetailView: UIView {
         self.addSubview(bodyTypeLabel)
         self.addSubview(tableView)
         self.addSubview(button)
-        
-        self.priceCountLabel.addSubview(activityIndicator)
     }
     
     private func setConstraint(){
@@ -87,31 +76,6 @@ final class DetailView: UIView {
         self.setBodyTypeLabel()
         self.setTableView()
         self.setButton()
-        self.setActivityIndicator()
-    }
-    
-    func setContent(image: String, price: String){
-        self.image.image = UIImage(named: image)
-        self.priceCountLabel.text = price
-    }
-    
-    @objc private func touchedButton() {
-        self.onTouchedButtonHandler?()
-    }
-    
-    func updateView(image: String) {
-        self.image.image = UIImage(named: image)
-        self.priceCountLabel.text = "- --- --- $"
-    }
-    
-    func updatePrice(price: String) {
-        self.activityIndicator.isHidden = false
-        self.activityIndicator.startAnimating()
-        self.priceCountLabel.text = ""
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: { [weak self] in
-            self?.activityIndicator.stopAnimating()
-            self?.priceCountLabel.text = price
-        })
     }
 }
 //MARK: - TitleViewLayout
@@ -153,7 +117,7 @@ extension DetailView {
         self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
         self.tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         self.tableView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        self.tableView.heightAnchor.constraint(equalToConstant: self.frame.size.height / 5).isActive = true
+        self.tableView.heightAnchor.constraint(equalToConstant: self.frame.size.height / 6).isActive = true
     }
     
     private func setButton() {
@@ -163,12 +127,5 @@ extension DetailView {
         self.button.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
         self.button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         self.button.heightAnchor.constraint(equalToConstant: 51).isActive = true
-    }
-    
-    private func setActivityIndicator() {
-        self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        self.activityIndicator.centerXAnchor.constraint(equalTo: self.priceCountLabel.centerXAnchor).isActive = false
-        self.activityIndicator.leadingAnchor.constraint(equalTo: self.priceCountLabel.leadingAnchor, constant: 20).isActive = true
-        self.activityIndicator.heightAnchor.constraint(equalTo: self.priceCountLabel.heightAnchor).isActive = true
     }
 }

@@ -11,7 +11,7 @@ class DetailTableViewCell: UITableViewCell {
     
     static let reuseIdentifier = "cell"
     
-    private lazy var radioButtonImage: UIImageView = {
+    lazy var radioButtonImage: UIImageView = {
         let image = UIImage(systemName: "circle")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
         let imageView = UIImageView()
         imageView.image = image
@@ -36,18 +36,6 @@ class DetailTableViewCell: UITableViewCell {
         setRadioButtonImage()
     }
     
-    func setOnImage(){
-        self.radioButtonImage.image = UIImage(systemName: "circle.fill")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
-        
-    }
-    func setOffImage(){
-        self.radioButtonImage.image = UIImage(systemName: "circle")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
-    }
-    
-    func updateText(text: String) {
-        self.textLabel?.text = text
-    }
-
     private func setRadioButtonImage(){
         self.radioButtonImage.translatesAutoresizingMaskIntoConstraints = false
         self.radioButtonImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true

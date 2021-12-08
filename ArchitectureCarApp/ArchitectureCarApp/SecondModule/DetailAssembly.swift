@@ -9,9 +9,9 @@ import UIKit
 
 final class DetailAssembly {
     
-    static func build() -> UIViewController {
+    static func build(cars: [Car]) -> UIViewController {
         
-        let model = DetailModel()
+        let model = DetailModel(cars: cars)
         let router = DetailRouter()
         
         let presenter = DetailPresenter(dependencies: .init(model: model, router: router))

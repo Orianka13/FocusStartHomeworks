@@ -11,10 +11,9 @@ final class ListAssembly {
     
     static func build() -> UIViewController {
         
-        let model = ListModel()
         let router = ListRouter()
         
-        let presenter = ListPresenter(dependencies: .init(model: model, router: router))
+        let presenter = ListPresenter(dependencies: .init(router: router))
         let controller = ListViewController(dependencies: .init(presenter: presenter))
         
         return controller

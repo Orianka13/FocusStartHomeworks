@@ -41,11 +41,6 @@ class DetailViewController: UIViewController {
         self.view.backgroundColor = .white
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
     private func setDetailView() {
         self.detailView.translatesAutoresizingMaskIntoConstraints = false
         self.detailView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true

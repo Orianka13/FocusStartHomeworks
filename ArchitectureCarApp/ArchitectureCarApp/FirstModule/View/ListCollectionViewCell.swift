@@ -11,6 +11,7 @@ import UIKit
 final class ListCollectionViewCell: UICollectionViewCell {
     
     static let reuseIdentifier = "cell"
+    var labelHandler: ((_ text: String?) -> String)?
     
     private lazy var icon: UIImageView = {
         let imageView = UIImageView()
@@ -43,12 +44,17 @@ final class ListCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addView()
-        setConstraint()
+        self.addView()
+        self.setConstraint()
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setMarkLabelText(text: String){
+        self.markLabel.text = text
     }
     
     private func addView(){
