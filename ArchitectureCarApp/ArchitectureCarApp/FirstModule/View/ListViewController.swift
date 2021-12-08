@@ -11,10 +11,10 @@ import UIKit
 final class ListViewController: UIViewController {
     
     private let listView: ListView
-    private let presenter: ListPresenter?
+    private let presenter: IListPresenter?
     
     struct Dependencies {
-        let presenter: ListPresenter
+        let presenter: IListPresenter
     }
     
     init(dependencies: Dependencies) {

@@ -14,5 +14,4 @@ final class DetailRouter {
     func setRootVC(controller: DetailViewController) {
         self.controller = controller
     }
-
 }

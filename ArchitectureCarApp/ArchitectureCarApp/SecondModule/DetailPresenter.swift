@@ -13,13 +13,13 @@ protocol IDetailPresenter {
 
 final class DetailPresenter {
     
-    private var model: DetailModel
+    private var model: IDetailModel
     private var router: DetailRouter
     private weak var controller: DetailViewController?
     private weak var view: DetailView?
     
     struct Dependencies {
-        let model: DetailModel
+        let model: IDetailModel
         let router: DetailRouter
     }
     

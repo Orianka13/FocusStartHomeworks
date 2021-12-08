@@ -13,13 +13,13 @@ protocol IListPresenter {
 
 final class ListPresenter {
     
-    private let model: ListModel
+    private let model: IListModel
     private let router: ListRouter
     private weak var controller: ListViewController?
     private weak var view: ListView?
     
     struct Dependencies {
-        let model: ListModel
+        let model: IListModel
         let router: ListRouter
     }
     

@@ -10,10 +10,10 @@ import UIKit
 final class DetailViewController: UIViewController {
 
     private var detailView: DetailView
-    private var presenter: DetailPresenter?
+    private var presenter: IDetailPresenter?
     
     struct Dependencies {
-        let presenter: DetailPresenter
+        let presenter: IDetailPresenter
     }
     
     init(dependencies: Dependencies) {
