@@ -31,7 +31,7 @@ extension CollectionViewController {
         config.interSectionSpacing = Metrics.spacing
         
         let layout = UICollectionViewCompositionalLayout(sectionProvider: {
-            (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
             
             let leadingItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(Metrics.fractionalWidthItem), heightDimension: .fractionalHeight(Metrics.fractionalHeightItem)))

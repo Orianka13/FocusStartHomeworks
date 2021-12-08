@@ -35,12 +35,10 @@ private extension PosterPresenter {
         }
     }
     
-    func getData() {
-        let title = film.getTitle()
-        let image = film.getImage()
-        
-        self.controller?.setTitle(title: title)
-        self.view?.setImage(image: image)
+    func updateData() {
+        let data = film.getData()
+        self.controller?.setTitle(title: data.title)
+        self.view?.setImage(image: data.image)
     }
 }
 
@@ -52,7 +50,7 @@ extension PosterPresenter: IPosterPresenter {
         self.controller = controller
         self.view = view
         self.setHandlers()
-        self.getData()
+        self.updateData()
     }
 }
 

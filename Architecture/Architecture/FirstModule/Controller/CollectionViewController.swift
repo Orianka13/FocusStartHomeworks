@@ -24,7 +24,6 @@ final class CollectionViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Film>
     
     private lazy var dataSource = makeDataSource()
-    private let sections = Section.allSections
     private var collectionView: UICollectionView?
     
     override func viewDidLoad() {
@@ -79,10 +78,11 @@ private extension CollectionViewController {
     }
     
     func applySnapshot(animatingDifferences: Bool = true) {
+        let sections = Section.allSections
         var snapshot = Snapshot()
-        snapshot.appendSections(self.sections)
+        snapshot.appendSections(sections)
         
-        self.sections.forEach { section in
+        sections.forEach { section in
             snapshot.appendItems(section.films, toSection: section)
         }
         

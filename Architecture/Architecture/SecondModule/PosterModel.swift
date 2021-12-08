@@ -9,10 +9,7 @@ import Foundation
 import UIKit
 
 protocol IPosterModel {
-    
-    func getImage() -> String
-    func getTitle() -> String
-    
+    func getData() -> Poster
 }
 
 final class PosterModel {
@@ -26,15 +23,16 @@ final class PosterModel {
     }
 }
 
+struct Poster {
+    let image: String
+    let title: String
+}
+
 //MARK: IPosterModel
 
 extension PosterModel: IPosterModel {
     
-    func getImage() -> String {
-        return self.poster
-    }
-    
-    func getTitle() -> String {
-        return self.title
+    func getData() -> Poster {
+        Poster.init(image: self.poster, title: self.title)
     }
 }

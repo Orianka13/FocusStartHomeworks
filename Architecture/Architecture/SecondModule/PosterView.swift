@@ -73,7 +73,7 @@ private extension PosterView {
     func configView() {
         self.addSubview(self.imageView)
         self.addSubview(self.showMore)
-        setConstraints()
+        self.setConstraints()
     }
     
     func setConstraints(){
