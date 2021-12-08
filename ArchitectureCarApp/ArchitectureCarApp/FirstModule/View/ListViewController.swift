@@ -10,6 +10,16 @@ import UIKit
 
 final class ListViewController: UIViewController {
     
+    private enum Colors {
+        static let mainBackgroundColor: UIColor = .white
+    }
+    
+    private enum Metrics {
+        static let spacing = CGFloat(16)
+        static let topSpacing = CGFloat(60)
+        static let bottomSpacing = CGFloat(0)
+    }
+    
     private let listView: ListView
     private let presenter: IListPresenter?
     
@@ -24,7 +34,7 @@ final class ListViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError()
     }
     
     override func loadView() {
@@ -40,7 +50,7 @@ final class ListViewController: UIViewController {
         
         self.setListView()
         
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = Colors.mainBackgroundColor
     }
 }
 
@@ -49,10 +59,10 @@ private extension ListViewController {
     
     func setListView() {
         self.listView.translatesAutoresizingMaskIntoConstraints = false
-        self.listView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
-        self.listView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 60).isActive = true
-        self.listView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        self.listView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
+        self.listView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: Metrics.spacing).isActive = true
+        self.listView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: Metrics.topSpacing).isActive = true
+        self.listView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -Metrics.spacing).isActive = true
+        self.listView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: Metrics.bottomSpacing).isActive = true
         self.listView.heightAnchor.constraint(equalToConstant: 29).isActive = false
     }
 }

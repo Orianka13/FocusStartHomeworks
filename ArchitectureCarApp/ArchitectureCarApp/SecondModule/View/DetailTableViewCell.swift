@@ -15,10 +15,21 @@ protocol IDetailTableViewCell {
 
 final class DetailTableViewCell: UITableViewCell {
     
-    static let reuseIdentifier = "cell"
+    private enum Literal {
+        static let cellId = "cell"
+        static let radioButtonOffImage = "circle"
+        static let radioButtonOnImage = "circle.fill"
+    }
+    
+    private enum Metrics {
+        static let radioButtonSize = CGFloat(16)
+        static let zeroSpacing = CGFloat(0)
+    }
+    
+    static let reuseIdentifier = Literal.cellId
     
     private lazy var radioButtonImage: UIImageView = {
-        let image = UIImage(systemName: "circle")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
+        let image = UIImage(systemName: Literal.radioButtonOffImage)?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
         let imageView = UIImageView()
         imageView.image = image
         return imageView
@@ -43,15 +54,15 @@ private extension DetailTableViewCell {
         self.addSubview(radioButtonImage)
     }
     func setConstraint() {
-        setRadioButtonImage()
+        self.setRadioButtonImage()
     }
     
     func setRadioButtonImage(){
         self.radioButtonImage.translatesAutoresizingMaskIntoConstraints = false
         self.radioButtonImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        self.radioButtonImage.widthAnchor.constraint(equalToConstant: 16).isActive = true
-        self.radioButtonImage.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        self.radioButtonImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        self.radioButtonImage.widthAnchor.constraint(equalToConstant: Metrics.radioButtonSize).isActive = true
+        self.radioButtonImage.heightAnchor.constraint(equalToConstant: Metrics.radioButtonSize).isActive = true
+        self.radioButtonImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.zeroSpacing).isActive = true
     }
 }
 
@@ -59,11 +70,11 @@ private extension DetailTableViewCell {
 extension DetailTableViewCell: IDetailTableViewCell {
     
     func setOnImage(){
-        self.radioButtonImage.image = UIImage(systemName: "circle.fill")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
+        self.radioButtonImage.image = UIImage(systemName: Literal.radioButtonOnImage)?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
         
     }
     func setOffImage(){
-        self.radioButtonImage.image = UIImage(systemName: "circle")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
+        self.radioButtonImage.image = UIImage(systemName: Literal.radioButtonOffImage)?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
     }
     
     func updateText(text: String) {

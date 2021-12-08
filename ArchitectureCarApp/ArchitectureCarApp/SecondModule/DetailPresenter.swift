@@ -13,6 +13,12 @@ protocol IDetailPresenter {
 
 final class DetailPresenter {
     
+    private enum Literal {
+        static let defaultBodyType = "Some body type"
+        static let defaultImage = "audiSedan"
+        static let defaultPrice = "1 234 560 $"
+    }
+    
     private var model: IDetailModel
     private var router: DetailRouter
     private weak var controller: DetailViewController?
@@ -36,19 +42,19 @@ private extension DetailPresenter {
         self.view?.tableView.fillCellHandler = { [weak self] (cell, indexPath) in
             let bodyType = self?.model.getBodyType()
             let text = bodyType?[indexPath.row]
-            cell.updateText(text: text ?? "Some body type")
+            cell.updateText(text: text ?? Literal.defaultBodyType)
         }
         
         self.view?.tableView.onTouchedHandler = { [weak self] (indexPath) in
             let images = self?.model.getImage()
             let image = images?[indexPath.row]
-            self?.view?.updateView(image: image ?? "audiSedan")
+            self?.view?.updateView(image: image ?? Literal.defaultImage)
         }
         
         self.view?.onTouchedButtonHandler = { [weak self] in
             let prices = self?.model.getPrice()
             let price = prices?[self?.view?.tableView.index ?? 0]
-            self?.view?.updatePrice(price: price ?? "1 234 560 $")
+            self?.view?.updatePrice(price: price ?? Literal.defaultPrice)
         }
     }
 }
@@ -62,7 +68,7 @@ extension DetailPresenter: IDetailPresenter {
         
         self.setHandlers()
         
-        self.view?.setContent(image: self.model.getImage().first ?? "audiSedan",
-                              price: self.model.getPrice().first ?? "1 234 560 $")
+        self.view?.setContent(image: self.model.getImage().first ?? Literal.defaultImage,
+                              price: self.model.getPrice().first ?? Literal.defaultPrice)
     }
 }

@@ -11,37 +11,58 @@ protocol IListCollectionViewCell {
     func setMarkLabelText(text: String)
 }
 
-
 final class ListCollectionViewCell: UICollectionViewCell {
     
-    static let reuseIdentifier = "cell"
+    private enum Literal {
+        static let iconImageName = "circle.fill"
+        static let cellId = "cell"
+        static let selectLabelText = "Select"
+    }
+    
+    private enum Fonts {
+        static let markLabelFont = UIFont.systemFont(ofSize: 16, weight: .medium)
+        static let selectLabelFont = UIFont.systemFont(ofSize: 14)
+    }
+    
+    private enum Colors {
+        static let dividerViewColor: UIColor = .opaqueSeparator
+    }
+    
+    private enum Metrics {
+        static let iconSize = CGFloat(16)
+        static let zeroSpacing = CGFloat(0)
+        static let leadingMarkLabelSpacing = CGFloat(16)
+        static let topDividerViewSpacing = CGFloat(16)
+        static let heightDividerView = CGFloat(1)
+    }
+
+    static let reuseIdentifier = Literal.cellId
     
     var labelHandler: ((String?) -> String)?
     
     private lazy var icon: UIImageView = {
         let imageView = UIImageView()
-        let image = UIImage(systemName: "circle.fill")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
+        let image = UIImage(systemName: Literal.iconImageName)?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
         imageView.image = image
         return imageView
     }()
     
     private var markLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        label.text = "Some mark"
+        label.font = Fonts.markLabelFont
         return label
     }()
     
     private lazy var selectLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.text = "Select"
+        label.font = Fonts.selectLabelFont
+        label.text = Literal.selectLabelText
         return label
     }()
     
     private lazy var dividerView: UIView = {
         let divider = UIView()
-        divider.backgroundColor = .opaqueSeparator
+        divider.backgroundColor = Colors.dividerViewColor
         divider.contentMode = .scaleToFill
         return divider
     }()
@@ -55,7 +76,7 @@ final class ListCollectionViewCell: UICollectionViewCell {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError()
     }
 }
     
@@ -80,35 +101,35 @@ private extension ListCollectionViewCell {
     func setIcon(){
         self.icon.translatesAutoresizingMaskIntoConstraints = false
         self.icon.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = false
-        self.icon.widthAnchor.constraint(equalToConstant: 16).isActive = true
-        self.icon.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        self.icon.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+        self.icon.widthAnchor.constraint(equalToConstant: Metrics.iconSize).isActive = true
+        self.icon.heightAnchor.constraint(equalToConstant: Metrics.iconSize).isActive = true
+        self.icon.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.zeroSpacing).isActive = true
     }
     
     func setMarkLabel(){
         self.markLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.markLabel.leadingAnchor.constraint(equalTo: self.icon.trailingAnchor, constant: 16).isActive = true
+        self.markLabel.leadingAnchor.constraint(equalTo: self.icon.trailingAnchor, constant: Metrics.leadingMarkLabelSpacing).isActive = true
     }
     
     func setSelectLabel(){
         self.selectLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.selectLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        self.selectLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.zeroSpacing).isActive = true
     }
     
     func setDividerView(){
         self.dividerView.translatesAutoresizingMaskIntoConstraints = false
         self.dividerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        self.dividerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
-        self.dividerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
-        self.dividerView.topAnchor.constraint(equalTo: self.markLabel.bottomAnchor, constant: 16).isActive = false
-        self.dividerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
-        self.dividerView.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        self.dividerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.zeroSpacing).isActive = true
+        self.dividerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.zeroSpacing).isActive = true
+        self.dividerView.topAnchor.constraint(equalTo: self.markLabel.bottomAnchor, constant: Metrics.topDividerViewSpacing).isActive = false
+        self.dividerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: Metrics.zeroSpacing).isActive = true
+        self.dividerView.heightAnchor.constraint(equalToConstant: Metrics.heightDividerView).isActive = true
     }
 }
 
 //MARK: IListCollectionViewCell
+
 extension ListCollectionViewCell: IListCollectionViewCell {
-    
     func setMarkLabelText(text: String){
         self.markLabel.text = text
     }

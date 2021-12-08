@@ -9,6 +9,11 @@ import UIKit
 
 final class DetailTableView: UIView {
     
+    private enum Metrics {
+        static let zeroSpacing = CGFloat(0)
+        static let numberOfRowsInSection = Int(4)
+    }
+    
     private var tableView: UITableView = UITableView()
     
     var onTouchedHandler: ((_ indexPath: IndexPath) -> Void)?
@@ -29,7 +34,7 @@ final class DetailTableView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError()
     }
 }
 
@@ -37,22 +42,22 @@ final class DetailTableView: UIView {
 private extension DetailTableView {
     
     func addView() {
-        self.addSubview(self.tableView)
+        self.addSubview(tableView)
     }
     
     func setConstraint() {
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
-        self.tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
-        self.tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
-        self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
-        self.tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        self.tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: Metrics.zeroSpacing).isActive = true
+        self.tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: Metrics.zeroSpacing).isActive = true
+        self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.zeroSpacing).isActive = true
+        self.tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.zeroSpacing).isActive = true
     }
 }
 
 //MARK: UITableViewDataSource
 extension DetailTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return Metrics.numberOfRowsInSection
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
