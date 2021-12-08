@@ -54,10 +54,10 @@ private extension DetailTableViewCell {
         self.addSubview(radioButtonImage)
     }
     func setConstraint() {
-        self.setRadioButtonImage()
+        self.makeRadioButtonImageConstraints()
     }
     
-    func setRadioButtonImage(){
+    func makeRadioButtonImageConstraints(){
         self.radioButtonImage.translatesAutoresizingMaskIntoConstraints = false
         self.radioButtonImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.radioButtonImage.widthAnchor.constraint(equalToConstant: Metrics.radioButtonSize).isActive = true

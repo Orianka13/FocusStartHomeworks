@@ -50,7 +50,7 @@ final class ListView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError()
     }
     
     private func addView(){
@@ -60,29 +60,29 @@ final class ListView: UIView {
     }
     
     private func setConstraint(){
-        self.setLabelTitle()
-        self.setLabel()
-        self.setCollectionView()
+        self.makeLabelTitleConstraints()
+        self.makeLabelConstraints()
+        self.makeCollectionViewConstraints()
     }
 }
 
 //MARK: - ListViewLayout
 
 extension ListView {
-    private func setLabelTitle() {
+    private func makeLabelTitleConstraints() {
         self.labelTitle.translatesAutoresizingMaskIntoConstraints = false
         self.labelTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.labelTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: Metrics.zeroSpacing).isActive = true
     }
     
-    private func setLabel() {
+    private func makeLabelConstraints() {
         self.label.translatesAutoresizingMaskIntoConstraints = false
         self.label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = false
         self.label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.leadingLabelSpacing).isActive = true
         self.label.topAnchor.constraint(equalTo: self.labelTitle.bottomAnchor, constant: Metrics.topLabelSpacing).isActive = true
     }
     
-    private func setCollectionView(){
+    private func makeCollectionViewConstraints(){
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false
         self.collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.zeroSpacing).isActive = true
         self.collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.zeroSpacing).isActive = true

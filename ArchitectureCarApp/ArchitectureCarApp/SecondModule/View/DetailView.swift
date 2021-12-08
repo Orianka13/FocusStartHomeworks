@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol IDetailView {
+    func setContent(image: String, price: String)
+    func updateView(image: String)
+    func updatePrice(price: String)
+}
+
 final class DetailView: UIView {
     
     private enum Colors {
@@ -102,8 +108,13 @@ final class DetailView: UIView {
     required init?(coder: NSCoder) {
         fatalError()
     }
+}
+
+//MARK: Private extension
+
+private extension DetailView {
     
-    private func addView(){
+    func addView(){
         self.addSubview(image)
         self.addSubview(priceLabel)
         self.addSubview(priceCountLabel)
@@ -114,23 +125,17 @@ final class DetailView: UIView {
         self.priceCountLabel.addSubview(activityIndicator)
     }
     
-    private func setConstraint(){
-        self.setImage()
-        self.setPriceLabel()
-        self.setPriceCountLabel()
-        self.setBodyTypeLabel()
-        self.setTableView()
-        self.setButton()
-        self.setActivityIndicator()
+    @objc func touchedButton() {
+        self.onTouchedButtonHandler?()
     }
+}
+
+//MARK: IDetailView
+extension DetailView: IDetailView {
     
-    func setContent(image: String, price: String){
+    func setContent(image: String, price: String) {
         self.image.image = UIImage(named: image)
         self.priceCountLabel.text = price
-    }
-    
-    @objc private func touchedButton() {
-        self.onTouchedButtonHandler?()
     }
     
     func updateView(image: String) {
@@ -148,10 +153,22 @@ final class DetailView: UIView {
         })
     }
 }
-//MARK: - TitleViewLayout
 
-extension DetailView {
-    private func setImage() {
+//MARK: TitleViewLayout
+
+private extension DetailView {
+    
+    func setConstraint(){
+        self.makeImageConstraints()
+        self.makePriceLabelConstraints()
+        self.makePriceCountLabelConstraints()
+        self.makeBodyTypeLabelConstraints()
+        self.makeTableViewConstraints()
+        self.makeButtonConstraints()
+        self.makeActivityIndicatorConstraints()
+    }
+    
+    func makeImageConstraints() {
         self.image.translatesAutoresizingMaskIntoConstraints = false
         self.image.topAnchor.constraint(equalTo: self.topAnchor, constant: Metrics.zeroSpacing).isActive = true
         self.image.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = false
@@ -160,28 +177,28 @@ extension DetailView {
         self.image.heightAnchor.constraint(equalToConstant: self.frame.size.height / Metrics.imageHeight ).isActive = true
     }
     
-    private func setPriceLabel() {
+    func makePriceLabelConstraints() {
         self.priceLabel.translatesAutoresizingMaskIntoConstraints = false
         self.priceLabel.topAnchor.constraint(equalTo: self.image.bottomAnchor, constant: Metrics.topPriceLabelSpacing).isActive = true
         self.priceLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.zeroSpacing).isActive = true
         self.priceLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.zeroSpacing).isActive = true
     }
     
-    private func setPriceCountLabel(){
+    func makePriceCountLabelConstraints(){
         self.priceCountLabel.translatesAutoresizingMaskIntoConstraints = false
         self.priceCountLabel.topAnchor.constraint(equalTo: self.priceLabel.bottomAnchor, constant: Metrics.topPriceCountLabelSpacing).isActive = true
         self.priceCountLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.zeroSpacing).isActive = true
         self.priceCountLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.zeroSpacing).isActive = true
     }
     
-    private func setBodyTypeLabel(){
+    func makeBodyTypeLabelConstraints(){
         self.bodyTypeLabel.translatesAutoresizingMaskIntoConstraints = false
         self.bodyTypeLabel.topAnchor.constraint(equalTo: self.priceCountLabel.bottomAnchor, constant: Metrics.topBodyTypeLabelSpacing).isActive = true
         self.bodyTypeLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.zeroSpacing).isActive = true
         self.bodyTypeLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.zeroSpacing).isActive = true
     }
     
-    private func setTableView(){
+    func makeTableViewConstraints(){
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         self.tableView.topAnchor.constraint(equalTo: self.bodyTypeLabel.bottomAnchor, constant: Metrics.topTableViewSpacing).isActive = true
         self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.zeroSpacing).isActive = true
@@ -190,7 +207,7 @@ extension DetailView {
         self.tableView.heightAnchor.constraint(equalToConstant: self.frame.size.height / Metrics.heightTableView).isActive = true
     }
     
-    private func setButton() {
+    func makeButtonConstraints() {
         self.button.translatesAutoresizingMaskIntoConstraints = false
         self.button.topAnchor.constraint(equalTo: self.tableView.bottomAnchor, constant: Metrics.topButtonSpacing).isActive = true
         self.button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Metrics.bottomButtonSpacing).isActive = false
@@ -199,7 +216,7 @@ extension DetailView {
         self.button.heightAnchor.constraint(equalToConstant: Metrics.heightButton).isActive = true
     }
     
-    private func setActivityIndicator() {
+    func makeActivityIndicatorConstraints() {
         self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         self.activityIndicator.centerXAnchor.constraint(equalTo: self.priceCountLabel.centerXAnchor).isActive = false
         self.activityIndicator.leadingAnchor.constraint(equalTo: self.priceCountLabel.leadingAnchor, constant: Metrics.leadingActivityIndicatorSpacing).isActive = true

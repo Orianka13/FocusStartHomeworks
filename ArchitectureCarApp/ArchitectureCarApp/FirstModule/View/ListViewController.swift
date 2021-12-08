@@ -48,7 +48,7 @@ final class ListViewController: UIViewController {
         
         self.view.addSubview(listView)
         
-        self.setListView()
+        self.makeListViewConstraints()
         
         self.view.backgroundColor = Colors.mainBackgroundColor
     }
@@ -57,7 +57,7 @@ final class ListViewController: UIViewController {
 //MARK: Private extension
 private extension ListViewController {
     
-    func setListView() {
+    func makeListViewConstraints() {
         self.listView.translatesAutoresizingMaskIntoConstraints = false
         self.listView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: Metrics.spacing).isActive = true
         self.listView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: Metrics.topSpacing).isActive = true

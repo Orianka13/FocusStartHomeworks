@@ -51,7 +51,7 @@ final class DetailViewController: UIViewController {
         
         self.view.addSubview(detailView)
         
-        self.setDetailView()
+        self.makeDetailViewConstraints()
         
         self.view.backgroundColor = Colors.mainBackgroundColor
         
@@ -59,7 +59,7 @@ final class DetailViewController: UIViewController {
         
     }
     
-    private func setDetailView() {
+    private func makeDetailViewConstraints() {
         self.detailView.translatesAutoresizingMaskIntoConstraints = false
         self.detailView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: Metrics.leadingViewSpacing).isActive = true
         self.detailView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: Metrics.topViewSpacing).isActive = true

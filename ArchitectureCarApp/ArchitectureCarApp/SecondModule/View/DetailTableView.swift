@@ -28,6 +28,7 @@ final class DetailTableView: UIView {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: DetailTableViewCell.reuseIdentifier)
+        
         self.addView()
         self.setConstraint()
         

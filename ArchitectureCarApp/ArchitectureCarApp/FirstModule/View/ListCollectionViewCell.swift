@@ -92,13 +92,13 @@ private extension ListCollectionViewCell {
     }
     
     func setConstraint(){
-        self.setIcon()
-        self.setMarkLabel()
-        self.setSelectLabel()
-        self.setDividerView()
+        self.makeIconConstraints()
+        self.makeMarkLabelConstraints()
+        self.makeSelectLabelConstraints()
+        self.makeDividerViewConstraints()
     }
     
-    func setIcon(){
+    func makeIconConstraints(){
         self.icon.translatesAutoresizingMaskIntoConstraints = false
         self.icon.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = false
         self.icon.widthAnchor.constraint(equalToConstant: Metrics.iconSize).isActive = true
@@ -106,17 +106,17 @@ private extension ListCollectionViewCell {
         self.icon.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.zeroSpacing).isActive = true
     }
     
-    func setMarkLabel(){
+    func makeMarkLabelConstraints(){
         self.markLabel.translatesAutoresizingMaskIntoConstraints = false
         self.markLabel.leadingAnchor.constraint(equalTo: self.icon.trailingAnchor, constant: Metrics.leadingMarkLabelSpacing).isActive = true
     }
     
-    func setSelectLabel(){
+    func makeSelectLabelConstraints(){
         self.selectLabel.translatesAutoresizingMaskIntoConstraints = false
         self.selectLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: Metrics.zeroSpacing).isActive = true
     }
     
-    func setDividerView(){
+    func makeDividerViewConstraints(){
         self.dividerView.translatesAutoresizingMaskIntoConstraints = false
         self.dividerView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.dividerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Metrics.zeroSpacing).isActive = true
