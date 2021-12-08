@@ -9,19 +9,24 @@ import UIKit
 
 final class TitleSupplementaryView: UICollectionReusableView {
     
-    private enum Constants {
-        static let textColor: UIColor = .white
-        static let textFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 20)
-        
+    private enum Metrics {
         static let inset = CGFloat(10)
         static let leadingSpacing = CGFloat(20)
         static let bottomSpacing = CGFloat(0)
     }
     
+    private enum Fonts {
+        static let textFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 20)
+    }
+    
+    private enum Colors {
+        static let textColor: UIColor = .white
+    }
+    
     private lazy var label: UILabel = {
         let label = UILabel()
-        label.textColor = Constants.textColor
-        label.font = Constants.textFont
+        label.textColor = Colors.textColor
+        label.font = Fonts.textFont
         return label
     }()
     
@@ -29,7 +34,7 @@ final class TitleSupplementaryView: UICollectionReusableView {
         super.init(frame: frame)
         
         self.addSubview(label)
-        self.setLabel()
+        self.makeLabelConstraints()
     }
     required init?(coder: NSCoder) {
         fatalError()
@@ -44,13 +49,13 @@ final class TitleSupplementaryView: UICollectionReusableView {
 
 extension TitleSupplementaryView {
     
-    private func setLabel() {
+    private func makeLabelConstraints() {
         self.label.translatesAutoresizingMaskIntoConstraints = false
         
-        self.label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.leadingSpacing).isActive = true
-        self.label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.inset).isActive = true
-        self.label.topAnchor.constraint(equalTo: topAnchor, constant: Constants.inset).isActive = true
-        self.label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Constants.bottomSpacing).isActive = true
+        self.label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrics.leadingSpacing).isActive = true
+        self.label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metrics.inset).isActive = true
+        self.label.topAnchor.constraint(equalTo: topAnchor, constant: Metrics.inset).isActive = true
+        self.label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Metrics.bottomSpacing).isActive = true
     }
 }
 

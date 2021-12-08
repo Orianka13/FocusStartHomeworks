@@ -17,9 +17,12 @@ protocol IPosterView: UIView {
 
 final class PosterView: UIView {
     
-    private enum Constants {
+    private enum Literal {
         static let buttonTitle = "Show description.."
-        static let buttonColor: UIColor = .darkGray
+    }
+    
+    private enum Metrics {
+        
         static let buttonCornerRadius = CGFloat(8)
         
         static let topSpacing = CGFloat(20)
@@ -27,8 +30,10 @@ final class PosterView: UIView {
         
         static let buttonWidth = CGFloat(180)
         static let buttonHeight = CGFloat(40)
-        
-        static let filmName = "Deadpool"
+    }
+    
+    private enum Colors {
+        static let buttonColor: UIColor = .darkGray
     }
     
     var onTouchedHandler: (() -> Void)?
@@ -43,10 +48,10 @@ final class PosterView: UIView {
     
     private lazy var showMore: UIButton = {
         let button = UIButton()
-        button.setTitle(Constants.buttonTitle, for: .normal)
+        button.setTitle(Literal.buttonTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = Constants.buttonColor
-        button.layer.cornerRadius = Constants.buttonCornerRadius
+        button.backgroundColor = Colors.buttonColor
+        button.layer.cornerRadius = Metrics.buttonCornerRadius
         button.addTarget(self, action: #selector(showDescription), for: .touchUpInside)
         return button
     }()
@@ -72,28 +77,28 @@ private extension PosterView {
     }
     
     func setConstraints(){
-        setImageView()
-        setShowMoreButton()
+        makeImageViewConstraints()
+        makeShowMoreButtonConstraints()
     }
     
     @objc func showDescription() {
         self.onTouchedHandler?()
     }
     
-    func setImageView(){
+    func makeImageViewConstraints(){
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        self.imageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: Constants.topSpacing).isActive = true
+        self.imageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: Metrics.topSpacing).isActive = true
         self.imageView.heightAnchor.constraint(equalToConstant: self.frame.size.height / 1.5).isActive = false
     }
     
-    func setShowMoreButton(){
+    func makeShowMoreButtonConstraints(){
         self.showMore.translatesAutoresizingMaskIntoConstraints = false
-        self.showMore.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: Constants.topSpacing).isActive = true
+        self.showMore.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: Metrics.topSpacing).isActive = true
         self.showMore.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        self.showMore.widthAnchor.constraint(equalToConstant: Constants.buttonWidth).isActive = true
-        self.showMore.heightAnchor.constraint(equalToConstant: Constants.buttonHeight).isActive = true
-        self.showMore.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: Constants.bottomSpacing).isActive = true
+        self.showMore.widthAnchor.constraint(equalToConstant: Metrics.buttonWidth).isActive = true
+        self.showMore.heightAnchor.constraint(equalToConstant: Metrics.buttonHeight).isActive = true
+        self.showMore.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: Metrics.bottomSpacing).isActive = true
     }
 }
 

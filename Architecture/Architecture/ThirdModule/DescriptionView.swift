@@ -9,17 +9,23 @@ import UIKit
 
 final class DescriptionView: UIView {
     
-    private enum Constants {
-        static let textFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 25)
-        static let textColor: UIColor = .white
-        static let numberOfLines = 0
-        
+    private enum Literal {
         static let closeImageName = "xmark"
-        
-        static let mainBackgroundColor: UIColor = .darkGray
-        
+    }
+    
+    private enum Fonts {
+        static let textFont = UIFont(name: "AppleSDGothicNeo-Regular", size: 25)
+    }
+    
+    private enum Metrics {
         static let mainSpacing = CGFloat(20)
         static let trailingSpacing = CGFloat(-20)
+        static let numberOfLines = 0
+    }
+    
+    private enum Colors {
+        static let textColor: UIColor = .white
+        static let mainBackgroundColor: UIColor = .darkGray
     }
     
     var onTouchedHandler: (() -> Void)?
@@ -28,18 +34,18 @@ final class DescriptionView: UIView {
     
     private lazy var textView: UILabel = {
         let textLabel = UILabel(frame: .zero)
-        textLabel.font = Constants.textFont
-        textLabel.textColor = Constants.textColor
+        textLabel.font = Fonts.textFont
+        textLabel.textColor = Colors.textColor
         textLabel.textAlignment = .center
-        textLabel.numberOfLines = Constants.numberOfLines
+        textLabel.numberOfLines = Metrics.numberOfLines
         return textLabel
     }()
     
     private lazy var closeButton: UIButton = {
         let closeButton = UIButton()
-        closeButton.setImage(UIImage(systemName: Constants.closeImageName), for: .normal)
+        closeButton.setImage(UIImage(systemName: Literal.closeImageName), for: .normal)
         closeButton.addTarget(self, action: #selector(goBackButton), for: .touchUpInside)
-        closeButton.tintColor = Constants.textColor
+        closeButton.tintColor = Colors.textColor
         return closeButton
     }()
     
@@ -69,28 +75,28 @@ private extension DescriptionView {
     }
     
     func setConstraints(){
-        self.setTextView()
-        self.setCloseButton()
+        self.makeTextViewConstraints()
+        self.makeCloseButtonConstraints()
     }
     
     @objc func goBackButton() {
         self.onTouchedHandler?()
     }
     
-    func setTextView(){
+    func makeTextViewConstraints(){
         self.textView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.textView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: Constants.mainSpacing).isActive = false
+        self.textView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: Metrics.mainSpacing).isActive = false
         self.textView.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor).isActive = true
         self.textView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        self.textView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: Constants.mainSpacing).isActive = true
-        self.textView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: Constants.trailingSpacing).isActive = true
+        self.textView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: Metrics.mainSpacing).isActive = true
+        self.textView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: Metrics.trailingSpacing).isActive = true
     }
     
-    func setCloseButton(){
+    func makeCloseButtonConstraints(){
         self.closeButton.translatesAutoresizingMaskIntoConstraints = false
         
-        self.closeButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: Constants.mainSpacing).isActive = true
-        self.closeButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: Constants.mainSpacing).isActive = true
+        self.closeButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: Metrics.mainSpacing).isActive = true
+        self.closeButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: Metrics.mainSpacing).isActive = true
     }
 }

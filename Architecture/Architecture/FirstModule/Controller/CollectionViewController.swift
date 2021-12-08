@@ -9,12 +9,14 @@ import UIKit
 
 final class CollectionViewController: UIViewController {
     
-    private enum Constants {
+    private enum Literal {
         static let headerElementKind = "header-element-kind"
         static let navItem = "BEST FILMS"
         static let filmName = "Deadpool"
         static let defaultSectionTitle = "movies"
-        
+    }
+    
+    private enum Colors {
         static let mainBackgroundColor: UIColor = .black
     }
     
@@ -23,59 +25,60 @@ final class CollectionViewController: UIViewController {
     
     private lazy var dataSource = makeDataSource()
     private let sections = Section.allSections
-    private var collectionView: UICollectionView!
+    private var collectionView: UICollectionView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.configureHierarchy()
         self.applySnapshot(animatingDifferences: false)
-        self.navigationItem.title = Constants.navItem
+        self.navigationItem.title = Literal.navItem
     }
 }
 
 //MARK: - UICollectionViewDataSource
 
-extension CollectionViewController {
+private extension CollectionViewController {
     
-    private func configureHierarchy() {
+    func configureHierarchy() {
         self.collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
-        self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.collectionView.backgroundColor = Constants.mainBackgroundColor
-        view.addSubview(self.collectionView)
-        self.collectionView.delegate = self
+        self.collectionView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.collectionView?.backgroundColor = Colors.mainBackgroundColor
+        guard let collectionView = self.collectionView else { return }
+        view.addSubview(collectionView)
+        self.collectionView?.delegate = self
     }
     
-    private func makeDataSource() -> DataSource {
+    func makeDataSource() -> DataSource {
         
         let cellRegistration = UICollectionView.CellRegistration<CollectionCell, Int> { [weak self] (cell, indexPath, film) in
             let section = self?.dataSource.snapshot().sectionIdentifiers[indexPath.section]
             let film = section?.films[indexPath.row]
-            let viewModel = ViewFilm(poster: film?.poster ?? Constants.filmName, name: film?.name ?? Constants.filmName)
+            let viewModel = ViewFilm(poster: film?.poster ?? Literal.filmName, name: film?.name ?? Literal.filmName)
             cell.updateCellData(film: viewModel)
         }
         
-        self.dataSource = UICollectionViewDiffableDataSource<Section, Film>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, film: Film) -> UICollectionViewCell? in
+        self.dataSource = UICollectionViewDiffableDataSource<Section, Film>(collectionView: self.collectionView ?? UICollectionView()) {
+            (collectionView, indexPath, film) -> UICollectionViewCell? in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: indexPath.row)
         }
         
         let supplementaryRegistration = UICollectionView.SupplementaryRegistration
-        <TitleSupplementaryView>(elementKind: CollectionViewController.Constants.headerElementKind) { [weak self]
+        <TitleSupplementaryView>(elementKind: CollectionViewController.Literal.headerElementKind) { [weak self]
             (supplementaryView, string, indexPath) in
             let section = self?.dataSource.snapshot().sectionIdentifiers[indexPath.section]
-            let viewModel = ViewSection(title: section?.title ?? Constants.defaultSectionTitle, films: [ViewFilm(poster: Constants.filmName, name: Constants.filmName)])
+            let viewModel = ViewSection(title: section?.title ?? Literal.defaultSectionTitle, films: [ViewFilm(poster: Literal.filmName, name: Literal.filmName)])
             supplementaryView.updateLabel(section: viewModel)
         }
         
         self.dataSource.supplementaryViewProvider = { [weak self] (view, kind, index) in
-            return self?.collectionView.dequeueConfiguredReusableSupplementary(
+            return self?.collectionView?.dequeueConfiguredReusableSupplementary(
                 using: supplementaryRegistration, for: index)
         }
         return self.dataSource
     }
     
-    private func applySnapshot(animatingDifferences: Bool = true) {
+    func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = Snapshot()
         snapshot.appendSections(self.sections)
         

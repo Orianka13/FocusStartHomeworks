@@ -9,7 +9,7 @@ import Foundation
 
 struct Section: Hashable {
     
-    private enum Constants {
+    private enum SectionTitle {
         static let movies = "movies"
         static let cartoons = "cartoons"
         static let tvShows = "TVshows"
@@ -30,8 +30,8 @@ struct Section: Hashable {
 
 extension Section {
     static var allSections: [Section] = [
-        Section(title: Constants.movies, films: Film.allMovies),
-        Section(title: Constants.cartoons, films: Film.allCartoons),
-        Section(title: Constants.tvShows, films: Film.allShows)
+        Section(title: SectionTitle.movies, films: Film.allMovies),
+        Section(title: SectionTitle.cartoons, films: Film.allCartoons),
+        Section(title: SectionTitle.tvShows, films: Film.allShows)
     ]
 }

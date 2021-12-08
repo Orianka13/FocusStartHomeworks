@@ -9,9 +9,11 @@ import UIKit
 
 extension CollectionViewController {
     
-    private enum Metrics {
+    private enum Literal {
         static let headerElementKind = "header-element-kind"
-        
+    }
+    
+    private enum Metrics {
         static let spacing = CGFloat(0)
         static let fractionalWidthItem = CGFloat(0.5)
         static let fractionalHeightItem = CGFloat(1.0)
@@ -21,7 +23,6 @@ extension CollectionViewController {
         
         static let fractionalWidthHeader = CGFloat(1.0)
         static let heightHeader = CGFloat(44)
-        
     }
     
     func createLayout() -> UICollectionViewLayout {
@@ -47,7 +48,7 @@ extension CollectionViewController {
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(Metrics.fractionalWidthHeader),
                                                    heightDimension: .estimated(Metrics.heightHeader)),
-                elementKind: CollectionViewController.Metrics.headerElementKind,
+                elementKind: CollectionViewController.Literal.headerElementKind,
                 alignment: .top)
             
             section.boundarySupplementaryItems = [sectionHeader]
