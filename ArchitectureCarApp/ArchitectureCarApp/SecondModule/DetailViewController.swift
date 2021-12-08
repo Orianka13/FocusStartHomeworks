@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
 
     private var detailView: DetailView
     private var presenter: DetailPresenter?
@@ -36,13 +36,11 @@ class DetailViewController: UIViewController {
         
         self.view.addSubview(detailView)
         
-        setDetailView()
+        self.setDetailView()
         
         self.view.backgroundColor = .white
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        
+        self.setNavigationBar()
         
     }
     
@@ -52,5 +50,12 @@ class DetailViewController: UIViewController {
         self.detailView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 90).isActive = true
         self.detailView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -15).isActive = true
         self.detailView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
+    }
+    
+    private func setNavigationBar(){
+        if let topItem = navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+            topItem.backBarButtonItem?.tintColor = .systemGreen
+        }
     }
 }

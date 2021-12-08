@@ -10,7 +10,7 @@ import Foundation
 struct Car {
     let image: String
     let body: String
-    var price: String
+    let price: String
 }
 
 struct Mark {
@@ -20,7 +20,7 @@ struct Mark {
 
 extension Mark {
     
-    static var allMarks: [Mark] = [Mark.bmwMark, Mark.audiMark, Mark.fordMark, Mark.hondaMark]
+    static let allMarks: [Mark] = [Mark.bmwMark, Mark.audiMark, Mark.fordMark, Mark.hondaMark]
     
     static let bmwMark: Mark = Mark(mark: "BMW", car: [
         Car(image: "bmwSedan", body: "Седан", price: "2 345 678 $"),

@@ -7,10 +7,10 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
+final class ListViewController: UIViewController {
     
-    private var listView: ListView
-    private var presenter: ListPresenter?
+    private let listView: ListView
+    private let presenter: ListPresenter?
     
     struct Dependencies {
         let presenter: ListPresenter
@@ -34,8 +34,11 @@ class ListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.view.addSubview(listView)
-        setListView()
+        
+        self.setListView()
+        
         self.view.backgroundColor = .white
     }
     

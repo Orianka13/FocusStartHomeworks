@@ -10,7 +10,6 @@ import Foundation
 final class DetailRouter {
     
     private var controller: DetailViewController?
-  
 
     func setRootVC(controller: DetailViewController) {
         self.controller = controller

@@ -9,18 +9,11 @@ import Foundation
 
 final class DetailModel {
     
-//    private var image: String?
-//    private var price: String?
-//    
     private var allBodies: [String] = []
     private var allImages: [String] = []
     private var allPrices: [String] = []
     
     init(cars: [Car]) {
-        
-//        self.image = cars.first?.image
-//        self.price = cars.first?.price
-//
         self.allBodies = self.fillBody(cars: cars)
         self.allImages = self.fillImage(cars: cars)
         self.allPrices = self.fillPrice(cars: cars)

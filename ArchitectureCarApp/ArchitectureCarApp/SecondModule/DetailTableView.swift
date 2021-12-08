@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailTableView: UIView {
+final class DetailTableView: UIView {
     
     private var tableView: UITableView = UITableView()
     

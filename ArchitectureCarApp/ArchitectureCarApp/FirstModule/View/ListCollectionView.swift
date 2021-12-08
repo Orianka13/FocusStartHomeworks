@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
  
-class ListCollectionView: UICollectionView {
+final class ListCollectionView: UICollectionView {
     
     var onTouchedHandler: ((_ indexPath: IndexPath) -> Void)?
     var loadHandler: ((_ cell: ListCollectionViewCell?, _ indexPath: IndexPath) -> Void)?
@@ -17,10 +17,10 @@ class ListCollectionView: UICollectionView {
         let layout = CollectionViewFlowLayout()
         super.init(frame: .zero, collectionViewLayout: layout)
         
-        dataSource = self
-        delegate = self
+        self.dataSource = self
+        self.delegate = self
         
-        register(ListCollectionViewCell.self, forCellWithReuseIdentifier: ListCollectionViewCell.reuseIdentifier)
+        self.register(ListCollectionViewCell.self, forCellWithReuseIdentifier: ListCollectionViewCell.reuseIdentifier)
     }
     
     required init?(coder: NSCoder) {

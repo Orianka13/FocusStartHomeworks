@@ -30,7 +30,7 @@ final class ListView: UIView {
         return label
     }()
     
-    var collectionView = ListCollectionView()
+    let collectionView = ListCollectionView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

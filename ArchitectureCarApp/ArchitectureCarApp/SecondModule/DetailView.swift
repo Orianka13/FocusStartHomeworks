@@ -70,14 +70,14 @@ final class DetailView: UIView {
     }
     
     private func addView(){
-        self.addSubview(image)
-        self.addSubview(priceLabel)
-        self.addSubview(priceCountLabel)
-        self.addSubview(bodyTypeLabel)
-        self.addSubview(tableView)
-        self.addSubview(button)
+        self.addSubview(self.image)
+        self.addSubview(self.priceLabel)
+        self.addSubview(self.priceCountLabel)
+        self.addSubview(self.bodyTypeLabel)
+        self.addSubview(self.tableView)
+        self.addSubview(self.button)
         
-        self.priceCountLabel.addSubview(activityIndicator)
+        self.priceCountLabel.addSubview(self.activityIndicator)
     }
     
     private func setConstraint(){
@@ -108,7 +108,7 @@ final class DetailView: UIView {
         self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
         self.priceCountLabel.text = ""
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: { [weak self] in
             self?.activityIndicator.stopAnimating()
             self?.priceCountLabel.text = price
         })
@@ -158,8 +158,8 @@ extension DetailView {
     
     private func setButton() {
         self.button.translatesAutoresizingMaskIntoConstraints = false
-        self.button.topAnchor.constraint(equalTo: self.tableView.bottomAnchor, constant: 109).isActive = false
-        self.button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -95).isActive = true
+        self.button.topAnchor.constraint(equalTo: self.tableView.bottomAnchor, constant: 20).isActive = true
+        self.button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -95).isActive = false
         self.button.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
         self.button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         self.button.heightAnchor.constraint(equalToConstant: 51).isActive = true
