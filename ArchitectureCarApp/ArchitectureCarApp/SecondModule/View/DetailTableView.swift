@@ -7,6 +7,18 @@
 
 import UIKit
 
+protocol IDetailTableView {
+    
+    var onTouchedHandler: ((_ indexPath: IndexPath) -> Void)? { get set }
+    
+    var onTouchedButtonHandler: ((_ indexPath: IndexPath) -> Void)? { get set }
+    
+    var fillCellHandler: ((_ cell: DetailTableViewCell, _ indexPath: IndexPath) -> Void)? { get set}
+    
+    func getIndex() -> Int
+    
+}
+
 final class DetailTableView: UIView {
     
     private enum Metrics {
@@ -20,7 +32,7 @@ final class DetailTableView: UIView {
     var onTouchedButtonHandler: ((_ indexPath: IndexPath) -> Void)?
     var fillCellHandler: ((_ cell: DetailTableViewCell, _ indexPath: IndexPath) -> Void)?
     
-    var index = 0
+    private var index = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -91,4 +103,13 @@ extension DetailTableView: UITableViewDelegate {
             cell.setOffImage()
         }
     }
+}
+
+//MARK: IDetailTableView
+extension DetailTableView: IDetailTableView {
+    
+    func getIndex() -> Int {
+        return self.index
+    }
+    
 }

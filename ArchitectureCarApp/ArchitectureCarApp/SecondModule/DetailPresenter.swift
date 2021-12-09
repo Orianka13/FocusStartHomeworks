@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IDetailPresenter {
-    func loadView(controller: DetailViewController, view: DetailView)
+    func loadView(controller: IDetailViewController, view: IDetailView)
 }
 
 final class DetailPresenter {
@@ -21,8 +21,8 @@ final class DetailPresenter {
     
     private var model: IDetailModel
     private var router: DetailRouter
-    private weak var controller: DetailViewController?
-    private weak var view: DetailView?
+    private weak var controller: IDetailViewController?
+    private var view: IDetailView?
     
     struct Dependencies {
         let model: IDetailModel
@@ -39,13 +39,16 @@ final class DetailPresenter {
 private extension DetailPresenter {
     
     func setHandlers() {
-        self.view?.tableView.fillCellHandler = { [weak self] (cell, indexPath) in
+        
+        let tableView = view?.getTableView()
+        
+        tableView?.fillCellHandler = { [weak self] (cell, indexPath) in
             let bodyType = self?.model.getBodyType()
             let text = bodyType?[indexPath.row]
             cell.updateText(text: text ?? Literal.defaultBodyType)
         }
         
-        self.view?.tableView.onTouchedHandler = { [weak self] (indexPath) in
+        tableView?.onTouchedHandler = { [weak self] (indexPath) in
             let images = self?.model.getImage()
             let image = images?[indexPath.row]
             self?.view?.updateView(image: image ?? Literal.defaultImage)
@@ -53,7 +56,8 @@ private extension DetailPresenter {
         
         self.view?.onTouchedButtonHandler = { [weak self] in
             let prices = self?.model.getPrice()
-            let price = prices?[self?.view?.tableView.index ?? 0]
+            let index = tableView?.getIndex()
+            let price = prices?[index ?? 0]
             self?.view?.updatePrice(price: price ?? Literal.defaultPrice)
         }
     }
@@ -62,7 +66,7 @@ private extension DetailPresenter {
 //MARK: IDetailPresenter
 extension DetailPresenter: IDetailPresenter {
     
-    func loadView(controller: DetailViewController, view: DetailView) {
+    func loadView(controller: IDetailViewController, view: IDetailView) {
         self.controller = controller
         self.view = view
         
@@ -70,5 +74,7 @@ extension DetailPresenter: IDetailPresenter {
         
         self.view?.setContent(image: self.model.getImage().first ?? Literal.defaultImage,
                               price: self.model.getPrice().first ?? Literal.defaultPrice)
+        
+        self.controller?.setNavigationBar()
     }
 }

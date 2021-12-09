@@ -8,7 +8,7 @@
 import Foundation
 
 protocol IListPresenter {
-    func loadView(controller: ListViewController, view: ListView)
+    func loadView(controller: ListViewController, view: IListView)
 }
 
 final class ListPresenter {
@@ -16,7 +16,7 @@ final class ListPresenter {
     private let model: IListModel
     private let router: ListRouter
     private weak var controller: ListViewController?
-    private weak var view: ListView?
+    private var view: IListView?
     
     struct Dependencies {
         let model: IListModel
@@ -35,7 +35,9 @@ private extension ListPresenter {
     
     func setHandlers() {
         
-        self.view?.collectionView.onTouchedHandler = { [weak self] indexPath in
+        let collectionView = self.view?.getCollectionView()
+        
+        collectionView?.onTouchedHandler = { [weak self] indexPath in
             guard let marks = self?.model.getMarks() else { return }
             let mark = marks[indexPath.row]
             let cars = mark.car
@@ -43,7 +45,7 @@ private extension ListPresenter {
             self?.router.next(cars: cars, controller: currentVC)
         }
         
-        self.view?.collectionView.loadHandler = { [weak self] (cell, indexPath) in
+        collectionView?.loadHandler = { [weak self] (cell, indexPath) in
             guard let marks = self?.model.getMarks() else { return }
             let mark = marks[indexPath.row]
             let text = mark.mark
@@ -55,7 +57,7 @@ private extension ListPresenter {
 //MARK: IListPresenter
 extension ListPresenter: IListPresenter {
     
-    func loadView(controller: ListViewController, view: ListView) {
+    func loadView(controller: ListViewController, view: IListView) {
         self.controller = controller
         self.view = view
         

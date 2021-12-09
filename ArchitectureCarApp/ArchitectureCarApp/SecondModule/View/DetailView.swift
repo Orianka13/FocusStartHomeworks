@@ -11,6 +11,8 @@ protocol IDetailView {
     func setContent(image: String, price: String)
     func updateView(image: String)
     func updatePrice(price: String)
+    var onTouchedButtonHandler: (() -> Void)? { get set }
+    func getTableView() -> DetailTableView
 }
 
 final class DetailView: UIView {
@@ -52,7 +54,7 @@ final class DetailView: UIView {
     
     var onTouchedButtonHandler: (() -> Void)?
     
-    let tableView = DetailTableView()
+    private var tableView = DetailTableView()
     
     private lazy var image: UIImageView = {
         let image = UIImage()
@@ -123,6 +125,7 @@ private extension DetailView {
         self.addSubview(button)
         
         self.priceCountLabel.addSubview(activityIndicator)
+        
     }
     
     @objc func touchedButton() {
@@ -132,6 +135,10 @@ private extension DetailView {
 
 //MARK: IDetailView
 extension DetailView: IDetailView {
+    
+    func getTableView() -> DetailTableView {
+        return self.tableView
+    }
     
     func setContent(image: String, price: String) {
         self.image.image = UIImage(named: image)

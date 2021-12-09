@@ -20,7 +20,7 @@ struct Mark {
 
 extension Mark {
     
-    static let allMarks: [Mark] = [Mark.bmwMark, Mark.audiMark, Mark.fordMark, Mark.hondaMark]
+    static let allMarks: [Mark] = [Mark.bmwMark, Mark.audiMark, Mark.fordMark, Mark.hondaMark, Mark.mercedesMark]
     
     static let bmwMark: Mark = Mark(mark: "BMW", car: [
         Car(image: "bmwSedan", body: "Седан", price: "2 345 678 $"),
@@ -45,6 +45,12 @@ extension Mark {
         Car(image: "hondaFurgon", body: "Фургон", price: "5 765 098 $"),
         Car(image: "hondaUniversal", body: "Универсал", price: "6 789 000 $"),
         Car(image: "hondaH", body: "Хэтчбек", price: "4 898 000 $")])
+    
+    static let mercedesMark: Mark = Mark (mark: "Mercedes", car: [
+        Car(image: "mercedesSedan", body: "Седан", price: "2 000 000 $"),
+        Car(image: "mercedesFurgon", body: "Фургон", price: "5 000 098 $"),
+        Car(image: "mercedesUniversal", body: "Универсал", price: "6 000 000 $"),
+        Car(image: "mercedesH", body: "Хэтчбек", price: "4 000 000 $")])
 }
 
 

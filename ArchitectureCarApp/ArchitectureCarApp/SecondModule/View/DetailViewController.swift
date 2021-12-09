@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol IDetailViewController: AnyObject {
+    func setNavigationBar()
+}
+
 final class DetailViewController: UIViewController {
     
     private enum Literal {
@@ -55,8 +59,6 @@ final class DetailViewController: UIViewController {
         
         self.view.backgroundColor = Colors.mainBackgroundColor
         
-        self.setNavigationBar()
-        
     }
     
     private func makeDetailViewConstraints() {
@@ -66,8 +68,13 @@ final class DetailViewController: UIViewController {
         self.detailView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -Metrics.trailingViewSpacing).isActive = true
         self.detailView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: Metrics.zeroCpasing).isActive = true
     }
+}
+
+//MARK: IDetailViewController
+
+extension DetailViewController: IDetailViewController {
     
-    private func setNavigationBar(){
+    func setNavigationBar() {
         if let topItem = navigationController?.navigationBar.topItem {
             topItem.backBarButtonItem = UIBarButtonItem(title: Literal.backButtonTitle, style: .plain, target: nil, action: nil)
             topItem.backBarButtonItem?.tintColor = .systemGreen

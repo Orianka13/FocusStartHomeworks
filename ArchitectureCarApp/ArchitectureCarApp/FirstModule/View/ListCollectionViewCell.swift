@@ -9,6 +9,7 @@ import UIKit
 
 protocol IListCollectionViewCell {
     func setMarkLabelText(text: String)
+    var labelHandler: ((String?) -> String)? { get set }
 }
 
 final class ListCollectionViewCell: UICollectionViewCell {

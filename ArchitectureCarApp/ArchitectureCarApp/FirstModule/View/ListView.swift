@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol IListView {
+    func getCollectionView() -> ListCollectionView
+}
+
 final class ListView: UIView {
     
     private enum Literal {
@@ -27,7 +31,7 @@ final class ListView: UIView {
         static let heightCollectionView = CGFloat(1.5)
     }
     
-    let collectionView = ListCollectionView()
+    private let collectionView = ListCollectionView()
     
     private lazy var labelTitle: UILabel = {
         let label = UILabel()
@@ -89,5 +93,12 @@ extension ListView {
         self.collectionView.topAnchor.constraint(equalTo: self.label.bottomAnchor, constant: Metrics.topCollectionViewSpacing).isActive = true
         self.collectionView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         self.collectionView.heightAnchor.constraint(equalToConstant: self.frame.size.height / Metrics.heightCollectionView).isActive = true
+    }
+}
+
+//MARK: IListView
+extension ListView: IListView {
+    func getCollectionView() -> ListCollectionView {
+        return self.collectionView
     }
 }
