@@ -52,8 +52,9 @@ private extension CollectionViewController {
         
         let cellRegistration = UICollectionView.CellRegistration<CollectionCell, Int> { [weak self] (cell, indexPath, film) in
             let section = self?.dataSource.snapshot().sectionIdentifiers[indexPath.section]
-            let film = section?.films[indexPath.row]
-            cell.updateCellData(film: film ?? Film(poster: film?.poster ?? Literal.filmName, name: film?.name ?? Literal.filmName))
+            guard let films = section?.getFilms() else { return }
+            let film = films[indexPath.row]
+            cell.updateCellData(film: film)
         }
         
         self.dataSource = UICollectionViewDiffableDataSource<Section, Film>(collectionView: self.collectionView ?? UICollectionView()) {
@@ -65,7 +66,7 @@ private extension CollectionViewController {
         <TitleSupplementaryView>(elementKind: CollectionViewController.Literal.headerElementKind) { [weak self]
             (supplementaryView, string, indexPath) in
             let section = self?.dataSource.snapshot().sectionIdentifiers[indexPath.section]
-            supplementaryView.updateLabel(section: section ?? Section(title: section?.title ?? Literal.defaultSectionTitle, films: [Film(poster: Literal.filmName, name: Literal.filmName)]))
+            supplementaryView.updateLabel(section: section ?? Section(title: section?.getTitle() ?? Literal.defaultSectionTitle, films: [Film(poster: Literal.filmName, name: Literal.filmName)]))
         }
         
         self.dataSource.supplementaryViewProvider = { [weak self] (view, kind, index) in
@@ -81,7 +82,7 @@ private extension CollectionViewController {
         snapshot.appendSections(sections)
         
         sections.forEach { section in
-            snapshot.appendItems(section.films, toSection: section)
+            snapshot.appendItems(section.getFilms(), toSection: section)
         }
         
         self.dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
@@ -94,7 +95,8 @@ extension CollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
         let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
-        let film = section.films[indexPath.row]
+        let films = section.getFilms()
+        let film = films[indexPath.row]
         
         let controller = createNewModule(film: film)
        

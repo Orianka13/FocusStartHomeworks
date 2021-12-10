@@ -41,7 +41,7 @@ final class TitleSupplementaryView: UICollectionReusableView {
     }
     
     func updateLabel(section: Section) {
-        self.label.text = section.title
+        self.label.text = section.getTitle()
     }
 }
 

@@ -7,12 +7,19 @@
 
 import UIKit
 
+protocol IFilm {
+    
+    func getPoster() -> String
+    func getName() -> String
+    
+}
+
 final class Film {
     
     var id = UUID()
     
-    let poster: String
-    let name: String
+    private let poster: String
+    private let name: String
     
     init(poster: String, name: String){
         self.poster = poster
@@ -28,6 +35,17 @@ extension Film: Hashable {
     }
     static func == (lhs: Film, rhs: Film) -> Bool {
       lhs.id == rhs.id
+    }
+}
+
+//MARK: IFilm
+extension Film: IFilm {
+    
+    func getPoster() -> String {
+        return self.poster
+    }
+    func getName() -> String {
+        return self.name
     }
 }
 

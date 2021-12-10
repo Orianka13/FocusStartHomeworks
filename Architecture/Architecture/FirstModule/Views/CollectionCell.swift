@@ -54,8 +54,8 @@ final class CollectionCell: UICollectionViewCell {
     }
     
     func updateCellData(film: Film){
-        self.label.text = film.name
-        self.posterView.image = UIImage(named: film.poster)
+        self.label.text = film.getName()
+        self.posterView.image = UIImage(named: film.getPoster())
         self.contentView.backgroundColor = Colors.mainBackgroundColor
     }
     

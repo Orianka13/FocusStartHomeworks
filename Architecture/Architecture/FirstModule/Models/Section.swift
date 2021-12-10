@@ -7,17 +7,35 @@
 
 import Foundation
 
+protocol ISection {
+    
+    func getTitle() -> String
+    func getFilms() -> [Film]
+    
+}
+
 final class Section {
 
     var id = UUID()
     
-    var title: String
-    var films: [Film]
+    private var title: String
+    private var films: [Film]
     
     init(title: String, films: [Film]){
         self.title = title
         self.films = films
         
+    }
+}
+
+//MARK: ISection
+extension Section {
+    
+    func getTitle() -> String {
+        return self.title
+    }
+    func getFilms() -> [Film] {
+        return self.films
     }
 }
 
@@ -35,12 +53,6 @@ extension Section: Hashable {
 
 extension Section {
     
-    private enum SectionTitle {
-        static let movies = "movies"
-        static let cartoons = "cartoons"
-        static let tvShows = "TVshows"
-    }
-    
     static func allSections() -> [Section] {
         
         let sections = [
@@ -49,5 +61,11 @@ extension Section {
             Section(title: SectionTitle.tvShows, films: Film.getAllShows())
         ]
         return sections
+    }
+    
+    private enum SectionTitle {
+        static let movies = "movies"
+        static let cartoons = "cartoons"
+        static let tvShows = "TVshows"
     }
 }

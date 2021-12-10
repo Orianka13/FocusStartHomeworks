@@ -18,8 +18,8 @@ final class PosterModel {
     private var title: String
     
     init(film: Film) {
-        self.poster = film.poster
-        self.title = film.name
+        self.poster = film.getPoster()
+        self.title = film.getName()
     }
 }
 
