@@ -40,7 +40,7 @@ final class CollectionViewController: UIViewController {
 private extension CollectionViewController {
     
     func configureHierarchy() {
-        self.collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        self.collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: CollectionViewLayout.createLayout())
         self.collectionView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.collectionView?.backgroundColor = Colors.mainBackgroundColor
         guard let collectionView = self.collectionView else { return }
@@ -98,10 +98,22 @@ extension CollectionViewController: UICollectionViewDelegate {
         let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
         let film = section.films[indexPath.row]
         
-        let controller = Assembly.build(film: film)
+        let controller = createNewModule(film: film)
        
-        self.navigationController?.pushViewController(controller, animated: true)
+        self.pushVC(controller: controller)
         
+    }
+}
+
+//MARK: Private extension
+private extension CollectionViewController {
+    
+    func createNewModule(film: Film) -> UIViewController {
+        return Assembly.build(film: film)
+    }
+    
+    func pushVC(controller: UIViewController) {
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
 

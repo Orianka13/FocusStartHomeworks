@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension CollectionViewController {
+final class CollectionViewLayout {
     
     private enum Literal {
         static let headerElementKind = "header-element-kind"
@@ -25,7 +25,7 @@ extension CollectionViewController {
         static let heightHeader = CGFloat(44)
     }
     
-    func createLayout() -> UICollectionViewLayout {
+    static func createLayout() -> UICollectionViewLayout {
         
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = Metrics.spacing
@@ -48,7 +48,7 @@ extension CollectionViewController {
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(Metrics.fractionalWidthHeader),
                                                    heightDimension: .estimated(Metrics.heightHeader)),
-                elementKind: CollectionViewController.Literal.headerElementKind,
+                elementKind: Literal.headerElementKind,
                 alignment: .top)
             
             section.boundarySupplementaryItems = [sectionHeader]
