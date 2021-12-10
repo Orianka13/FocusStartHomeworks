@@ -23,7 +23,7 @@ final class CollectionViewController: UIViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Film>
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Film>
     
-    private lazy var dataSource = makeDataSource()
+    private lazy var dataSource = updateDataSource()
     private var collectionView: UICollectionView?
     
     override func viewDidLoad() {
@@ -48,7 +48,7 @@ private extension CollectionViewController {
         self.collectionView?.delegate = self
     }
     
-    func makeDataSource() -> DataSource {
+    func updateDataSource() -> DataSource {
         
         let cellRegistration = UICollectionView.CellRegistration<CollectionCell, Int> { [weak self] (cell, indexPath, film) in
             let section = self?.dataSource.snapshot().sectionIdentifiers[indexPath.section]
