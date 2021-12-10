@@ -53,7 +53,7 @@ final class CollectionCell: UICollectionViewCell {
         fatalError()
     }
     
-    func updateCellData(film: ViewFilm){
+    func updateCellData(film: Film){
         self.label.text = film.name
         self.posterView.image = UIImage(named: film.poster)
         self.contentView.backgroundColor = Colors.mainBackgroundColor

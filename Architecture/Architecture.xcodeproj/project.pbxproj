@@ -24,7 +24,6 @@
 		59ED8085275119A60026A05D /* PosterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED8084275119A60026A05D /* PosterPresenter.swift */; };
 		59ED808727511A030026A05D /* PosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED808627511A030026A05D /* PosterView.swift */; };
 		59ED808927511C070026A05D /* PosterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED808827511C070026A05D /* PosterModel.swift */; };
-		59ED80B52753A2A80026A05D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED80B42753A2A80026A05D /* ViewModel.swift */; };
 		59ED80B72753CDD60026A05D /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED80B62753CDD60026A05D /* DescriptionView.swift */; };
 		59ED80B92753D0450026A05D /* DescriptionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ED80B82753D0450026A05D /* DescriptionModel.swift */; };
 /* End PBXBuildFile section */
@@ -49,7 +48,6 @@
 		59ED8084275119A60026A05D /* PosterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterPresenter.swift; sourceTree = "<group>"; };
 		59ED808627511A030026A05D /* PosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterView.swift; sourceTree = "<group>"; };
 		59ED808827511C070026A05D /* PosterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterModel.swift; sourceTree = "<group>"; };
-		59ED80B42753A2A80026A05D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		59ED80B62753CDD60026A05D /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		59ED80B82753D0450026A05D /* DescriptionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,7 +68,6 @@
 			children = (
 				591CA5E1274A8B700012C63E /* Section.swift */,
 				59B2C67B2746693B003FB4B6 /* Film.swift */,
-				59ED80B42753A2A80026A05D /* ViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,7 +228,6 @@
 				59ED808727511A030026A05D /* PosterView.swift in Sources */,
 				59ED8085275119A60026A05D /* PosterPresenter.swift in Sources */,
 				59B2C67527454169003FB4B6 /* CollectionViewController.swift in Sources */,
-				59ED80B52753A2A80026A05D /* ViewModel.swift in Sources */,
 				59B2C677274541D2003FB4B6 /* CollectionCell.swift in Sources */,
 				59ED80B92753D0450026A05D /* DescriptionModel.swift in Sources */,
 				5943CFBE274512A700C7B70E /* AppDelegate.swift in Sources */,

@@ -7,17 +7,22 @@
 
 import Foundation
 
-struct Section: Hashable {
-    
-    private enum SectionTitle {
-        static let movies = "movies"
-        static let cartoons = "cartoons"
-        static let tvShows = "TVshows"
-    }
-    
+final class Section {
+
     var id = UUID()
+    
     var title: String
     var films: [Film]
+    
+    init(title: String, films: [Film]){
+        self.title = title
+        self.films = films
+        
+    }
+}
+
+//MARK: Hashable
+extension Section: Hashable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
@@ -29,9 +34,20 @@ struct Section: Hashable {
 }
 
 extension Section {
-    static var allSections: [Section] = [
-        Section(title: SectionTitle.movies, films: Film.allMovies),
-        Section(title: SectionTitle.cartoons, films: Film.allCartoons),
-        Section(title: SectionTitle.tvShows, films: Film.allShows)
-    ]
+    
+    private enum SectionTitle {
+        static let movies = "movies"
+        static let cartoons = "cartoons"
+        static let tvShows = "TVshows"
+    }
+    
+    static func allSections() -> [Section] {
+        
+        let sections = [
+            Section(title: SectionTitle.movies, films: Film.getAllMovies()),
+            Section(title: SectionTitle.cartoons, films: Film.getAllCartoons()),
+            Section(title: SectionTitle.tvShows, films: Film.getAllShows())
+        ]
+        return sections
+    }
 }

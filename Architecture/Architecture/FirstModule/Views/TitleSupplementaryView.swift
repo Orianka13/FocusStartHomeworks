@@ -40,7 +40,7 @@ final class TitleSupplementaryView: UICollectionReusableView {
         fatalError()
     }
     
-    func updateLabel(section: ViewSection) {
+    func updateLabel(section: Section) {
         self.label.text = section.title
     }
 }

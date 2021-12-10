@@ -53,8 +53,7 @@ private extension CollectionViewController {
         let cellRegistration = UICollectionView.CellRegistration<CollectionCell, Int> { [weak self] (cell, indexPath, film) in
             let section = self?.dataSource.snapshot().sectionIdentifiers[indexPath.section]
             let film = section?.films[indexPath.row]
-            let viewModel = ViewFilm(poster: film?.poster ?? Literal.filmName, name: film?.name ?? Literal.filmName)
-            cell.updateCellData(film: viewModel)
+            cell.updateCellData(film: film ?? Film(poster: film?.poster ?? Literal.filmName, name: film?.name ?? Literal.filmName))
         }
         
         self.dataSource = UICollectionViewDiffableDataSource<Section, Film>(collectionView: self.collectionView ?? UICollectionView()) {
@@ -66,8 +65,7 @@ private extension CollectionViewController {
         <TitleSupplementaryView>(elementKind: CollectionViewController.Literal.headerElementKind) { [weak self]
             (supplementaryView, string, indexPath) in
             let section = self?.dataSource.snapshot().sectionIdentifiers[indexPath.section]
-            let viewModel = ViewSection(title: section?.title ?? Literal.defaultSectionTitle, films: [ViewFilm(poster: Literal.filmName, name: Literal.filmName)])
-            supplementaryView.updateLabel(section: viewModel)
+            supplementaryView.updateLabel(section: section ?? Section(title: section?.title ?? Literal.defaultSectionTitle, films: [Film(poster: Literal.filmName, name: Literal.filmName)]))
         }
         
         self.dataSource.supplementaryViewProvider = { [weak self] (view, kind, index) in
@@ -78,7 +76,7 @@ private extension CollectionViewController {
     }
     
     func applySnapshot(animatingDifferences: Bool = true) {
-        let sections = Section.allSections
+        let sections = Section.allSections()
         var snapshot = Snapshot()
         snapshot.appendSections(sections)
         
