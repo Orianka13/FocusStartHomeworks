@@ -9,19 +9,29 @@
 /* Begin PBXBuildFile section */
 		590E39832763C9CA00F6711C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E39822763C9CA00F6711C /* AppDelegate.swift */; };
 		590E39852763C9CA00F6711C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E39842763C9CA00F6711C /* SceneDelegate.swift */; };
-		590E39872763C9CA00F6711C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E39862763C9CA00F6711C /* ViewController.swift */; };
+		590E39872763C9CA00F6711C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E39862763C9CA00F6711C /* MainViewController.swift */; };
 		590E398C2763C9CE00F6711C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 590E398B2763C9CE00F6711C /* Assets.xcassets */; };
 		590E398F2763C9CE00F6711C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 590E398D2763C9CE00F6711C /* LaunchScreen.storyboard */; };
+		590E39972763CDCE00F6711C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E39962763CDCE00F6711C /* MainView.swift */; };
+		590E39992763CDDA00F6711C /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E39982763CDDA00F6711C /* MainPresenter.swift */; };
+		590E399B2763CDE700F6711C /* MainAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E399A2763CDE700F6711C /* MainAssembly.swift */; };
+		590E399D2763CDFE00F6711C /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E399C2763CDFE00F6711C /* MainModel.swift */; };
+		590E399F2763CE1400F6711C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E399E2763CE1400F6711C /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		590E397F2763C9CA00F6711C /* NetworkDownloadImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkDownloadImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		590E39822763C9CA00F6711C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		590E39842763C9CA00F6711C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		590E39862763C9CA00F6711C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		590E39862763C9CA00F6711C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		590E398B2763C9CE00F6711C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		590E398E2763C9CE00F6711C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		590E39902763C9CE00F6711C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		590E39962763CDCE00F6711C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		590E39982763CDDA00F6711C /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		590E399A2763CDE700F6711C /* MainAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAssembly.swift; sourceTree = "<group>"; };
+		590E399C2763CDFE00F6711C /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		590E399E2763CE1400F6711C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +66,12 @@
 			children = (
 				590E39822763C9CA00F6711C /* AppDelegate.swift */,
 				590E39842763C9CA00F6711C /* SceneDelegate.swift */,
-				590E39862763C9CA00F6711C /* ViewController.swift */,
+				590E39862763C9CA00F6711C /* MainViewController.swift */,
+				590E399C2763CDFE00F6711C /* MainModel.swift */,
+				590E39962763CDCE00F6711C /* MainView.swift */,
+				590E39982763CDDA00F6711C /* MainPresenter.swift */,
+				590E399E2763CE1400F6711C /* Network.swift */,
+				590E399A2763CDE700F6711C /* MainAssembly.swift */,
 				590E398B2763C9CE00F6711C /* Assets.xcassets */,
 				590E398D2763C9CE00F6711C /* LaunchScreen.storyboard */,
 				590E39902763C9CE00F6711C /* Info.plist */,
@@ -134,8 +149,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				590E39872763C9CA00F6711C /* ViewController.swift in Sources */,
+				590E39992763CDDA00F6711C /* MainPresenter.swift in Sources */,
+				590E39872763C9CA00F6711C /* MainViewController.swift in Sources */,
+				590E399F2763CE1400F6711C /* Network.swift in Sources */,
+				590E39972763CDCE00F6711C /* MainView.swift in Sources */,
+				590E399D2763CDFE00F6711C /* MainModel.swift in Sources */,
 				590E39832763C9CA00F6711C /* AppDelegate.swift in Sources */,
+				590E399B2763CDE700F6711C /* MainAssembly.swift in Sources */,
 				590E39852763C9CA00F6711C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
