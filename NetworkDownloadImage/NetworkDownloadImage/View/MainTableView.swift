@@ -9,23 +9,25 @@ import UIKit
 
 protocol IMainTableView {
     
-    
+    func appendData(data: MainModel)
 }
 
 final class MainTableView: UIView {
     
     private enum Metrics {
         static let zeroSpacing = CGFloat(0)
-    
+        
     }
     
     private var tableView: UITableView = UITableView()
+  
+    var data = [MainModel]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.tableView.dataSource = self
-
+        
         self.tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseIdentifier)
         
         self.addView()
@@ -57,12 +59,14 @@ private extension MainTableView {
 //MARK: UITableViewDataSource
 extension MainTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        
+        return self.data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as! TableViewCell
-
+        let item = data[indexPath.row]
+        cell.imageView?.image = UIImage(data: item.getImageData())
         cell.selectionStyle = .none
         
         return cell
@@ -73,6 +77,11 @@ extension MainTableView: UITableViewDataSource {
 //MARK: IMainTableView
 extension MainTableView: IMainTableView {
     
-
+    func appendData(data: MainModel) {
+        self.data.append(data)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
     
 }
