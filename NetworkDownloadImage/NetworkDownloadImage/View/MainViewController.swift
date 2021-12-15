@@ -8,7 +8,7 @@
 import UIKit
 
 protocol IMainViewController: AnyObject {
-    
+    func showAlert(title: String, message: String)
 }
 
 class MainViewController: UIViewController {
@@ -47,4 +47,10 @@ class MainViewController: UIViewController {
 //MARK: IMainViewController
 extension MainViewController: IMainViewController {
     
+    func showAlert(title: String, message: String){
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+         alertController.addAction(okAction)
+         present(alertController, animated: true, completion: nil)
+    }
 }

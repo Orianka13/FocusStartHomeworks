@@ -9,7 +9,6 @@ import UIKit
 
 protocol IMainView {
     func getTableView() -> MainTableView
-    func setImage()
     var onTouchedHandler: ((String) -> Void)? { get set }
 }
 
@@ -49,6 +48,7 @@ final class MainView: UIView {
 private extension MainView {
     @objc func loadImage(){
         guard let url = self.searchField.text else { return  }
+        self.searchField.text = ""
         self.onTouchedHandler?(url)
     }
     
@@ -99,8 +99,4 @@ extension MainView: IMainView {
         return self.tableView
     }
     
-
-    func setImage(){
-        
-    }
 }

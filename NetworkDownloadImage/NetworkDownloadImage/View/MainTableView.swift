@@ -10,6 +10,7 @@ import UIKit
 protocol IMainTableView {
     
     func appendData(data: MainModel)
+    var setImageHandler: ((MainModel) -> Data)? { get set }
 }
 
 final class MainTableView: UIView {
@@ -21,7 +22,9 @@ final class MainTableView: UIView {
     
     private var tableView: UITableView = UITableView()
   
-    var data = [MainModel]()
+    private var data = [MainModel]()
+    
+    var setImageHandler: ((MainModel) -> Data)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,7 +69,9 @@ extension MainTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as! TableViewCell
         let item = data[indexPath.row]
-        cell.imageView?.image = UIImage(data: item.getImageData())
+        if let data = setImageHandler?(item) {
+        cell.imageView?.image = UIImage(data: data)
+        }
         cell.selectionStyle = .none
         
         return cell

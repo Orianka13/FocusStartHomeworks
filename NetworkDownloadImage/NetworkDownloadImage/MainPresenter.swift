@@ -37,6 +37,10 @@ private extension MainPresenter {
         self.view?.onTouchedHandler = { [weak self] url in
             self?.loadData(url: url)
         }
+        
+        self.tableView?.setImageHandler = { item in
+            return item.getImageData()
+        }
     }
     
     func loadData(url: String) {
@@ -45,14 +49,12 @@ private extension MainPresenter {
             case .success(let data):
                 DispatchQueue.main.async {
                     let model = MainModel(imageData: data)
-                    
                     self?.tableView?.appendData(data: model)
-                    
                 }
             case .failure(let error):
                 print("[NETWORK] error is: \(error)")
                 DispatchQueue.main.async {
-                    print("Загрузка закончена с ошибкой \(error.localizedDescription)")
+                    self?.controller?.showAlert(title: "Error", message: "Ошибка загрузки изображения: \(error.localizedDescription)")
                 }
             }
         }
@@ -69,6 +71,5 @@ extension MainPresenter: IMainPresenter {
         
         self.tableView = view.getTableView()
         self.setHandlers()
-        
     }
 }
