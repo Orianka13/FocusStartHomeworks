@@ -13,4 +13,7 @@
    <FileRef
       location = "group:myCV/../CollectionApp/CollectionApp.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:NetworkDownloadImage/NetworkDownloadImage.xcodeproj">
+   </FileRef>
 </Workspace>

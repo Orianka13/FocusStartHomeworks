@@ -32,7 +32,7 @@ final class MainView: UIView {
     private lazy var searchField: UITextField = {
         let field = UITextField()
         field.placeholder = Literal.placeholder
-        field.backgroundColor = .yellow
+        field.backgroundColor = .white
         return field
     }()
     
@@ -40,7 +40,7 @@ final class MainView: UIView {
         let button = UIButton()
         button.setTitle(Literal.buttonTitle, for: .normal)
         button.addTarget(self, action: #selector(loadImage), for: .touchUpInside)
-        button.backgroundColor = .red
+        button.backgroundColor = .systemCyan
         return button
     }()
     
