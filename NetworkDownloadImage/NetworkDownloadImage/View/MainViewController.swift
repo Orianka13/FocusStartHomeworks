@@ -11,7 +11,7 @@ protocol IMainViewController: AnyObject {
     func showAlert(title: String, message: String)
 }
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     private var mainView: MainView
     private var presenter: IMainPresenter?

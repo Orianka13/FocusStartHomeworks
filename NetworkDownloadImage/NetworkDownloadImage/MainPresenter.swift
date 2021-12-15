@@ -15,6 +15,11 @@ protocol IMainPresenter {
 
 final class MainPresenter {
     
+    private enum Literal {
+        static var errorTitle = "Error"
+        static var errorMessage = "Ошибка загрузки изображения: "
+    }
+    
     private var network: INetworkService
     private weak var controller: IMainViewController?
     private var view: IMainView?
@@ -52,9 +57,8 @@ private extension MainPresenter {
                     self?.tableView?.appendData(data: model)
                 }
             case .failure(let error):
-                print("[NETWORK] error is: \(error)")
                 DispatchQueue.main.async {
-                    self?.controller?.showAlert(title: "Error", message: "Ошибка загрузки изображения: \(error.localizedDescription)")
+                    self?.controller?.showAlert(title: Literal.errorTitle, message: Literal.errorMessage + error.localizedDescription)
                 }
             }
         }

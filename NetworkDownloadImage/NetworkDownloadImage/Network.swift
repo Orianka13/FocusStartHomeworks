@@ -39,7 +39,6 @@ extension NetworkService: INetworkService {
             if let data = data {
                 do {
                     let result = try Data(contentsOf: data)
-                    print("[NETWORK] \(response)")
                     completion(.success(result))
                 }
                 catch {

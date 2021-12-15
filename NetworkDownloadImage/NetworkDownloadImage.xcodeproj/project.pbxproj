@@ -19,7 +19,6 @@
 		590E399F2763CE1400F6711C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E399E2763CE1400F6711C /* Network.swift */; };
 		590E39A12763D3B700F6711C /* MainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E39A02763D3B700F6711C /* MainTableView.swift */; };
 		590E39A32763D3D300F6711C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E39A22763D3D300F6711C /* TableViewCell.swift */; };
-		590E39E62768A4C200F6711C /* DTOModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E39E52768A4C200F6711C /* DTOModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +36,6 @@
 		590E399E2763CE1400F6711C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		590E39A02763D3B700F6711C /* MainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableView.swift; sourceTree = "<group>"; };
 		590E39A22763D3D300F6711C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		590E39E52768A4C200F6711C /* DTOModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTOModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +73,6 @@
 				590E39A42763D3D900F6711C /* View */,
 				590E39982763CDDA00F6711C /* MainPresenter.swift */,
 				590E399E2763CE1400F6711C /* Network.swift */,
-				590E39E52768A4C200F6711C /* DTOModel.swift */,
 				590E399A2763CDE700F6711C /* MainAssembly.swift */,
 				590E398B2763C9CE00F6711C /* Assets.xcassets */,
 				590E398D2763C9CE00F6711C /* LaunchScreen.storyboard */,
@@ -178,7 +175,6 @@
 				590E39992763CDDA00F6711C /* MainPresenter.swift in Sources */,
 				590E39872763C9CA00F6711C /* MainViewController.swift in Sources */,
 				590E399F2763CE1400F6711C /* Network.swift in Sources */,
-				590E39E62768A4C200F6711C /* DTOModel.swift in Sources */,
 				590E39972763CDCE00F6711C /* MainView.swift in Sources */,
 				590E39A32763D3D300F6711C /* TableViewCell.swift in Sources */,
 				590E399D2763CDFE00F6711C /* MainModel.swift in Sources */,
