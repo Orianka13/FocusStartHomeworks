@@ -19,8 +19,10 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         self.window?.windowScene = windowScene
         
+        
         let vc = CompanyAssembly.build()
-        self.window?.rootViewController = vc
+        let navVC = UINavigationController(rootViewController: vc)
+        self.window?.rootViewController = navVC
         self.window?.makeKeyAndVisible()
         
         let context = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext
