@@ -21,14 +21,14 @@ final class MainPresenter {
         static var fileLocationMessage = "Данные загружены"
     }
     
-    private var network: NetworkService
+    private var network: INetworkService
     private weak var controller: IMainViewController?
     private var view: IMainView?
     
     private var tableView: MainTableView?
     
     struct Dependencies {
-        let network: NetworkService
+        let network: INetworkService
     }
     
     init(dependencies: Dependencies) {

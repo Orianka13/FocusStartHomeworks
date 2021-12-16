@@ -45,6 +45,7 @@ final class NetworkService: NSObject {
     }()
 }
 
+//MARK: INetworkService
 extension NetworkService: INetworkService {
     
     func loadData(url: String) {
@@ -57,6 +58,8 @@ extension NetworkService: INetworkService {
     }
 }
 
+
+//MARK: URLSessionDelegate
 extension NetworkService: URLSessionDelegate {
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         
@@ -72,6 +75,8 @@ extension NetworkService: URLSessionDelegate {
     }
 }
 
+
+//MARK: URLSessionDownloadDelegate
 extension NetworkService: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         DispatchQueue.main.async {
@@ -95,6 +100,8 @@ extension NetworkService: URLSessionDownloadDelegate {
     }
 }
 
+
+//MARK: URLSessionDataDelegate
 extension NetworkService: URLSessionDataDelegate {
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
