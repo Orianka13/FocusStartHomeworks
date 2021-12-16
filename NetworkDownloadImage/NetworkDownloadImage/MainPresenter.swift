@@ -18,16 +18,17 @@ final class MainPresenter {
     private enum Literal {
         static var errorTitle = "Error"
         static var errorMessage = "Ошибка загрузки изображения: "
+        static var fileLocationMessage = "Данные загружены"
     }
     
-    private var network: INetworkService
+    private var network: NetworkService
     private weak var controller: IMainViewController?
     private var view: IMainView?
     
     private var tableView: MainTableView?
     
     struct Dependencies {
-        let network: INetworkService
+        let network: NetworkService
     }
     
     init(dependencies: Dependencies) {
@@ -49,14 +50,21 @@ private extension MainPresenter {
     }
     
     func loadData(url: String) {
-        self.network.loadData(url: url) { [weak self] result in
-            switch result {
-            case .success(let data):
-                DispatchQueue.main.async {
-                    let model = MainModel(imageData: data)
-                    self?.tableView?.appendData(data: model)
-                }
-            case .failure(let error):
+        self.network.loadData(url: url)
+        
+        self.network.fileLocation = { [weak self] urlPass in
+            self?.controller?.showAlert(title: Literal.fileLocationMessage, message: urlPass)
+        }
+        
+        self.network.getData = { [weak self] data in
+            DispatchQueue.main.async {
+                let model = MainModel(imageData: data)
+                self?.tableView?.appendData(data: model)
+            }
+        }
+        
+        self.network.getError = { [weak self] error in
+            if let error = error {
                 DispatchQueue.main.async {
                     self?.controller?.showAlert(title: Literal.errorTitle, message: Literal.errorMessage + error.localizedDescription)
                 }
