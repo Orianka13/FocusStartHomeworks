@@ -22,6 +22,14 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let vc = CompanyAssembly.build()
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
+        
+        let context = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext
+        
+        vc.context = context
+    }
+    
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.saveContext()
     }
 }
 

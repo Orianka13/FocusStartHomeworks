@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import CoreData
 
 protocol ICompanyViewController: AnyObject {
     func showAlert()
 }
 
 final class CompanyViewController: UIViewController {
+    
+    var context: NSManagedObjectContext?
     
     private var companyView: CompanyView
     private var presenter: ICompanyPresenter?
