@@ -9,23 +9,35 @@
 /* Begin PBXBuildFile section */
 		59325E0A276B4DE2005A6A60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59325E09276B4DE2005A6A60 /* AppDelegate.swift */; };
 		59325E0C276B4DE2005A6A60 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59325E0B276B4DE2005A6A60 /* SceneDelegate.swift */; };
-		59325E0E276B4DE2005A6A60 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59325E0D276B4DE2005A6A60 /* ViewController.swift */; };
 		59325E14276B4DE2005A6A60 /* CompaniesList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 59325E12276B4DE2005A6A60 /* CompaniesList.xcdatamodeld */; };
 		59325E16276B4DE8005A6A60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59325E15276B4DE8005A6A60 /* Assets.xcassets */; };
 		59325E19276B4DE8005A6A60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59325E17276B4DE8005A6A60 /* LaunchScreen.storyboard */; };
 		59325E21276B4ED8005A6A60 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59325E20276B4ED8005A6A60 /* CoreDataService.swift */; };
+		59325E2E276B5144005A6A60 /* CompanyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59325E2D276B5144005A6A60 /* CompanyPresenter.swift */; };
+		59325E30276B514B005A6A60 /* CompanyAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59325E2F276B514B005A6A60 /* CompanyAssembly.swift */; };
+		59325E32276B515B005A6A60 /* CompanyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59325E31276B515B005A6A60 /* CompanyModel.swift */; };
+		59325E38276B51EB005A6A60 /* CompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59325E37276B51EB005A6A60 /* CompanyViewController.swift */; };
+		59325E3C276B55CF005A6A60 /* CompanyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59325E3B276B55CF005A6A60 /* CompanyView.swift */; };
+		59325E3E276B5620005A6A60 /* CompanyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59325E3D276B5620005A6A60 /* CompanyTableView.swift */; };
+		59325E40276B567B005A6A60 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59325E3F276B567B005A6A60 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		59325E06276B4DE2005A6A60 /* CompaniesList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CompaniesList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59325E09276B4DE2005A6A60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59325E0B276B4DE2005A6A60 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		59325E0D276B4DE2005A6A60 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		59325E13276B4DE2005A6A60 /* CompaniesList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CompaniesList.xcdatamodel; sourceTree = "<group>"; };
 		59325E15276B4DE8005A6A60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		59325E18276B4DE8005A6A60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		59325E1A276B4DE8005A6A60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59325E20276B4ED8005A6A60 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		59325E2D276B5144005A6A60 /* CompanyPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompanyPresenter.swift; path = "../../../../../Копии домашек/NetworkDownloadImage/NetworkDownloadImage/CompanyPresenter.swift"; sourceTree = "<group>"; };
+		59325E2F276B514B005A6A60 /* CompanyAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompanyAssembly.swift; path = "../../../../../Копии домашек/NetworkDownloadImage/NetworkDownloadImage/CompanyAssembly.swift"; sourceTree = "<group>"; };
+		59325E31276B515B005A6A60 /* CompanyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CompanyModel.swift; path = "../../../../../Копии домашек/NetworkDownloadImage/NetworkDownloadImage/CompanyModel.swift"; sourceTree = "<group>"; };
+		59325E37276B51EB005A6A60 /* CompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewController.swift; sourceTree = "<group>"; };
+		59325E3B276B55CF005A6A60 /* CompanyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyView.swift; sourceTree = "<group>"; };
+		59325E3D276B5620005A6A60 /* CompanyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyTableView.swift; sourceTree = "<group>"; };
+		59325E3F276B567B005A6A60 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +70,54 @@
 		59325E08276B4DE2005A6A60 /* CompaniesList */ = {
 			isa = PBXGroup;
 			children = (
-				59325E09276B4DE2005A6A60 /* AppDelegate.swift */,
+				59325E22276B5056005A6A60 /* Support */,
 				59325E20276B4ED8005A6A60 /* CoreDataService.swift */,
-				59325E0B276B4DE2005A6A60 /* SceneDelegate.swift */,
-				59325E0D276B4DE2005A6A60 /* ViewController.swift */,
+				59325E23276B5067005A6A60 /* CompanyModule */,
+				59325E24276B50B7005A6A60 /* EmloyeesList */,
 				59325E15276B4DE8005A6A60 /* Assets.xcassets */,
 				59325E17276B4DE8005A6A60 /* LaunchScreen.storyboard */,
 				59325E1A276B4DE8005A6A60 /* Info.plist */,
 				59325E12276B4DE2005A6A60 /* CompaniesList.xcdatamodeld */,
 			);
 			path = CompaniesList;
+			sourceTree = "<group>";
+		};
+		59325E22276B5056005A6A60 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				59325E09276B4DE2005A6A60 /* AppDelegate.swift */,
+				59325E0B276B4DE2005A6A60 /* SceneDelegate.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		59325E23276B5067005A6A60 /* CompanyModule */ = {
+			isa = PBXGroup;
+			children = (
+				59325E31276B515B005A6A60 /* CompanyModel.swift */,
+				59325E33276B51AB005A6A60 /* View */,
+				59325E2D276B5144005A6A60 /* CompanyPresenter.swift */,
+				59325E2F276B514B005A6A60 /* CompanyAssembly.swift */,
+			);
+			path = CompanyModule;
+			sourceTree = "<group>";
+		};
+		59325E24276B50B7005A6A60 /* EmloyeesList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = EmloyeesList;
+			sourceTree = "<group>";
+		};
+		59325E33276B51AB005A6A60 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				59325E37276B51EB005A6A60 /* CompanyViewController.swift */,
+				59325E3D276B5620005A6A60 /* CompanyTableView.swift */,
+				59325E3F276B567B005A6A60 /* TableViewCell.swift */,
+				59325E3B276B55CF005A6A60 /* CompanyView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,11 +190,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59325E0E276B4DE2005A6A60 /* ViewController.swift in Sources */,
+				59325E30276B514B005A6A60 /* CompanyAssembly.swift in Sources */,
 				59325E14276B4DE2005A6A60 /* CompaniesList.xcdatamodeld in Sources */,
+				59325E3C276B55CF005A6A60 /* CompanyView.swift in Sources */,
 				59325E21276B4ED8005A6A60 /* CoreDataService.swift in Sources */,
+				59325E2E276B5144005A6A60 /* CompanyPresenter.swift in Sources */,
+				59325E32276B515B005A6A60 /* CompanyModel.swift in Sources */,
 				59325E0A276B4DE2005A6A60 /* AppDelegate.swift in Sources */,
+				59325E3E276B5620005A6A60 /* CompanyTableView.swift in Sources */,
+				59325E40276B567B005A6A60 /* TableViewCell.swift in Sources */,
 				59325E0C276B4DE2005A6A60 /* SceneDelegate.swift in Sources */,
+				59325E38276B51EB005A6A60 /* CompanyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

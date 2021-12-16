@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class CoreDataService {
+final class CoreDataService {
     
     // MARK: - Core Data stack
 
