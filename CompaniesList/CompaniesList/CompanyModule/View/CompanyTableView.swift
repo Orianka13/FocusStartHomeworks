@@ -10,7 +10,9 @@ import UIKit
 protocol ICompanyTableView {
     
     func appendData(data: CompanyModel)
+    //func appendData(data: Company)
     var setCompanyNameHandler: ((CompanyModel) -> Data)? { get set }
+    func reloadTableView()
 }
 
 final class CompanyTableView: UIView {
@@ -23,7 +25,7 @@ final class CompanyTableView: UIView {
     private var tableView: UITableView = UITableView()
   
     private var data = [CompanyModel]()
-    
+    //private var data = [Company]()
     var setCompanyNameHandler: ((CompanyModel) -> Data)?
     
     override init(frame: CGRect) {
@@ -69,9 +71,8 @@ extension CompanyTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as! TableViewCell
         let item = data[indexPath.row]
-        if let data = setCompanyNameHandler?(item) {
-            //cell.textLabel?.text = data.description
-        }
+        cell.textLabel?.text = item.getName()
+        //cell.textLabel?.text = item.name
         cell.selectionStyle = .none
         
         return cell
@@ -87,6 +88,17 @@ extension CompanyTableView: ICompanyTableView {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+//    func appendData(data: Company) {
+//        self.data.append(data)
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
+//    }
+    
+    func reloadTableView(){
+        self.tableView.reloadData()
     }
     
 }

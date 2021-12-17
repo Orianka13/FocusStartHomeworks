@@ -41,10 +41,6 @@ final class CompanyView: UIView {
 
 //MARK: Private extension
 private extension CompanyView {
-    @objc func loadImage(){
-     
-
-    }
     
     func addView() {
 

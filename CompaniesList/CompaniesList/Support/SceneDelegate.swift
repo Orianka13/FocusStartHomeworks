@@ -25,9 +25,6 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.rootViewController = navVC
         self.window?.makeKeyAndVisible()
         
-        let context = (UIApplication.shared.delegate as? AppDelegate)?.coreDataStack.persistentContainer.viewContext
-        
-        vc.context = context
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {

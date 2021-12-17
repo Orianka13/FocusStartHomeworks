@@ -11,13 +11,15 @@ import CoreData
 protocol ICompanyViewController: AnyObject {
     func showAlert()
     func setNavBar()
-    var onTouchedHandler: (() -> Void)? { get set }
+    var onTouchedHandler: ((String) -> Void)? { get set }
+    var fetchRequestHandler: (() -> Void)? { get set }
 }
 
 final class CompanyViewController: UIViewController {
     
-    var context: NSManagedObjectContext?
-    var onTouchedHandler: (() -> Void)?
+    
+    var onTouchedHandler: ((String) -> Void)?
+    var fetchRequestHandler: (() -> Void)?
     
     private var companyView: CompanyView
     private var presenter: ICompanyPresenter?
@@ -39,6 +41,14 @@ final class CompanyViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.presenter?.loadView(controller: self, view: self.companyView)
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.fetchRequestHandler?()
+        
     }
     
     override func viewDidLoad() {
@@ -64,7 +74,9 @@ extension CompanyViewController: ICompanyViewController {
         
         let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] _ in
             guard let textField = alertController.textFields?.first, textField.text != "" else { return }
-            self?.onTouchedHandler?()
+            guard let text = textField.text else { return }
+            self?.onTouchedHandler?(text)
+            
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
