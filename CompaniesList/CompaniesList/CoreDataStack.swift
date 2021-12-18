@@ -9,9 +9,9 @@ import Foundation
 import CoreData
 
 final class CoreDataStack {
-
+    
     lazy var persistentContainer: NSPersistentContainer = {
-     
+        
         let container = NSPersistentContainer(name: "CompaniesList")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -20,22 +20,31 @@ final class CoreDataStack {
         })
         return container
     }()
-
+    
     // MARK: - Core Data Saving support
     
     func remove(company: CompanyModel, completion: @escaping () -> Void) {
         self.persistentContainer.performBackgroundTask { context in
-            let fetchRequest: NSFetchRequest<Company> = Company.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "\(#keyPath(Company.uid)) = %@", company.uid.uuidString)
-            if let object = try? context.fetch(fetchRequest).first {
-                context.delete(object)
-                do {
-                    try context.save()
-                    DispatchQueue.main.async { completion() }
-                } catch let error as NSError {
-
-                    print(error.localizedDescription)
+            let fetchRequestCompany: NSFetchRequest<Company> = Company.fetchRequest()
+            fetchRequestCompany.predicate = NSPredicate(format: "\(#keyPath(Company.uid)) = %@", company.uid.uuidString)
+            
+            let fetchRequestEmployee: NSFetchRequest<Employee> = Employee.fetchRequest()
+            fetchRequestEmployee.predicate = NSPredicate(format: "ANY company.uid = '\(company.uid)'")
+            
+            if let object = try? context.fetch(fetchRequestCompany).first {
+                if let employeeObject = try? context.fetch(fetchRequestEmployee).first {
                     
+                    context.delete(object)
+                    context.delete(employeeObject)
+                    
+                    do {
+                        try context.save()
+                        DispatchQueue.main.async { completion() }
+                    } catch let error as NSError {
+                        
+                        print(error.localizedDescription)
+                        
+                    }
                 }
             }
         }
@@ -51,14 +60,14 @@ final class CoreDataStack {
                     try context.save()
                     DispatchQueue.main.async { completion() }
                 } catch let error as NSError {
-
+                    
                     print(error.localizedDescription)
                     
                 }
             }
         }
     }
-
+    
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
