@@ -10,6 +10,7 @@ import CoreData
 
 protocol IEmployeeViewController: AnyObject {
     func showAlert()
+    func showEditAlert(name: String, age: String, exp: String?)
     func setNavBar()
     var onTouchedHandler: ((String, String, String) -> Void)? { get set }
     var fetchRequestHandler: (() -> Void)? { get set }
@@ -77,6 +78,35 @@ extension EmployeeViewController: IEmployeeViewController {
         alertController.textFields?[0].placeholder = "Имя"
         alertController.textFields?[1].placeholder = "Возраст"
         alertController.textFields?[2].placeholder = "Стаж"
+    
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+            let nameTF = alertController.textFields?[0]
+            let ageTF = alertController.textFields?[1]
+            let expTF = alertController.textFields?[2]
+            
+            guard let name = nameTF?.text else { return }
+            guard let age = ageTF?.text else { return }
+            guard let exp = expTF?.text else { return }
+            self?.onTouchedHandler?(name, age, exp)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func showEditAlert(name: String, age: String, exp: String?){
+        let alertController = UIAlertController(title: "Отредактируйте сотрудника", message: nil, preferredStyle: .alert)
+        
+        alertController.addTextField()
+        alertController.addTextField()
+        alertController.addTextField()
+        
+        alertController.textFields?[0].text = name
+        alertController.textFields?[1].text = age
+        alertController.textFields?[2].text = exp
     
         
         let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] _ in

@@ -38,6 +38,7 @@ final class EmployeeTableView: UIView {
         super.init(frame: frame)
         
         self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         self.tableView.register(EmployeeTableViewCell.self, forCellReuseIdentifier: EmployeeTableViewCell.reuseIdentifier)
         
@@ -92,6 +93,7 @@ extension EmployeeTableView: UITableViewDataSource {
 }
 
 extension EmployeeTableView: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.didSelectRowAtHandler?(indexPath)
     }

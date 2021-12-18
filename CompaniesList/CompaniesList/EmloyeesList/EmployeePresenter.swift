@@ -98,10 +98,10 @@ private extension EmployeePresenter {
         }
         
         self.tableView?.didSelectRowAtHandler = { [weak self] indexPath in
-            //let item = self?.data[indexPath.row]
-            //guard let uid = item?.uid else { return }
-            //let vc = EmployeeAssembly.build(companyUid: uid)
-            //self?.controller?.navigationController?.pushViewController(vc, animated: true)
+            let item = self?.data[indexPath.row]
+            self?.controller?.showEditAlert(name: item?.getName() ?? "Noname",
+                                            age: item?.getAge() ?? "0",
+                                            exp: item?.getExperience() ?? "0")
         }
         
         self.tableView?.numberOfRowsInSectionHandler = { [weak self] in

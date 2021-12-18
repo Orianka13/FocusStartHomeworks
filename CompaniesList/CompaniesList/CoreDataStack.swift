@@ -68,6 +68,20 @@ final class CoreDataStack {
         }
     }
     
+    func update(employee: EmployeeModel, completion: @escaping () -> Void) {
+        self.persistentContainer.performBackgroundTask { context in
+            let fetchRequest: NSFetchRequest<Employee> = Employee.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "\(#keyPath(Employee.uid)) = %@", employee.uid.uuidString)
+            if let object = try? context.fetch(fetchRequest).first {
+                object.name = employee.getName()
+                object.age = employee.getAge()
+                object.experience = employee.getExperience()
+            }
+            try? context.save()
+            DispatchQueue.main.async { completion() }
+        }
+    }
+    
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
