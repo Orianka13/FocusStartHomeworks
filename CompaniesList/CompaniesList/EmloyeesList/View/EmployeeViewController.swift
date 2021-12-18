@@ -11,14 +11,14 @@ import CoreData
 protocol IEmployeeViewController: AnyObject {
     func showAlert()
     func setNavBar()
-    var onTouchedHandler: ((String) -> Void)? { get set }
+    var onTouchedHandler: ((String, String, String) -> Void)? { get set }
     var fetchRequestHandler: (() -> Void)? { get set }
 }
 
 final class EmployeeViewController: UIViewController {
     
     
-    var onTouchedHandler: ((String) -> Void)?
+    var onTouchedHandler: ((String, String, String) -> Void)?
     var fetchRequestHandler: (() -> Void)?
     
     private var employeeView: EmployeeView
@@ -58,7 +58,7 @@ final class EmployeeViewController: UIViewController {
         
     }
     
-    @objc private func addNewCompany() {
+    @objc private func addNewEmployee() {
         showAlert()
     }
     
@@ -68,15 +68,26 @@ final class EmployeeViewController: UIViewController {
 extension EmployeeViewController: IEmployeeViewController {
     
     func showAlert(){
-        let alertController = UIAlertController(title: "Добавьте компанию", message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Добавьте сотрудника", message: nil, preferredStyle: .alert)
         
         alertController.addTextField()
+        alertController.addTextField()
+        alertController.addTextField()
+        
+        alertController.textFields?[0].placeholder = "Имя"
+        alertController.textFields?[1].placeholder = "Возраст"
+        alertController.textFields?[2].placeholder = "Стаж"
+    
         
         let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] _ in
-            guard let textField = alertController.textFields?.first, textField.text != "" else { return }
-            guard let text = textField.text else { return }
-            self?.onTouchedHandler?(text)
+            let nameTF = alertController.textFields?[0]
+            let ageTF = alertController.textFields?[1]
+            let expTF = alertController.textFields?[2]
             
+            guard let name = nameTF?.text else { return }
+            guard let age = ageTF?.text else { return }
+            guard let exp = expTF?.text else { return }
+            self?.onTouchedHandler?(name, age, exp)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -86,7 +97,7 @@ extension EmployeeViewController: IEmployeeViewController {
     }
     
     func setNavBar(){
-        self.navigationItem.title = "Companies List"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addNewCompany))
+        self.navigationItem.title = "Employees"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addNewEmployee))
     }
 }

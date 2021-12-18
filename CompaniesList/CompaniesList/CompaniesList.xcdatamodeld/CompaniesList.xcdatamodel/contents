@@ -6,8 +6,8 @@
         <relationship name="employees" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Employee" inverseName="company" inverseEntity="Employee"/>
     </entity>
     <entity name="Employee" representedClassName="Employee" syncable="YES" codeGenerationType="class">
-        <attribute name="age" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="experience" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="age" attributeType="String"/>
+        <attribute name="experience" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="uid" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="company" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="employees" inverseEntity="Company"/>

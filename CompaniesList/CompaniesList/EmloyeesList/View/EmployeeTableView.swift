@@ -9,9 +9,14 @@ import UIKit
 
 protocol IEmployeeTableView {
     
-    func appendData(data: EmployeeModel)
-    var setCompanyNameHandler: ((EmployeeModel) -> Data)? { get set }
     func reloadTableView()
+    
+    func getTableView() -> UITableView
+    
+    var numberOfRowsInSectionHandler: (() -> Int)? { get set }
+    var didSelectRowAtHandler: ((IndexPath) -> Void)? { get set }
+    var cellForRowAtHandler: ((IndexPath) -> String)? { get set }
+    
 }
 
 final class EmployeeTableView: UIView {
@@ -23,8 +28,9 @@ final class EmployeeTableView: UIView {
     
     private var tableView: UITableView = UITableView()
   
-    private var data = [EmployeeModel]()
-    var setCompanyNameHandler: ((EmployeeModel) -> Data)?
+    var numberOfRowsInSectionHandler: (() -> Int)?
+    var didSelectRowAtHandler: ((IndexPath) -> Void)?
+    var cellForRowAtHandler: ((IndexPath) -> String)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -62,17 +68,23 @@ private extension EmployeeTableView {
 //MARK: UITableViewDataSource
 extension EmployeeTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return self.data.count
+        let count = numberOfRowsInSectionHandler?()
+        return count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as! TableViewCell
-        let item = data[indexPath.row]
-        cell.textLabel?.text = item.getName()
+        let cell = tableView.dequeueReusableCell(withIdentifier: EmployeeTableViewCell.reuseIdentifier, for: indexPath) as! EmployeeTableViewCell
+        let name = self.cellForRowAtHandler?(indexPath)
+        cell.textLabel?.text = name
         cell.selectionStyle = .none
         
         return cell
+    }
+}
+
+extension EmployeeTableView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.didSelectRowAtHandler?(indexPath)
     }
 }
 
@@ -80,19 +92,12 @@ extension EmployeeTableView: UITableViewDataSource {
 //MARK: ICompanyTableView
 extension EmployeeTableView: IEmployeeTableView {
     
-    func appendData(data: EmployeeModel) {
-        self.data.append(data)
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    
-    func reloadDataArray(array: [EmployeeModel]){
-        self.data = array
-    }
-    
     func reloadTableView(){
         self.tableView.reloadData()
+    }
+    
+    func getTableView() -> UITableView {
+        return self.tableView
     }
     
 }

@@ -9,9 +9,9 @@ import UIKit
 
 final class EmployeeAssembly {
     
-    static func build() -> EmployeeViewController {
+    static func build(companyUid: UUID) -> EmployeeViewController {
         
-        let presenter = EmployeePresenter()
+        let presenter = EmployeePresenter(companyUid: companyUid)
         let controller = EmployeeViewController(dependencies: .init(presenter: presenter))
         
         return controller

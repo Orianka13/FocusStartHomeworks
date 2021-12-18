@@ -9,23 +9,37 @@ import Foundation
 
 protocol IEmployeeModel {
     func getName() -> String
-    func getAge() -> Double
-    func getExperience() -> Double?
+    func getAge() -> String
+    func getExperience() -> String?
 }
 
 final class EmployeeModel {
+    private(set) var uid: UUID
+    private(set) var companyId: UUID
+    private var name: String
+    private var age: String
+    private var experience: String?
     
-    private let name: String
-    private let age: Double
-    private let experience: Double?
     
-    init(employee: Employee){
+    init?(employee: Employee){
         self.name = employee.name ?? "Egor"
-        self.age = employee.age
+        self.age = employee.age ?? "0"
         self.experience = employee.experience
         
+        guard let uid = employee.uid else { return nil }
+        self.uid = uid
+        
+        guard let companyId = employee.company?.uid else { return nil }
+        self.companyId = companyId
     }
     
+    init(name: String, age: String, experience: String?, companyId: UUID) {
+        self.name = name
+        self.age = age
+        self.experience = experience
+        self.companyId = companyId
+        self.uid = UUID()
+    }
 }
 
 //MARK: IEmployeeModel
@@ -34,13 +48,11 @@ extension EmployeeModel: IEmployeeModel {
         return self.name
     }
     
-    func getAge() -> Double {
+    func getAge() -> String {
         return self.age
     }
     
-    func getExperience() -> Double? {
+    func getExperience() -> String? {
         return self.experience
     }
-    
-   
 }

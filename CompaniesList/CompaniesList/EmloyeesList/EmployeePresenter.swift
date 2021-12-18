@@ -20,12 +20,18 @@ final class EmployeePresenter {
      
     }
     
+    private let companyUid: UUID
+    
+    init(companyUid: UUID) {
+        self.companyUid = companyUid
+    }
  
     private weak var controller: IEmployeeViewController?
     private var view: IEmployeeView?
     
     private var tableView: EmployeeTableView?
     private var employees = [Employee]()
+    private var data = [EmployeeModel]()
    
  
 }
@@ -33,43 +39,77 @@ final class EmployeePresenter {
 //MARK: Private extension
 private extension EmployeePresenter {
     func setHandlers() {
-        self.controller?.onTouchedHandler = {[weak self] name in
-//            guard let context = self?.getContext() else { return }
-//
-//            guard let entity = NSEntityDescription.entity(forEntityName: "Employee", in: context) else { return }
-//
-//            let taskObject = Employee(entity: entity, insertInto: context)
-//            taskObject.name = name
-//            //let mo = EmployeeModel(employee: taskObject)
-//
-//            do {
-//                try context.save()
-//                self?.employees.append(taskObject)
-//                //self?.tableView?.appendData(data: mo)
-//
-//            } catch let error as NSError {
-//                print(error.localizedDescription)
-//            }
+        
+        self.controller?.onTouchedHandler = { [weak self] name, age, experience in
+            guard let context = self?.getContext() else { return }
+            
+            guard let companyId = self?.companyUid else { return }
+            
+            let model = EmployeeModel(name: name, age: age, experience: experience, companyId: companyId)
+            
+            let fetchRequest: NSFetchRequest<Company> = Company.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "\(#keyPath(Company.uid)) = '\(model.companyId)'")
+            
+            guard let company = try? context.fetch(fetchRequest).first else { return }
+            guard let entity = NSEntityDescription.entity(forEntityName: "Employee", in: context) else { return }
+            
+            let taskObject = Employee(entity: entity, insertInto: context)
+            
+            taskObject.name = model.getName()
+            taskObject.uid = model.uid
+            taskObject.experience = model.getExperience()
+            taskObject.age = model.getAge()
+            taskObject.company = company
+            
+            do {
+                try context.save()
+                self?.employees.append(taskObject)
+                self?.data.append(model)
+                self?.tableView?.reloadTableView()
+                
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
         }
         
         self.controller?.fetchRequestHandler = { [weak self] in
             guard let context = self?.getContext() else { return }
+            
             let fetchRequest: NSFetchRequest<Employee> = Employee.fetchRequest()
-            let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
+            guard let id = self?.companyUid else { return }
+            fetchRequest.predicate = NSPredicate(format: "ANY company.uid = '\(id)'")
+            
+       
+            let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
             fetchRequest.sortDescriptors = [sortDescriptor]
             
             do {
                 self?.employees = try context.fetch(fetchRequest)
-                //var modelData = [CompanyModel]()
-                
+                var array = [EmployeeModel]()
                 self?.employees.forEach({ employee in
-                    //let modelObject = CompanyModel(company: company)
-                    //modelData.append(modelObject)
-                    //self?.tableView?.reloadDataArray(array: modelData)
+                    guard let modelObject = EmployeeModel(employee: employee) else { return }
+                    array.append(modelObject)
+                    self?.data = array
                 })
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
+        }
+        
+        self.tableView?.didSelectRowAtHandler = { [weak self] indexPath in
+            //let item = self?.data[indexPath.row]
+            //guard let uid = item?.uid else { return }
+            //let vc = EmployeeAssembly.build(companyUid: uid)
+            //self?.controller?.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        self.tableView?.numberOfRowsInSectionHandler = { [weak self] in
+            return self?.data.count ?? 0
+        }
+        
+        self.tableView?.cellForRowAtHandler = { [weak self] indexPath in
+            let item = self?.data[indexPath.row]
+            return item?.getName() ?? "No company"
         }
     }
     

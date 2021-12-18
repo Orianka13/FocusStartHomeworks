@@ -10,7 +10,7 @@ import UIKit
 protocol ICompanyTableView {
     
     var setCompanyNameHandler: ((CompanyModel) -> Data)? { get set }
-    var didSelectRowAtHandler: (() -> Void)? { get set }
+    var didSelectRowAtHandler: ((IndexPath) -> Void)? { get set }
     var deleteItemHandler: ((IndexPath) -> Void)? { get set }
     var numberOfRowsInSectionHandler: (() -> Int)? { get set }
     var cellForRowAtHandler: ((IndexPath) -> String)? { get set }
@@ -29,7 +29,7 @@ final class CompanyTableView: UIView {
   
     
     var setCompanyNameHandler: ((CompanyModel) -> Data)?
-    var didSelectRowAtHandler: (() -> Void)?
+    var didSelectRowAtHandler: ((IndexPath) -> Void)?
     var deleteItemHandler: ((IndexPath) -> Void)?
     var numberOfRowsInSectionHandler: (() -> Int)?
     var cellForRowAtHandler: ((IndexPath) -> String)?
@@ -94,7 +94,7 @@ extension CompanyTableView: UITableViewDataSource {
 
 extension CompanyTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.didSelectRowAtHandler?()
+        self.didSelectRowAtHandler?(indexPath)
     }
 }
 
