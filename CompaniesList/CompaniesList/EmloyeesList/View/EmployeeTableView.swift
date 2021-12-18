@@ -16,6 +16,7 @@ protocol IEmployeeTableView {
     var numberOfRowsInSectionHandler: (() -> Int)? { get set }
     var didSelectRowAtHandler: ((IndexPath) -> Void)? { get set }
     var cellForRowAtHandler: ((IndexPath) -> String)? { get set }
+    var deleteItemHandler: ((IndexPath) -> Void)? { get set }
     
 }
 
@@ -31,6 +32,7 @@ final class EmployeeTableView: UIView {
     var numberOfRowsInSectionHandler: (() -> Int)?
     var didSelectRowAtHandler: ((IndexPath) -> Void)?
     var cellForRowAtHandler: ((IndexPath) -> String)?
+    var deleteItemHandler: ((IndexPath) -> Void)? 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,6 +81,13 @@ extension EmployeeTableView: UITableViewDataSource {
         cell.selectionStyle = .none
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.deleteItemHandler?(indexPath)
+       
+        }
     }
 }
 

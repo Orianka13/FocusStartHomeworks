@@ -40,6 +40,24 @@ final class CoreDataStack {
             }
         }
     }
+    
+    func remove(employee: EmployeeModel, completion: @escaping () -> Void) {
+        self.persistentContainer.performBackgroundTask { context in
+            let fetchRequest: NSFetchRequest<Employee> = Employee.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "\(#keyPath(Employee.uid)) = %@", employee.uid.uuidString)
+            if let object = try? context.fetch(fetchRequest).first {
+                context.delete(object)
+                do {
+                    try context.save()
+                    DispatchQueue.main.async { completion() }
+                } catch let error as NSError {
+
+                    print(error.localizedDescription)
+                    
+                }
+            }
+        }
+    }
 
     func saveContext () {
         let context = persistentContainer.viewContext

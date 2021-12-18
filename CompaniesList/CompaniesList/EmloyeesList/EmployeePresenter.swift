@@ -28,6 +28,7 @@ final class EmployeePresenter {
  
     private weak var controller: IEmployeeViewController?
     private var view: IEmployeeView?
+    private let coreDS = CoreDataStack()
     
     private var tableView: EmployeeTableView?
     private var employees = [Employee]()
@@ -111,11 +112,19 @@ private extension EmployeePresenter {
             let item = self?.data[indexPath.row]
             return item?.getName() ?? "No company"
         }
+        
+        self.tableView?.deleteItemHandler = { [weak self] indexPath in
+            let uid = self?.data[indexPath.row].uid
+            guard let employee = self?.data.first(where: { $0.uid == uid }) else { return }
+            self?.coreDS.remove(employee: employee) { [weak self] in
+                self?.controller?.fetchRequestHandler?()
+                self?.tableView?.reloadTableView()
+            }
+        }
     }
     
     private func getContext() -> NSManagedObjectContext {
-        let coreDS = CoreDataStack()
-        return coreDS.persistentContainer.viewContext
+        return self.coreDS.persistentContainer.viewContext
     }
 }
 
