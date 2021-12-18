@@ -22,6 +22,24 @@ final class CoreDataStack {
     }()
 
     // MARK: - Core Data Saving support
+    
+    func remove(company: CompanyModel, completion: @escaping () -> Void) {
+        self.persistentContainer.performBackgroundTask { context in
+            let fetchRequest: NSFetchRequest<Company> = Company.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "\(#keyPath(Company.uid)) = %@", company.uid.uuidString)
+            if let object = try? context.fetch(fetchRequest).first {
+                context.delete(object)
+                do {
+                    try context.save()
+                    DispatchQueue.main.async { completion() }
+                } catch let error as NSError {
+
+                    print(error.localizedDescription)
+                    
+                }
+            }
+        }
+    }
 
     func saveContext () {
         let context = persistentContainer.viewContext

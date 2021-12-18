@@ -9,10 +9,13 @@ import UIKit
 
 protocol ICompanyTableView {
     
-    func appendData(data: CompanyModel)
-    //func appendData(data: Company)
     var setCompanyNameHandler: ((CompanyModel) -> Data)? { get set }
+    var didSelectRowAtHandler: (() -> Void)? { get set }
+    var deleteItemHandler: ((IndexPath) -> Void)? { get set }
+    var numberOfRowsInSectionHandler: (() -> Int)? { get set }
+    var cellForRowAtHandler: ((IndexPath) -> String)? { get set }
     func reloadTableView()
+    func getTableView() -> UITableView
 }
 
 final class CompanyTableView: UIView {
@@ -24,14 +27,18 @@ final class CompanyTableView: UIView {
     
     private var tableView: UITableView = UITableView()
   
-    private var data = [CompanyModel]()
-    //private var data = [Company]()
+    
     var setCompanyNameHandler: ((CompanyModel) -> Data)?
+    var didSelectRowAtHandler: (() -> Void)?
+    var deleteItemHandler: ((IndexPath) -> Void)?
+    var numberOfRowsInSectionHandler: (() -> Int)?
+    var cellForRowAtHandler: ((IndexPath) -> String)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         self.tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseIdentifier)
         
@@ -64,18 +71,30 @@ private extension CompanyTableView {
 //MARK: UITableViewDataSource
 extension CompanyTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return self.data.count
+        let count = numberOfRowsInSectionHandler?()
+        return count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as! TableViewCell
-        let item = data[indexPath.row]
-        cell.textLabel?.text = item.getName()
-        //cell.textLabel?.text = item.name
+        let name = self.cellForRowAtHandler?(indexPath)
+        cell.textLabel?.text = name
         cell.selectionStyle = .none
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.deleteItemHandler?(indexPath)
+       
+        }
+    }
+}
+
+extension CompanyTableView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.didSelectRowAtHandler?()
     }
 }
 
@@ -83,22 +102,11 @@ extension CompanyTableView: UITableViewDataSource {
 //MARK: ICompanyTableView
 extension CompanyTableView: ICompanyTableView {
     
-    func appendData(data: CompanyModel) {
-        self.data.append(data)
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    
-//    func appendData(data: Company) {
-//        self.data.append(data)
-//        DispatchQueue.main.async {
-//            self.tableView.reloadData()
-//        }
-//    }
-    
     func reloadTableView(){
         self.tableView.reloadData()
     }
     
+    func getTableView() -> UITableView {
+        return self.tableView
+    }
 }

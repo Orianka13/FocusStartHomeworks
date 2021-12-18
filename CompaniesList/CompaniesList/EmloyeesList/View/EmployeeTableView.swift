@@ -69,7 +69,7 @@ extension EmployeeTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.reuseIdentifier, for: indexPath) as! TableViewCell
         let item = data[indexPath.row]
-        //cell.textLabel?.text = item.getName()
+        cell.textLabel?.text = item.getName()
         cell.selectionStyle = .none
         
         return cell

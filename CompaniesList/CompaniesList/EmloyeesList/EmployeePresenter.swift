@@ -34,22 +34,22 @@ final class EmployeePresenter {
 private extension EmployeePresenter {
     func setHandlers() {
         self.controller?.onTouchedHandler = {[weak self] name in
-            guard let context = self?.getContext() else { return }
-            
-            guard let entity = NSEntityDescription.entity(forEntityName: "Employee", in: context) else { return }
-            
-            let taskObject = Employee(entity: entity, insertInto: context)
-            taskObject.name = name
-            //let mo = EmployeeModel(employee: taskObject)
-            
-            do {
-                try context.save()
-                self?.employees.append(taskObject)
-                //self?.tableView?.appendData(data: mo)
-                
-            } catch let error as NSError {
-                print(error.localizedDescription)
-            }
+//            guard let context = self?.getContext() else { return }
+//
+//            guard let entity = NSEntityDescription.entity(forEntityName: "Employee", in: context) else { return }
+//
+//            let taskObject = Employee(entity: entity, insertInto: context)
+//            taskObject.name = name
+//            //let mo = EmployeeModel(employee: taskObject)
+//
+//            do {
+//                try context.save()
+//                self?.employees.append(taskObject)
+//                //self?.tableView?.appendData(data: mo)
+//
+//            } catch let error as NSError {
+//                print(error.localizedDescription)
+//            }
         }
         
         self.controller?.fetchRequestHandler = { [weak self] in
