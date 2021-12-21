@@ -30,6 +30,10 @@ final class EmployeeViewController: UIViewController {
         static let editAlertTitle = "Отредактируйте сотрудника"
         static let navigationTitle = "Employees"
         static let imageSystemName = "plus"
+        
+        static let errorTitle = "Error"
+        static let errorMessage = "Введите все обязательные поля!"
+        static let okTitle = "OK"
     }
     
     var onTouchedHandler: ((String, String, String) -> Void)?
@@ -72,11 +76,24 @@ final class EmployeeViewController: UIViewController {
         self.view.backgroundColor = .systemGreen
         
     }
-    
-    @objc private func addNewEmployee() {
+}
+
+//MARK: Private extension
+private extension EmployeeViewController {
+    @objc func addNewEmployee() {
         showAlert()
     }
+    
+    func showErrorAlert(){
+        let alertController = UIAlertController(title: Literal.errorTitle, message: Literal.errorMessage, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: Literal.okTitle, style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
 }
+
+
+
 
 //MARK: IEmployeeViewController
 extension EmployeeViewController: IEmployeeViewController {
@@ -98,10 +115,17 @@ extension EmployeeViewController: IEmployeeViewController {
             let ageTF = alertController.textFields?[1]
             let expTF = alertController.textFields?[2]
             
-            guard let name = nameTF?.text else { return }
-            guard let age = ageTF?.text else { return }
-            guard let exp = expTF?.text else { return }
-            self?.onTouchedHandler?(name, age, exp)
+            let nameCount = nameTF?.text?.count ?? 0
+            let ageCount = ageTF?.text?.count ?? 0
+            if nameCount > 1, ageCount > 1 {
+                guard let name = nameTF?.text else { return }
+                guard let age = ageTF?.text else { return }
+                guard let exp = expTF?.text else { return }
+                self?.onTouchedHandler?(name, age, exp)
+            }
+            else {
+                self?.showErrorAlert()
+            }
         }
         
         let cancelAction = UIAlertAction(title: Literal.cancelTitle, style: .cancel, handler: nil)

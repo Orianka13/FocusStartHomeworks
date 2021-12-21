@@ -27,6 +27,10 @@
 		59325E4A276D0D4A005A6A60 /* EmployeeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59325E49276D0D4A005A6A60 /* EmployeeTableView.swift */; };
 		59325E4C276D0D58005A6A60 /* EmployeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59325E4B276D0D58005A6A60 /* EmployeeTableViewCell.swift */; };
 		59325E4E276D0D66005A6A60 /* EmployeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59325E4D276D0D66005A6A60 /* EmployeeView.swift */; };
+		593408B227722A1A00E0974E /* Company+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593408AE27722A1A00E0974E /* Company+CoreDataClass.swift */; };
+		593408B327722A1A00E0974E /* Company+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593408AF27722A1A00E0974E /* Company+CoreDataProperties.swift */; };
+		593408B427722A1A00E0974E /* Employee+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593408B027722A1A00E0974E /* Employee+CoreDataClass.swift */; };
+		593408B527722A1A00E0974E /* Employee+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593408B127722A1A00E0974E /* Employee+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,10 @@
 		59325E49276D0D4A005A6A60 /* EmployeeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTableView.swift; sourceTree = "<group>"; };
 		59325E4B276D0D58005A6A60 /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
 		59325E4D276D0D66005A6A60 /* EmployeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeView.swift; sourceTree = "<group>"; };
+		593408AE27722A1A00E0974E /* Company+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Company+CoreDataClass.swift"; sourceTree = "<group>"; };
+		593408AF27722A1A00E0974E /* Company+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Company+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		593408B027722A1A00E0974E /* Employee+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataClass.swift"; sourceTree = "<group>"; };
+		593408B127722A1A00E0974E /* Employee+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,13 +93,12 @@
 			isa = PBXGroup;
 			children = (
 				59325E22276B5056005A6A60 /* Support */,
-				59325E20276B4ED8005A6A60 /* CoreDataStack.swift */,
+				593408B627722B1F00E0974E /* CoreData */,
 				59325E23276B5067005A6A60 /* CompanyModule */,
 				59325E24276B50B7005A6A60 /* EmloyeesList */,
 				59325E15276B4DE8005A6A60 /* Assets.xcassets */,
 				59325E17276B4DE8005A6A60 /* LaunchScreen.storyboard */,
 				59325E1A276B4DE8005A6A60 /* Info.plist */,
-				59325E12276B4DE2005A6A60 /* CompaniesList.xcdatamodeld */,
 			);
 			path = CompaniesList;
 			sourceTree = "<group>";
@@ -147,6 +154,19 @@
 				59325E4D276D0D66005A6A60 /* EmployeeView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		593408B627722B1F00E0974E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				59325E20276B4ED8005A6A60 /* CoreDataStack.swift */,
+				59325E12276B4DE2005A6A60 /* CompaniesList.xcdatamodeld */,
+				593408AE27722A1A00E0974E /* Company+CoreDataClass.swift */,
+				593408AF27722A1A00E0974E /* Company+CoreDataProperties.swift */,
+				593408B027722A1A00E0974E /* Employee+CoreDataClass.swift */,
+				593408B127722A1A00E0974E /* Employee+CoreDataProperties.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,13 +249,17 @@
 				59325E4A276D0D4A005A6A60 /* EmployeeTableView.swift in Sources */,
 				59325E2E276B5144005A6A60 /* CompanyPresenter.swift in Sources */,
 				59325E42276D0D03005A6A60 /* EmployeeAssembly.swift in Sources */,
+				593408B227722A1A00E0974E /* Company+CoreDataClass.swift in Sources */,
 				59325E46276D0D2B005A6A60 /* EmployeeModel.swift in Sources */,
 				59325E32276B515B005A6A60 /* CompanyModel.swift in Sources */,
 				59325E0A276B4DE2005A6A60 /* AppDelegate.swift in Sources */,
 				59325E48276D0D3C005A6A60 /* EmployeeViewController.swift in Sources */,
+				593408B527722A1A00E0974E /* Employee+CoreDataProperties.swift in Sources */,
 				59325E3E276B5620005A6A60 /* CompanyTableView.swift in Sources */,
 				59325E40276B567B005A6A60 /* TableViewCell.swift in Sources */,
 				59325E0C276B4DE2005A6A60 /* SceneDelegate.swift in Sources */,
+				593408B327722A1A00E0974E /* Company+CoreDataProperties.swift in Sources */,
+				593408B427722A1A00E0974E /* Employee+CoreDataClass.swift in Sources */,
 				59325E38276B51EB005A6A60 /* CompanyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
