@@ -63,15 +63,12 @@ extension NetworkService: INetworkService {
 extension NetworkService: URLSessionDelegate {
     func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         
-        DispatchQueue.main.async {
             let appDelegate = AppDelegate()
             guard
                 let completionHandler = appDelegate.bgSessionCompletionHandler
             else { return }
-            
-            appDelegate.bgSessionCompletionHandler = nil
+        
             completionHandler()
-        }
     }
 }
 
