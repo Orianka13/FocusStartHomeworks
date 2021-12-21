@@ -10,9 +10,10 @@ import CoreData
 
 protocol IEmployeeViewController: AnyObject {
     func showAlert()
-    func showEditAlert(name: String, age: String, exp: String?)
+    func showEditAlert(item: EmployeeModel)
     func setNavBar()
     var onTouchedHandler: ((String, String, String) -> Void)? { get set }
+    var editHandler: ((String, String, String?) -> Void)? { get set }
     var fetchRequestHandler: (() -> Void)? { get set }
 }
 
@@ -21,6 +22,7 @@ final class EmployeeViewController: UIViewController {
     
     var onTouchedHandler: ((String, String, String) -> Void)?
     var fetchRequestHandler: (() -> Void)?
+    var editHandler: ((String, String, String?) -> Void)?
     
     private var employeeView: EmployeeView
     private var presenter: IEmployeePresenter?
@@ -97,16 +99,16 @@ extension EmployeeViewController: IEmployeeViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func showEditAlert(name: String, age: String, exp: String?){
+    func showEditAlert(item: EmployeeModel){
         let alertController = UIAlertController(title: "Отредактируйте сотрудника", message: nil, preferredStyle: .alert)
         
         alertController.addTextField()
         alertController.addTextField()
         alertController.addTextField()
         
-        alertController.textFields?[0].text = name
-        alertController.textFields?[1].text = age
-        alertController.textFields?[2].text = exp
+        alertController.textFields?[0].text = item.getName()
+        alertController.textFields?[1].text = item.getAge()
+        alertController.textFields?[2].text = item.getExperience()
     
         
         let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] _ in
@@ -117,7 +119,7 @@ extension EmployeeViewController: IEmployeeViewController {
             guard let name = nameTF?.text else { return }
             guard let age = ageTF?.text else { return }
             guard let exp = expTF?.text else { return }
-            self?.onTouchedHandler?(name, age, exp)
+            self?.editHandler?(name, age, exp)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)

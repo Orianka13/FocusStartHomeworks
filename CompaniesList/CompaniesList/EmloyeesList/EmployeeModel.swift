@@ -55,4 +55,10 @@ extension EmployeeModel: IEmployeeModel {
     func getExperience() -> String? {
         return self.experience
     }
+    
+    func setModel(name: String, age: String, exp: String) {
+        self.name = name
+        self.age = age
+        self.experience = exp
+    }
 }

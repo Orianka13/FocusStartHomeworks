@@ -33,7 +33,7 @@ final class EmployeePresenter {
     private var tableView: EmployeeTableView?
     private var employees = [Employee]()
     private var data = [EmployeeModel]()
-   
+    
  
 }
 
@@ -98,12 +98,17 @@ private extension EmployeePresenter {
         }
         
         self.tableView?.didSelectRowAtHandler = { [weak self] indexPath in
-            let item = self?.data[indexPath.row]
-            self?.controller?.showEditAlert(name: item?.getName() ?? "Noname",
-                                            age: item?.getAge() ?? "0",
-                                            exp: item?.getExperience() ?? "0")
+            guard let item = self?.data[indexPath.row] else { return }
+            self?.controller?.showEditAlert(item: item)
+            
+            self?.controller?.editHandler = { [weak self] name, age, exp in
+                item.setModel(name: name, age: age, exp: exp ?? "No exp")
+                self?.coreDS.update(employee: item)
+                self?.tableView?.reloadTableView()
+            }
         }
         
+       
         self.tableView?.numberOfRowsInSectionHandler = { [weak self] in
             return self?.data.count ?? 0
         }
@@ -111,6 +116,7 @@ private extension EmployeePresenter {
         self.tableView?.cellForRowAtHandler = { [weak self] indexPath in
             let item = self?.data[indexPath.row]
             return item?.getName() ?? "No company"
+            
         }
         
         self.tableView?.deleteItemHandler = { [weak self] indexPath in
