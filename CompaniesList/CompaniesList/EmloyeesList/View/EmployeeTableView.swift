@@ -10,7 +10,6 @@ import UIKit
 protocol IEmployeeTableView {
     
     func reloadTableView()
-    
     func getTableView() -> UITableView
     
     var numberOfRowsInSectionHandler: (() -> Int)? { get set }
@@ -28,11 +27,11 @@ final class EmployeeTableView: UIView {
     }
     
     private var tableView: UITableView = UITableView()
-  
+    
     var numberOfRowsInSectionHandler: (() -> Int)?
     var didSelectRowAtHandler: ((IndexPath) -> Void)?
     var cellForRowAtHandler: ((IndexPath) -> String)?
-    var deleteItemHandler: ((IndexPath) -> Void)? 
+    var deleteItemHandler: ((IndexPath) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -87,7 +86,7 @@ extension EmployeeTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.deleteItemHandler?(indexPath)
-       
+            
         }
     }
 }

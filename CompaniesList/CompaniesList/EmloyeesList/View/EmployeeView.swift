@@ -14,10 +14,6 @@ protocol IEmployeeView {
 
 final class EmployeeView: UIView {
     
-    private enum Literal {
-  
-    }
-    
     private enum Metrics {
         static var standartSpacing = CGFloat(20)
         static var tableViewHeight = CGFloat(1.2)
@@ -43,16 +39,12 @@ final class EmployeeView: UIView {
 private extension EmployeeView {
     
     func addView() {
-
         self.addSubview(tableView)
-
+        
     }
     func setConstraint() {
-
         self.makeTableViewConstraints()
-   
     }
-    
     
     func makeTableViewConstraints() {
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -61,7 +53,6 @@ private extension EmployeeView {
         self.tableView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -Metrics.standartSpacing).isActive = true
         self.tableView.heightAnchor.constraint(equalToConstant: self.frame.size.height / Metrics.tableViewHeight).isActive = true
     }
-    
 }
 
 //MARK: ICompanyView
@@ -70,6 +61,5 @@ extension EmployeeView: IEmployeeView {
     func getTableView() -> EmployeeTableView {
         return self.tableView
     }
-    
 }
 

@@ -17,6 +17,14 @@ protocol ICompanyViewController: AnyObject {
 
 final class CompanyViewController: UIViewController {
     
+    private struct Literal {
+        static let alertTitle = "Добавьте компанию"
+        static let saveTitle = "Save"
+        static let cancelTitle = "Cancel"
+        static let navigationTitle = "Companies List"
+        static let imageSystemName = "plus"
+    }
+    
     
     var onTouchedHandler: ((String) -> Void)?
     var fetchRequestHandler: (() -> Void)?
@@ -68,25 +76,25 @@ final class CompanyViewController: UIViewController {
 extension CompanyViewController: ICompanyViewController {
     
     func showAlert(){
-        let alertController = UIAlertController(title: "Добавьте компанию", message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: Literal.alertTitle, message: nil, preferredStyle: .alert)
         
         alertController.addTextField()
         
-        let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+        let saveAction = UIAlertAction(title: Literal.saveTitle, style: .default) { [weak self] _ in
             guard let textField = alertController.textFields?.first, textField.text != "" else { return }
             guard let text = textField.text else { return }
             self?.onTouchedHandler?(text)
             
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: Literal.cancelTitle, style: .cancel, handler: nil)
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }
     
     func setNavBar(){
-        self.navigationItem.title = "Companies List"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addNewCompany))
+        self.navigationItem.title = Literal.navigationTitle
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Literal.imageSystemName), style: .plain, target: self, action: #selector(addNewCompany))
     }
 }

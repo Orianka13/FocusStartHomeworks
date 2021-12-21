@@ -27,7 +27,6 @@ final class CompanyTableView: UIView {
     
     private var tableView: UITableView = UITableView()
   
-    
     var setCompanyNameHandler: ((CompanyModel) -> Data)?
     var didSelectRowAtHandler: ((IndexPath) -> Void)?
     var deleteItemHandler: ((IndexPath) -> Void)?

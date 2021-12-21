@@ -19,6 +19,18 @@ protocol IEmployeeViewController: AnyObject {
 
 final class EmployeeViewController: UIViewController {
     
+    private enum Literal {
+        static let alertTitle = "Добавьте сотрудника"
+        static let placeholderName = "Имя"
+        static let placeholderAge = "Возраст"
+        static let placeholderExp = "Стаж"
+        static let saveTitle = "Save"
+        static let cancelTitle = "Cancel"
+        
+        static let editAlertTitle = "Отредактируйте сотрудника"
+        static let navigationTitle = "Employees"
+        static let imageSystemName = "plus"
+    }
     
     var onTouchedHandler: ((String, String, String) -> Void)?
     var fetchRequestHandler: (() -> Void)?
@@ -44,7 +56,7 @@ final class EmployeeViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.presenter?.loadView(controller: self, view: self.employeeView)
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,25 +76,24 @@ final class EmployeeViewController: UIViewController {
     @objc private func addNewEmployee() {
         showAlert()
     }
-    
 }
 
 //MARK: IEmployeeViewController
 extension EmployeeViewController: IEmployeeViewController {
     
     func showAlert(){
-        let alertController = UIAlertController(title: "Добавьте сотрудника", message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: Literal.alertTitle, message: nil, preferredStyle: .alert)
         
         alertController.addTextField()
         alertController.addTextField()
         alertController.addTextField()
         
-        alertController.textFields?[0].placeholder = "Имя"
-        alertController.textFields?[1].placeholder = "Возраст"
-        alertController.textFields?[2].placeholder = "Стаж"
-    
+        alertController.textFields?[0].placeholder = Literal.placeholderName
+        alertController.textFields?[1].placeholder = Literal.placeholderAge
+        alertController.textFields?[2].placeholder = Literal.placeholderExp
         
-        let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+        
+        let saveAction = UIAlertAction(title: Literal.saveTitle, style: .default) { [weak self] _ in
             let nameTF = alertController.textFields?[0]
             let ageTF = alertController.textFields?[1]
             let expTF = alertController.textFields?[2]
@@ -93,14 +104,14 @@ extension EmployeeViewController: IEmployeeViewController {
             self?.onTouchedHandler?(name, age, exp)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: Literal.cancelTitle, style: .cancel, handler: nil)
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }
     
     func showEditAlert(item: EmployeeModel){
-        let alertController = UIAlertController(title: "Отредактируйте сотрудника", message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: Literal.editAlertTitle, message: nil, preferredStyle: .alert)
         
         alertController.addTextField()
         alertController.addTextField()
@@ -109,9 +120,9 @@ extension EmployeeViewController: IEmployeeViewController {
         alertController.textFields?[0].text = item.getName()
         alertController.textFields?[1].text = item.getAge()
         alertController.textFields?[2].text = item.getExperience()
-    
         
-        let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+        
+        let saveAction = UIAlertAction(title: Literal.saveTitle, style: .default) { [weak self] _ in
             let nameTF = alertController.textFields?[0]
             let ageTF = alertController.textFields?[1]
             let expTF = alertController.textFields?[2]
@@ -122,14 +133,14 @@ extension EmployeeViewController: IEmployeeViewController {
             self?.editHandler?(name, age, exp)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: Literal.cancelTitle, style: .cancel, handler: nil)
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }
     
     func setNavBar(){
-        self.navigationItem.title = "Employees"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addNewEmployee))
+        self.navigationItem.title = Literal.navigationTitle
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Literal.imageSystemName), style: .plain, target: self, action: #selector(addNewEmployee))
     }
 }

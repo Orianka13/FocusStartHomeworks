@@ -9,15 +9,15 @@ import Foundation
 import CoreData
 
 protocol IEmployeePresenter {
-    
     func loadView(controller: IEmployeeViewController, view: IEmployeeView)
-    
 }
 
 final class EmployeePresenter {
     
     private enum Literal {
-     
+        static let entityName = "Employee"
+        static let expError = "No exp"
+        static let companyError = "No company"
     }
     
     private let companyUid: UUID
@@ -25,7 +25,7 @@ final class EmployeePresenter {
     init(companyUid: UUID) {
         self.companyUid = companyUid
     }
- 
+    
     private weak var controller: IEmployeeViewController?
     private var view: IEmployeeView?
     private let coreDS = CoreDataStack()
@@ -33,8 +33,6 @@ final class EmployeePresenter {
     private var tableView: EmployeeTableView?
     private var employees = [Employee]()
     private var data = [EmployeeModel]()
-    
- 
 }
 
 //MARK: Private extension
@@ -52,7 +50,7 @@ private extension EmployeePresenter {
             fetchRequest.predicate = NSPredicate(format: "\(#keyPath(Company.uid)) = '\(model.companyId)'")
             
             guard let company = try? context.fetch(fetchRequest).first else { return }
-            guard let entity = NSEntityDescription.entity(forEntityName: "Employee", in: context) else { return }
+            guard let entity = NSEntityDescription.entity(forEntityName: Literal.entityName, in: context) else { return }
             
             let taskObject = Employee(entity: entity, insertInto: context)
             
@@ -80,7 +78,7 @@ private extension EmployeePresenter {
             guard let id = self?.companyUid else { return }
             fetchRequest.predicate = NSPredicate(format: "ANY company.uid = '\(id)'")
             
-       
+            
             let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
             fetchRequest.sortDescriptors = [sortDescriptor]
             
@@ -102,20 +100,20 @@ private extension EmployeePresenter {
             self?.controller?.showEditAlert(item: item)
             
             self?.controller?.editHandler = { [weak self] name, age, exp in
-                item.setModel(name: name, age: age, exp: exp ?? "No exp")
+                item.setModel(name: name, age: age, exp: exp ?? Literal.expError)
                 self?.coreDS.update(employee: item)
                 self?.tableView?.reloadTableView()
             }
         }
         
-       
+        
         self.tableView?.numberOfRowsInSectionHandler = { [weak self] in
             return self?.data.count ?? 0
         }
         
         self.tableView?.cellForRowAtHandler = { [weak self] indexPath in
             let item = self?.data[indexPath.row]
-            return item?.getName() ?? "No company"
+            return item?.getName() ?? Literal.companyError
             
         }
         
