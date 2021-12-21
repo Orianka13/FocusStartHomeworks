@@ -16,4 +16,7 @@
    <FileRef
       location = "group:CollectionApp/../Architecture/Architecture.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Architecture/../CompaniesList/CompaniesList.xcodeproj">
+   </FileRef>
 </Workspace>
