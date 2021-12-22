@@ -28,24 +28,17 @@ final class CoreDataStack {
             let fetchRequestCompany: NSFetchRequest<Company> = Company.fetchRequest()
             fetchRequestCompany.predicate = NSPredicate(format: "\(#keyPath(Company.uid)) = %@", company.uid.uuidString)
             
-            let fetchRequestEmployee: NSFetchRequest<Employee> = Employee.fetchRequest()
-            fetchRequestEmployee.predicate = NSPredicate(format: "ANY company.uid = '\(company.uid)'")
-            
             if let object = try? context.fetch(fetchRequestCompany).first {
-                if let employeeObject = try? context.fetch(fetchRequestEmployee).first {
+                context.delete(object)
+                do {
+                    try context.save()
+                    DispatchQueue.main.async { completion() }
+                } catch let error as NSError {
                     
-                    context.delete(object)
-                    context.delete(employeeObject)
+                    print(error.localizedDescription)
                     
-                    do {
-                        try context.save()
-                        DispatchQueue.main.async { completion() }
-                    } catch let error as NSError {
-                        
-                        print(error.localizedDescription)
-                        
-                    }
                 }
+                
             }
         }
     }
@@ -60,9 +53,7 @@ final class CoreDataStack {
                     try context.save()
                     DispatchQueue.main.async { completion() }
                 } catch let error as NSError {
-                    
                     print(error.localizedDescription)
-                    
                 }
             }
         }
@@ -78,7 +69,7 @@ final class CoreDataStack {
                 object.experience = employee.getExperience()
             }
             try? context.save()
-         
+            
         }
     }
     
