@@ -9,16 +9,16 @@ import Foundation
 
 protocol IEmployeeModel {
     func getName() -> String
-    func getAge() -> String
-    func getExperience() -> String?
+    func getAge() -> Int32
+    func getExperience() -> NSNumber?
 }
 
 final class EmployeeModel {
     private(set) var uid: UUID
     private(set) var companyId: UUID
     private var name: String
-    private var age: String
-    private var experience: String?
+    private var age: Int32
+    private var experience: NSNumber?
     
     
     init?(employee: Employee){
@@ -30,7 +30,7 @@ final class EmployeeModel {
         self.companyId = employee.company.uid
     }
     
-    init(name: String, age: String, experience: String?, companyId: UUID) {
+    init(name: String, age: Int32, experience: NSNumber?, companyId: UUID) {
         self.name = name
         self.age = age
         self.experience = experience
@@ -45,15 +45,15 @@ extension EmployeeModel: IEmployeeModel {
         return self.name
     }
     
-    func getAge() -> String {
+    func getAge() -> Int32 {
         return self.age
     }
     
-    func getExperience() -> String? {
+    func getExperience() -> NSNumber? {
         return self.experience
     }
     
-    func setModel(name: String, age: String, exp: String) {
+    func setModel(name: String, age: Int32, exp: NSNumber) {
         self.name = name
         self.age = age
         self.experience = exp

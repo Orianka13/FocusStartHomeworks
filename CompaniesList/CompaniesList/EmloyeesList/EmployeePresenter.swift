@@ -16,7 +16,6 @@ final class EmployeePresenter {
     
     private enum Literal {
         static let entityName = "Employee"
-        static let expError = "No exp"
         static let companyError = "No company"
     }
     
@@ -43,6 +42,9 @@ private extension EmployeePresenter {
             guard let context = self?.getContext() else { return }
             
             guard let companyId = self?.companyUid else { return }
+            
+            guard let age = Int32(age) else { return }
+            let experience = NSNumber(value: experience)
             
             let model = EmployeeModel(name: name, age: age, experience: experience, companyId: companyId)
             
@@ -100,7 +102,10 @@ private extension EmployeePresenter {
             self?.controller?.showEditAlert(item: item)
             
             self?.controller?.editHandler = { [weak self] name, age, exp in
-                item.setModel(name: name, age: age, exp: exp ?? Literal.expError)
+                guard let age = Int32(age) else { return }
+                guard let intExp = exp else { return }
+                let exp = NSNumber(value: intExp)
+                item.setModel(name: name, age: age, exp: exp)
                 self?.coreDS.update(employee: item)
                 self?.tableView?.reloadTableView()
             }

@@ -12,8 +12,8 @@ protocol IEmployeeViewController: AnyObject {
     func showAlert()
     func showEditAlert(item: EmployeeModel)
     func setNavBar()
-    var onTouchedHandler: ((String, String, String) -> Void)? { get set }
-    var editHandler: ((String, String, String?) -> Void)? { get set }
+    var onTouchedHandler: ((String, String, Int) -> Void)? { get set }
+    var editHandler: ((String, String, Int?) -> Void)? { get set }
     var fetchRequestHandler: (() -> Void)? { get set }
 }
 
@@ -36,9 +36,9 @@ final class EmployeeViewController: UIViewController {
         static let okTitle = "OK"
     }
     
-    var onTouchedHandler: ((String, String, String) -> Void)?
+    var onTouchedHandler: ((String, String, Int) -> Void)?
     var fetchRequestHandler: (() -> Void)?
-    var editHandler: ((String, String, String?) -> Void)?
+    var editHandler: ((String, String, Int?) -> Void)?
     
     private var employeeView: EmployeeView
     private var presenter: IEmployeePresenter?
@@ -120,7 +120,8 @@ extension EmployeeViewController: IEmployeeViewController {
             if nameCount > 1, ageCount > 1 {
                 guard let name = nameTF?.text else { return }
                 guard let age = ageTF?.text else { return }
-                guard let exp = expTF?.text else { return }
+                guard let expText = expTF?.text else { return }
+                guard let exp = Int(expText) else { return }
                 self?.onTouchedHandler?(name, age, exp)
             }
             else {
@@ -142,8 +143,8 @@ extension EmployeeViewController: IEmployeeViewController {
         alertController.addTextField()
         
         alertController.textFields?[0].text = item.getName()
-        alertController.textFields?[1].text = item.getAge()
-        alertController.textFields?[2].text = item.getExperience()
+        alertController.textFields?[1].text = String(item.getAge())
+        alertController.textFields?[2].text = String(describing: item.getExperience())
         
         
         let saveAction = UIAlertAction(title: Literal.saveTitle, style: .default) { [weak self] _ in
@@ -153,7 +154,8 @@ extension EmployeeViewController: IEmployeeViewController {
             
             guard let name = nameTF?.text else { return }
             guard let age = ageTF?.text else { return }
-            guard let exp = expTF?.text else { return }
+            guard let expText = expTF?.text else { return }
+            guard let exp = Int(expText) else { return }
             self?.editHandler?(name, age, exp)
         }
         
