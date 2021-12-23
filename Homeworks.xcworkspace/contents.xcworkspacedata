@@ -17,6 +17,12 @@
       location = "group:CollectionApp/../Architecture/Architecture.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:CompaniesList/../ArchitectureCarApp/ArchitectureCarApp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:NetworkDownloadImage/NetworkDownloadImage.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Architecture/../CompaniesList/CompaniesList.xcodeproj">
    </FileRef>
 </Workspace>
