@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:CarApp/CarApp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ThreadSafeArray/ThreadSafeArray.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:myCV/myCV.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:myCV/../CollectionApp/CollectionApp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:CollectionApp/../Architecture/Architecture.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:CompaniesList/../ArchitectureCarApp/ArchitectureCarApp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:NetworkDownloadImage/NetworkDownloadImage.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Architecture/../CompaniesList/CompaniesList.xcodeproj">
+   </FileRef>
+</Workspace>
